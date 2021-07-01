@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+* {
+  margin: 0;
+  font-family: 'Roboto'; }
+
+#root, body, html {
+  position: relative;
+  width: 100%;
+  height: 100%; }
+
+input:focus {
+  outline: none; }
+
+#intro-container {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; }
+  #intro-container .container {
+    height: 100%;
+    min-height: 60rem; }
+    #intro-container .container .box {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%; }
+      #intro-container .container .box .logo {
+        display: flex;
+        margin: 1rem;
+        width: 10rem;
+        height: auto; }
+    #intro-container .container .back-number {
+      position: absolute;
+      top: -10rem;
+      left: -3.5rem;
+      font-size: 24rem;
+      font-weight: 900;
+      color: #F3F3F3;
+      z-index: -1; }
+    #intro-container .container .text {
+      font-size: 24px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 0;
+      margin-left: 110px; }
+    #intro-container .container .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%; }
+  #intro-container #maindescription-container {
+    background-color: #E8E8E8; }
+  #intro-container #introF1-container {
+    background-color: #DEDEDE; }
+    #intro-container #introF1-container .back-number {
+      color: #E8E8E8; }
+  #intro-container #introF2-container {
+    background-color: #D2D2D2; }
+    #intro-container #introF2-container .back-number {
+      color: #E8E8E8; }
+  #intro-container #introF3-container {
+    background-color: #BEBEBE; }
+    #intro-container #introF3-container .content {
+      height: 85%; }
+    #intro-container #introF3-container .back-number {
+      color: #D2D2D2; }
+    #intro-container #introF3-container #intro-search-container {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      #intro-container #introF3-container #intro-search-container .input-box {
+        background-color: white;
+        width: 56rem;
+        height: 4rem;
+        border-radius: 30rem;
+        border: 5px solid;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly; }
+        #intro-container #introF3-container #intro-search-container .input-box .input {
+          display: flex;
+          border: none;
+          width: 40rem;
+          font-size: 2rem; }
+        #intro-container #introF3-container #intro-search-container .input-box .search-icon {
+          width: 2.5rem;
+          height: auto; }
+  #intro-container #intro-footer-container {
+    width: 100%;
+    height: 10rem; }
+  #intro-container .title {
+    position: relative;
+    font-family: 'Roboto Slab', sans-serif;
+    font-size: 64px;
+    letter-spacing: 5px;
+    margin-bottom: 0.8rem; }
+  #intro-container .descript {
+    color: #4571B4;
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 2.5rem; }
+  #intro-container button {
+    width: 12rem;
+    height: 3rem;
+    font-size: 24px;
+    color: white;
+    background-color: #5D97DA;
+    margin-top: 2.5rem;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 5px 3px 0px rgba(0, 0, 0, 0.25); }
+    #intro-container button:hover {
+      background-color: #407BFF; }
+  #intro-container .imgbox {
+    max-width: 40%;
+    flex-basis: 40%;
+    margin-right: 70px; }
+    #intro-container .imgbox .circle {
+      display: flex;
+      width: 100%;
+      padding-bottom: 100%;
+      min-width: 20rem;
+      height: auto;
+      background-color: #5D97DA; }
+  #intro-container .top {
+    position: fixed; }
