@@ -3,12 +3,17 @@
 *{
   margin: 0;
   font-family: 'Roboto';
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
 }
 
 #root, body, html{
   position: relative;
   width: 100%;
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 input{
@@ -17,13 +22,23 @@ input{
   }
 }
 
+a{
+  color: white;
+  text-decoration: none;
+}
+
+@keyframes slidup {
+  0% {transform: translateY(0px);}
+  40%{transform: translateY(10px);}
+}
+
 #intro-container{
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   .container{
     height: 100%;
-    min-height: 60rem;
+    min-height: 55rem;
     .box{
       display: flex;
       flex-direction: column;
@@ -47,28 +62,49 @@ input{
       z-index: -1;
     }
     .text{
-      font-size: 24px;
-      flex-shrink: 0;
+      font-size: 1.5rem;
+      flex-shrink: 1;
       position: relative;
-      z-index: 0;
+      z-index: 1;
       margin-left: 110px;
     }
     .content{
       display: flex;
+      position: relative;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       height: 100%;
     }
   }
 
   #maindescription-container{
     background-color: #E8E8E8;
+    .imgbox{
+      animation-name: slidup;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
   }
   
   #introF1-container{
     background-color: #DEDEDE;
     .back-number{
       color: #E8E8E8;
+    }
+    a{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 3rem;
+      width: 3rem;
+      height: 3rem;
+      background-color: $basic-blue;
+      color: white;
+      border-radius: 3rem;
+      text-decoration: none;
+      right: 5rem;
+      z-index: 2;
     }
   }
 
@@ -77,14 +113,45 @@ input{
     .back-number{
       color: #E8E8E8;
     }
+    .imgbox{
+      padding-top: 15rem;
+    }
+    .text{
+      padding-bottom: 10rem;
+    }
+    // .content{
+    //   justify-content: flex-start;
+    // }
+    // .imgbox{
+    //   position: absolute;
+    //   max-width: 30%;
+    //   left: 65vw;
+    //   top: 10rem;
+    //   z-index: 0;
+    // }
   }
+
   #introF3-container{
     background-color: #BEBEBE;
     .content{
       height: 85%;
+      position: relative;
+      justify-content: flex-start;
     }
     .back-number{
       color: #D2D2D2;
+    }
+    .imgbox{
+      padding-bottom: 5rem;
+      
+    }
+    .text{
+      margin-top: 10rem;
+      width: 100%;
+      right: 3rem;
+    }
+    .back-image{
+      margin-top: 15%;
     }
     #intro-search-container{
       display: flex;
@@ -113,28 +180,45 @@ input{
     }
   }
   #intro-footer-container{
+    display: flex;
+    position: relative;
     width: 100%;
     height: 10rem;
+    background-color: #595959;
+    color: white;
+    align-items: flex-end;
+    justify-content: center;
+    .kiwi{
+      width: 100%;
+      padding: 0 0 1rem 2rem;
+      position: absolute;
+    }
+    .copy{
+      left: 50%;
+      right: 50%;
+      padding-bottom: 1rem;
+    }
   }
   .title{
     position: relative;
     font-family: 'Roboto Slab', sans-serif;
-    font-size: 64px;
-    letter-spacing: 5px;
+    font-size: 4rem;
+    letter-spacing: 10px;
     margin-bottom: 0.8rem;
   }
 
   .descript{
     color: #4571B4;
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 300;
+    // letter-spacing: 10px;
     margin-bottom: 2.5rem;
   }
 
   button{
     width: 12rem;
     height: 3rem;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: white;
     background-color: $basic-blue;
     margin-top: 2.5rem;
@@ -146,20 +230,32 @@ input{
     }
   }
   .imgbox{
+    display: flex;
+    position: relative;
     max-width: 40%;
+    height: 100%;
     flex-basis: 40%;
-    margin-right: 70px;
-    .circle{
-      display: flex;
-      width: 100%;
-      padding-bottom: 100%;
-      min-width: 20rem;
-      height: auto;
-      background-color: $basic-blue;
-    }
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem 0 1rem;
+    // circle{
+    //   animation-name: slidup;
+    //   animation-duration: 2s;
+    //   animation-iteration-count: infinite;
+    // }
+  }
+  .back-image{
+    display: flex;
+    position: absolute;
+    max-width: 100%;
+    height: 100%;
+    flex-basis: 40%;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem 0 1rem;
   }
   .top{
-
     position: fixed;
   }
+
 }
