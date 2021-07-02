@@ -1,10 +1,10 @@
 import { useState } from "react"
-
+import React from "react"
 const UserSetting = ()=>{
 
     const [fontSize, setFontSize] = useState(14);
     const [backGroundColor, setBackGroundColor] = useState("blue");
-
+    console.log(`${fontSize},${backGroundColor},${setBackGroundColor},${setFontSize}`);
     return (
         <div>
             <div>

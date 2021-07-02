@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import React from "react"
 
 const IntroF1 = () =>{
   return(
@@ -6,14 +6,14 @@ const IntroF1 = () =>{
       <div className='content'>
         <div className='back-image'>
           <svg width="1441" height="981" viewBox="0 0 1441 981" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="689.414" y1="195.759" x2="732.403" y2="128.29" stroke="gray" stroke-width="10"/>
-            <line x1="677.33" y1="140.993" x2="744.798" y2="183.981" stroke="gray" stroke-width="10"/>
-            <line x1="1011.67" y1="258.899" x2="1030.82" y2="253.124" stroke="gray" stroke-width="3"/>
-            <line x1="1018.98" y1="246.692" x2="1024.75" y2="265.84" stroke="gray" stroke-width="3"/>
-            <line x1="266.111" y1="825.884" x2="304.234" y2="837.994" stroke="gray" stroke-width="3"/>
-            <line x1="291.243" y1="813.078" x2="279.132" y2="851.2" stroke="gray" stroke-width="3"/>
-            <line x1="980.547" y1="853.84" x2="999.695" y2="848.065" stroke="gray" stroke-width="3"/>
-            <line x1="987.853" y1="841.633" x2="993.628" y2="860.781" stroke="gray" stroke-width="3"/>
+            <line x1="689.414" y1="195.759" x2="732.403" y2="128.29" stroke="gray" strokeWidth="10"/>
+            <line x1="677.33" y1="140.993" x2="744.798" y2="183.981" stroke="gray" strokeWidth="10"/>
+            <line x1="1011.67" y1="258.899" x2="1030.82" y2="253.124" stroke="gray" strokeWidth="3"/>
+            <line x1="1018.98" y1="246.692" x2="1024.75" y2="265.84" stroke="gray" strokeWidth="3"/>
+            <line x1="266.111" y1="825.884" x2="304.234" y2="837.994" stroke="gray" strokeWidth="3"/>
+            <line x1="291.243" y1="813.078" x2="279.132" y2="851.2" stroke="gray" strokeWidth="3"/>
+            <line x1="980.547" y1="853.84" x2="999.695" y2="848.065" stroke="gray" strokeWidth="3"/>
+            <line x1="987.853" y1="841.633" x2="993.628" y2="860.781" stroke="gray" strokeWidth="3"/>
           </svg>
         </div>
         <div className='imgbox'>
