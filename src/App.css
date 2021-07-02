@@ -27,7 +27,7 @@ a {
   0% {
     transform: translateY(0px); }
   40% {
-    transform: translateY(10px); } }
+    transform: translateY(-10px); } }
 
 #intro-container {
   width: 100%;
@@ -66,6 +66,10 @@ a {
       align-items: center;
       justify-content: center;
       height: 100%; }
+  #intro-container .move {
+    animation-name: slidup;
+    animation-duration: 2s;
+    animation-iteration-count: infinite; }
   #intro-container #maindescription-container {
     background-color: #E8E8E8; }
     #intro-container #maindescription-container .imgbox {
@@ -196,5 +200,58 @@ a {
   #intro-container .top {
     position: fixed; }
 
-#ls {
-  margin: 0; }
+#main-container {
+  height: 100%;
+  width: 100%;
+  background-color: #DEDEDE; }
+  #main-container .icon, #main-container ion-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 0.5rem 0 0.5rem; }
+  #main-container ion-icon {
+    --ionicon-stroke-width: 36px; }
+    #main-container ion-icon:hover {
+      color: #200096; }
+  #main-container #header {
+    display: flex;
+    width: 100%;
+    height: 4rem;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed; }
+    #main-container #header .logo {
+      margin-left: 1rem;
+      height: 3rem; }
+    #main-container #header .right {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 1rem; }
+    #main-container #header #control-box {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      height: 40px;
+      left: 45%;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); }
+      #main-container #header #control-box .splitter {
+        width: 2px;
+        height: 1.4rem;
+        background-color: black; }
+    #main-container #header #main-search {
+      display: flex;
+      align-items: center;
+      border: solid #5D97DA 2px;
+      border-radius: 3rem;
+      background-color: white; }
+      #main-container #header #main-search input {
+        transition: 0.5s;
+        width: 5rem;
+        border: none;
+        margin-left: 1rem;
+        background-color: inherit;
+        margin: 0 3px 0 10px; }
+        #main-container #header #main-search input:focus {
+          width: 10rem; }

@@ -1,21 +1,20 @@
 const MapController = ()=>{
 
     return (
-        <div>
+        <div id='control-box'>
             <span>
-                <img alt="back" onClick={()=>{alert('back')}}/>
+                <ion-icon name="arrow-undo" onClick={()=>{alert('front')}}></ion-icon>
             </span>
+            <div className='splitter'></div>
             <span>
-                <img alt="front" onClick={()=>{alert('front')}}/>
+                <ion-icon name="home" onClick={()=>{alert('root')}}></ion-icon>
             </span>
+            <div className='splitter'></div>
             <span>
-                <img alt="root" onClick={()=>{alert('root')}}/>
-            </span>
-            <span>
-                <img alt="delete" onClick={()=>{alert('delete')}}/>
+                <ion-icon name="arrow-redo" onClick={()=>{alert('back')}}></ion-icon>
             </span>
         </div>
     )
 }
-  
+
 export default MapController

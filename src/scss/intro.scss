@@ -29,7 +29,7 @@ a{
 
 @keyframes slidup {
   0% {transform: translateY(0px);}
-  40%{transform: translateY(10px);}
+  40%{transform: translateY(-10px);}
 }
 
 #intro-container{
@@ -76,7 +76,11 @@ a{
       height: 100%;
     }
   }
-
+  .move{
+    animation-name: slidup;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
   #maindescription-container{
     background-color: #E8E8E8;
     .imgbox{

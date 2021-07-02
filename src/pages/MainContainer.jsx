@@ -7,20 +7,23 @@ import Signin from "../components/Main/SignIn"
 import SignUp from "../components/Main/SignUp"
 import SiteSetting from "../components/Main/SiteSetting"
 import UserSetting from "../components/Main/UserSetting"
+import NodeMap from '../components/Main/NodeMap'
+import Header from '../containers/Header'
 
 const MainContainer = ()=>{
   return(
-    <div>
-        <MainSearchBar></MainSearchBar>
-        <MapController></MapController>
-        <NodeSetting></NodeSetting>
-        <NodeOption></NodeOption>
-        <SiteSetting></SiteSetting>
-        <UserSetting></UserSetting>
-        <SignIn></SignIn>
-        <SignUp></SignUp>
+    <div id='main-container'>
+      <NodeMap />
+      <Header />
     </div>
   )
 }
 
 export default MainContainer
+
+{/*       <NodeSetting></NodeSetting>
+      <NodeOption></NodeOption>
+      <SiteSetting></SiteSetting>
+      <UserSetting></UserSetting>
+      <SignIn></SignIn>
+      <SignUp></SignUp> */}
