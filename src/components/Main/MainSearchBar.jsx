@@ -3,15 +3,14 @@ import { useState } from "react"
 const MainSearchBar = ()=>{
 
     const [searchTerm, setSearchTerm] = useState("");
-
+    const handler = ()=>{
+    }
     return (
-        <div>
-            <input type="search" onChange={(event)=>{setSearchTerm(event.target.value)}}/>
-            <span>
-                <img alt="search" onClick={()=>{alert(`search: ${searchTerm}`)}}/>
-            </span>
+        <div id='main-search'>
+            <input type="text" onChange={(event)=>{setSearchTerm(event.target.value)}}/>
+            <ion-icon name="search-outline" onClick={handler}></ion-icon>
         </div>
     )
 }
-  
+
 export default MainSearchBar

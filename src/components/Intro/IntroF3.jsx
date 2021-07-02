@@ -1,5 +1,4 @@
-import d from 'd'
-import IntroSearchBar from './IntroSearchBar'
+
 
 const IntroF3 = () =>{
   return(
@@ -18,8 +17,8 @@ const IntroF3 = () =>{
           </div>
           <div className='imgbox'>
             <svg width="662" height="622" viewBox="0 0 662 622" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M662 472C662 554.843 594.843 622 512 622C429.157 622 362 554.843 362 472C362 389.157 429.157 322 512 322C594.843 322 662 389.157 662 472Z" fill="#5D97DA"/>
-              <path d="M200 411C200 466.228 155.228 511 100 511C44.7715 511 0 466.228 0 411C0 355.772 44.7715 311 100 311C155.228 311 200 355.772 200 411Z" fill="#5D97DA"/>
+              <path d="M662 472C662 554.843 594.843 622 512 622C429.157 622 362 554.843 362 472C362 389.157 429.157 322 512 322C594.843 322 662 389.157 662 472Z" fill="#5D97DA" className='move'/>
+              <path d="M200 411C200 466.228 155.228 511 100 511C44.7715 511 0 466.228 0 411C0 355.772 44.7715 311 100 311C155.228 311 200 355.772 200 411Z" fill="#5D97DA" className='move'/>
               <circle cx="297" cy="250" r="250" fill="#9EBFE7"/>
             </svg>
           </div>
@@ -33,7 +32,12 @@ const IntroF3 = () =>{
             </div>
           </section>
         </div>
-        <IntroSearchBar />
+        <div id='intro-search-container'>
+          <div className='input-box'>
+            <input type='text' className='input search' placeholder='Find Your Keyword in Your mind.'/>
+            <img src='images/search.png' alt='search Icon' className='search-icon'/>
+          </div>
+        </div>        
       </div>
     </div>
   )
