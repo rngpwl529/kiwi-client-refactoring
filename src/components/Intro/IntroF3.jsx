@@ -1,4 +1,4 @@
-
+import React from "react"
 
 const IntroF3 = () =>{
   return(
@@ -7,12 +7,12 @@ const IntroF3 = () =>{
         <div  className='content'>
           <div className='back-image'>
             <svg width="1441" height="1024" viewBox="0 0 1441 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="1013.86" y1="164.478" x2="1035.36" y2="130.743" stroke="gray" stroke-width="10"/>
-              <line x1="1007.77" y1="136.83" x2="1041.51" y2="158.324" stroke="gray" stroke-width="10"/>
-              <line x1="110.111" y1="760.884" x2="148.234" y2="772.994" stroke="gray" stroke-width="3"/>
-              <line x1="135.243" y1="748.078" x2="123.132" y2="786.2" stroke="gray" stroke-width="3"/>
-              <line x1="585.672" y1="75.8991" x2="604.82" y2="70.124" stroke="gray" stroke-width="3"/>
-              <line x1="592.977" y1="63.6916" x2="598.752" y2="82.8397" stroke="gray" stroke-width="3"/>
+              <line x1="1013.86" y1="164.478" x2="1035.36" y2="130.743" stroke="gray" strokeWidth="10"/>
+              <line x1="1007.77" y1="136.83" x2="1041.51" y2="158.324" stroke="gray" strokeWidth="10"/>
+              <line x1="110.111" y1="760.884" x2="148.234" y2="772.994" stroke="gray" strokeWidth="3"/>
+              <line x1="135.243" y1="748.078" x2="123.132" y2="786.2" stroke="gray" strokeWidth="3"/>
+              <line x1="585.672" y1="75.8991" x2="604.82" y2="70.124" stroke="gray" strokeWidth="3"/>
+              <line x1="592.977" y1="63.6916" x2="598.752" y2="82.8397" stroke="gray" strokeWidth="3"/>
             </svg>
           </div>
           <div className='imgbox'>
@@ -26,9 +26,9 @@ const IntroF3 = () =>{
             <div className='title'><div className='back-number'>04</div>Search it</div>
             <div className='descript'>To find the keyword you have in mind. </div>
             <div className='sub-descript'>Look for keywords that you know. <br/>
-              It'll send you to the location you're looking for. <br/>
+              It&apos;ll send you to the location you&apos;re looking for. <br/>
               Continue your long journey there again. <br/>
-              It's a trip without a destination, but it'll help you stay on your way.
+              It&apos;s a trip without a destination, but it&apos;ll help you stay on your way.
             </div>
           </section>
         </div>

@@ -1,4 +1,5 @@
-const Keyword = ({keywords})=>{
+import React from "react"
+const Keyword = ({ keywords }) => {
 
     return (
         <div>

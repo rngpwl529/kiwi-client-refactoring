@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import IntroContainer from './pages/IntroContainer'
 import MainContrainer from './pages/MainContainer'
+import React from "react"
 
 const App= () => {
   return (
