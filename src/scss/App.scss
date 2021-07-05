@@ -1,2 +1,83 @@
 @import './intro.scss';
-@import './main.scss'
+@import './main.scss';
+/*----------------태그 디폴트------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	scroll-behavior: smooth;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  line-height: 1;
+  box-sizing: border-box;
+	font-family: 'Quicksand', sans-serif; //폰트
+	overflow: hidden;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*----------------컬러, 폰트사이즈, 마진, 패딩--------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+// $lighter--grey--: //
+// $light--grey--://
+// $dark--grey--: //
+
+$basic--blue--: #5D97DA;
+$light--blue--: #92c7ff;
+$dark--blue--:#2069a8;
+
+//배경컬러 8개
+$pink:#EF9A9A;
+$lightpink:#FFCCBC;
+$violet:#1A237E;
+$mint:#B2DFDB;
+$lightmint:#E8F5E9;
+
+//노드컬러 8개
+
+//폰트사이즈 5개
+$small:12px;
+$regular:16px;
+$h4:24px;
+$h3:32px;
+$h2:48px;
+$h1:64px;
+
+$padding:1rem;
+$margin:1rem;
