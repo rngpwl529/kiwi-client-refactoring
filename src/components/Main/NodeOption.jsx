@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import React from "react"
-import "./_NodeOption.scss" //임시 스타일
+
 
 const NodeOption = ()=>{
 
@@ -8,7 +8,7 @@ const NodeOption = ()=>{
 
     const color = "red";
     return (
-        <div className='darkbackground'>
+        <div className='nodeoption-darkbackground'>
             <div className='nodeoption-container'>
                 <div className='nodeoption-x-box'>
                     <div></div>

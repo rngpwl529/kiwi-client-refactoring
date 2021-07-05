@@ -1,3 +1,8 @@
+//초기 상태값 초기화
+const initailState = {
+
+}
+
 //액션
 const HANDLE_USERINFO_CHANGE_MODE = "HANDLE_USERINFO_CHANGE_MODE";
 const HANDLE_USERINFO = "HANDLE_USERINFO";
@@ -5,19 +10,19 @@ const HANDEL_TREND_KEYWORD = "HANDEL_TREND_KEYWORD";
 
 
 //액션생성함수
-const handleUserinfoChangeMode = (mode) => ({
+export const handleUserinfoChangeMode = (mode) => ({
     type: HANDLE_USERINFO_CHANGE_MODE,
     payload: {
         mode
     }
 });
-const handleUserinfo = (userinfo) => ({
+export const handleUserinfo = (userinfo) => ({
     type: HANDLE_USERINFO,
     payload: {
         userinfo
     }
 });
-const handelTrendKeyword = (keyword) => ({
+export const handelTrendKeyword = (keyword) => ({
     type: HANDLE_USERINFO,
     payload: {
         keyword
@@ -25,7 +30,7 @@ const handelTrendKeyword = (keyword) => ({
 });
 
 //리듀서
-const userinfoChangeMode = (state, action) => {
+export const userinfoChangeMode = (state, action) => {
     switch (action.type) {
         case HANDLE_USERINFO_CHANGE_MODE:
             return Object.assign({}, state, { isChangeMode: action.payload.mode });
@@ -34,7 +39,7 @@ const userinfoChangeMode = (state, action) => {
     }
 };
 
-const userinfo = (state, action) => {
+export const userinfo = (state, action) => {
     switch (action.type) {
         case HANDLE_USERINFO:
             return Object.assign({}, state, { userInfo: action.payload.userinfo });
@@ -43,11 +48,13 @@ const userinfo = (state, action) => {
     }
 };
 
-const trendKeyword = (state, action) => {
+export const trendKeyword = (state, action) => {
     switch (action.type) {
-        case HANDLE_USERINFO:
+        case HANDEL_TREND_KEYWORD:
             return Object.assign({}, state, { trendKeywords: action.payload.keyword });
         default:
             return state;
     }
 };
+
+export default userinfo;
