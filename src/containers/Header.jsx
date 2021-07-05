@@ -1,6 +1,6 @@
 import MapController from '../components/Main/MapController'
 import MainSearchBar from '../components/Main/MainSearchBar'
-
+import React from 'react';
 const Header = ()=>{
   return(
     <div id = 'header'>

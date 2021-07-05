@@ -1,5 +1,5 @@
 // import { useState } from "react"
-
+import React from "react"
 const NodeSetting = ()=>{
 
     // const [profileIsOpen, setprofileIsOpen] = useState(false);

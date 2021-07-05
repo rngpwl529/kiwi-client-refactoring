@@ -1,12 +1,12 @@
 import { useState } from "react";
-
+import React from "react"
 const SignUp = ()=>{
 
     const [email, setEmail] = useState("");
     const [nickname, setNickname] = useState("");
     const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
-
+    console.log(`${ nickname }${ password2 }`);
     return (
         <div>
             <img alt="ima"></img>

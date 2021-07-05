@@ -1,9 +1,10 @@
 import { useState } from "react"
-
+import React from "react"
 const MainSearchBar = ()=>{
 
     const [searchTerm, setSearchTerm] = useState("");
-    const handler = ()=>{
+    const handler = () => {
+        console.log(searchTerm);
     }
     return (
         <div id='main-search'>

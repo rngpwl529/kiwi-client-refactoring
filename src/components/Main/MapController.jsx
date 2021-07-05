@@ -1,4 +1,5 @@
-const MapController = ()=>{
+import React from "react"
+const MapController = () => {
 
     return (
         <div id='control-box'>

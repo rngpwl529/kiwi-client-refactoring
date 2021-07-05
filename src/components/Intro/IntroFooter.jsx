@@ -1,4 +1,5 @@
-const IntroFooter = ()=>{
+import React from "react"
+const IntroFooter = () => {
   return(
     <div id='intro-footer-container'>
       <span className='kiwi'>KiWi</span>
