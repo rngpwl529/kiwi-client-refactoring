@@ -1,65 +1,63 @@
+const initialState = {
+    isWhichModal: "",
+    isOpenModal: false,
+};
 //액션
 const HANDLE_SETTING_MODAL = "HANDLE_SETTING_MODAL";
 const HANDLE_USERINFO_MODAL = "HANDLE_USERINFO_MODAL";
 const HANDLE_SIGNUP_MODAL = "HANDLE_SIGNUP_MODAL";
 const HANDLE_SIGNIN_MODAL = "HANDLE_SIGNIN_MODAL";
+const HANDLE_MODAL_OPEN = "HANDLE_MODAL_OPEN";
 
 //액션생성함수
-const handleSettingModal = (setting) => ({
+export const handleSettingModal = (setting) => ({
     type: HANDLE_SETTING_MODAL,
     payload: {
         setting
     }
 });
-const handleUserinfoModal = (userinfo) => ({
+export const handleUserinfoModal = (userinfo) => ({
     type: HANDLE_USERINFO_MODAL,
     payload: {
         userinfo
     }
 });
-const handleSignupModal = (signup) => ({
+export const handleSignupModal = (signup) => ({
     type: HANDLE_SIGNUP_MODAL,
     payload: {
         signup
     }
 });
-const handleSigninModal = (signin) => ({
+export const handleSigninModal = (signin) => ({
     type: HANDLE_SIGNIN_MODAL,
     payload: {
         signin
     }
 });
+export const hanleModalOpen = (modal) => ({
+    type: HANDLE_MODAL_OPEN,
+    payload: {
+        modal
+    }
+})
 
 //리듀서
-const settingModal = (state, action) => {
+const settingModal = (state = initialState, action) => {
     switch (action.type) {
         case HANDLE_SETTING_MODAL:
-            return Object.assign({}, state, { isSettingModalOpen: action.payload.setting });
-        default:
-            return state;
-    }
-};
-const userinfoModal = (state, action) => {
-    switch (action.type) {
+            return Object.assign({}, state, { isSettingModal: action.payload.setting });
         case HANDLE_USERINFO_MODAL:
-            return Object.assign({}, state, { isUserInfoModalOpen: action.payload.userinfo });
-        default:
-            return state;
-    }
-};
-const signupModal = (state, action) => {
-    switch (action.type) {
+            return Object.assign({}, state, { isUserInfoModal: action.payload.userinfo });
         case HANDLE_SIGNUP_MODAL:
-            return Object.assign({}, state, { isSignUpModalOpen: action.payload.signup });
-        default:
-            return state;
-    }
-};
-const signinModal = (state, action) => {
-    switch (action.type) {
+            return Object.assign({}, state, { isSignUpModal: action.payload.signup });
         case HANDLE_SIGNIN_MODAL:
-            return Object.assign({}, state, { isSignInModalOpen: action.payload.signin });
+            return Object.assign({}, state, { isSignInModal: action.payload.signin });
+        case HANDLE_MODAL_OPEN:
+            return Object.assign({}, state, { isModalOpen: action.payload.isModalOpen });
         default:
             return state;
     }
 };
+
+
+export default settingModal;
