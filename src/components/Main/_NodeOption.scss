@@ -1,0 +1,44 @@
+.nodeoption-darkbackground {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.747);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadein 0.5s forwards;
+    
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+.nodeoption-container{
+    width : 400px;
+    height: 400px;
+    background-color:white;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.26);
+    display:flex;
+    flex-direction:column;
+    padding: 20px 40px; // TODO: Padding 통일
+    .nodeoption-x-box {
+        display:flex;
+        justify-content: space-between;
+        .nodeoption-x{
+            cursor: pointer;
+        }
+    }
+    .nodeoption-header{
+        &before{
+        outline: 1px solid black;
+        }
+    }
+}
+
