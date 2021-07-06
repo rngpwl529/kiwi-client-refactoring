@@ -1,0 +1,68 @@
+#user-container{
+    background-color: white;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.26);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    ion-icon{
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        height: 24px;
+        width: 24px;
+    }
+    .title{
+        font-size: 24px;
+        margin-top: 20px;
+        color: $dark--blue--;
+    }
+    .form{
+        height: 55%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 300px;
+        height: 30px;
+        margin-bottom: 30px;
+        .left{
+            max-width: 90px;
+        }
+        .right{
+            width: 200px;
+        }
+        input{
+            width: 200px;
+            height: 25px;
+            border-radius: 20px;
+            border-color: $dark--grey--;
+            padding: 0 10px 0 10px;
+        }
+        }
+    }
+    .edit{
+        margin-bottom: 40px;
+        div{
+        display: flex;
+        width: 380px;
+        justify-content: space-evenly;
+        div{
+            width: 80px;
+            &:hover{
+            background-color:$lighter--grey--;
+            }
+        }
+        }
+        .withdraw{
+        color: red;
+        }
+    }
+    }

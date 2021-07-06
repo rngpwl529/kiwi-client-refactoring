@@ -1,33 +1,68 @@
-import { useState } from "react"
-import React from "react"
+import React,{ useState } from "react"
+
 const UserSetting = ()=>{
 
-    const [fontSize, setFontSize] = useState(14);
-    const [backGroundColor, setBackGroundColor] = useState("blue");
-    console.log(`${fontSize},${backGroundColor},${setBackGroundColor},${setFontSize}`);
+    // const [fontSize, setFontSize] = useState(14);
+    // const [backGroundColor, setBackGroundColor] = useState("blue");
+    const [edit, setEdit] = useState('')
+
+    const eidtHandler = ()=>{
+        if(edit){
+            setEdit(false)
+        }
+        else{
+            setEdit(true)
+        }
+    }
+
+    // const submitHandler= ()=>{
+    //     axios
+    //     .post(
+    //         ''
+    //     )
+    // }
+
     return (
-        <div>
-            <div>
-                <span>내정보</span>
-                <img alt="X" onClick={()=>{}}></img>
-            </div>
-            <div>
-                <div>
-                    <span>이메일</span>
-                    <span>{}</span>
+        <div id='user-container'>
+            <ion-icon name="close-outline"></ion-icon>
+            <span className='title'>User Information</span>
+            <div className='form'>
+                <div className='box'>
+                    <span className='left'>Email</span>
+                    <span className='right'>a@naver.com</span>
                 </div>
-                <div>
-                    <span>닉네임</span>
-                    <span>{}</span>
+                <div className='box'>
+                    <span className='left'>Username</span>
+                    {edit ? <input type="text" className="username" />
+                        :<span className='right'>James</span>
+                    }
                 </div>
+                <div className='box'>
+                    <span className='left'>Password</span>
+                    {edit ? <input type="text" className="username" />
+                        :<span className='right'>******</span>
+                    }
+                </div>
+                {edit ?
+                    <div className='box'>
+                        <span className='left'>Password check</span>
+                        <input type="text" className="username" />
+                    </div>
+                    :null
+                }
             </div>
-            <div>
-                <div>로그아웃</div>
-                <div>회원정보수정</div>
-                <div>탈퇴</div>
+            <div className='edit'>
+            {edit ? 
+                <div className='ok' /* onClick={submitHandler} */>Eidt</div>
+                :<div>
+                    <div className='logout'>Logout</div>
+                    <div className='user-edit' onClick={eidtHandler}>Edit</div>
+                    <div className='withdraw'>Withdraw</div>
+                </div>
+                }
             </div>
         </div>
     )
 }
-  
+
 export default UserSetting
