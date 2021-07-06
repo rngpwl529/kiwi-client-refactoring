@@ -1,4 +1,5 @@
 import './App.css';
+import './scss/App.scss'
 import {
   BrowserRouter as Router,
   Switch,

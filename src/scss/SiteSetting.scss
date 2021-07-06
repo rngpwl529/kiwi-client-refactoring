@@ -1,0 +1,124 @@
+.sitesetting-darkbackground {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.615);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadein 0.5s forwards;
+    
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .sitesetting-container{
+        width : 400px;
+        height: 400px;
+        background-color:white;
+        border-radius: 50px;
+        box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.26);
+        display:flex;
+        flex-direction:column;
+        justify-content: space-evenly;
+        align-items:center;
+        padding: 20px 40px; // TODO: Padding 통일
+        .sitesetting-x-box {
+            .iconCancel{
+            @include iconCancel(20px);
+            top: -10px;
+            left:10rem;
+            }
+        }
+        .sitesetting-header{
+            font-size: $h4;
+            height: 30%;
+        }  
+
+        @mixin color {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 3px solid rgba(32, 32, 32, 0.2);
+            margin-right: $margin;
+            cursor: pointer;
+            transition: all .55s cubic-bezier(.77,0,.175,1);
+            &.selected {
+              border: 3px solid $basic--blue--;
+              transform: scale(1.2);
+              box-shadow: 1px 1px 5px 1px rgba(85, 85, 85, 0.2);
+              transition: all .55s cubic-bezier(.77,0,.175,1);
+            }
+          }
+                  
+        .sitesetting-setting{
+            display:flex;
+            justify-content: space-between;
+            height:50%;
+            
+            .sitesetting-fontsize{
+                display:inherit;
+                flex-direction: column;
+                align-items:center;
+                padding-left: $margin;
+                justify-content: space-between;
+                .sitesetting-slider{
+                    input {
+                        -webkit-appearance: slider-vertical;
+                    }
+                }
+            }
+            .sitesetting-color{
+                display:inherit;
+                flex-direction: column;
+                align-items:center;
+                justify-content: space-between;
+                padding-left: $margin;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 45%;
+                    left: 50%;
+                    width: 1px;
+                    height: 14rem;
+                    background-color: grey;
+                }
+                .colors{
+                    display:flex;
+                    justify-content: space-between;
+                    align-items:center;
+                    flex-direction: column;
+                    & .black {
+                      @include color;
+                      background-color: black;
+                    }
+              
+                    & .red {
+                      @include color;
+                      background-color: red;
+                    }
+              
+                    & .blue {
+                      @include color;
+                      background-color: blue;
+                    }
+              
+                    & .yellow {
+                      @include color;
+                      background-color: yellow;
+                    }
+              
+                    & .green {
+                      @include color;
+                      background-color: green;
+                    }
+                  }      
+            }
+        }
+  }
+}

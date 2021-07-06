@@ -52,9 +52,9 @@ table {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
-// $lighter--grey--: //
-// $light--grey--://
-// $dark--grey--: //
+$lighter--grey--: #efefef;//
+$light--grey--: #bdbdbd;//
+$dark--grey--: #8d8d8d;//
 
 $basic--blue--: #5D97DA;
 $light--blue--: #92c7ff;
@@ -83,5 +83,7 @@ $margin:1rem;
 // @import "../components/Main/NodeOption"; //임시 스타일
 @import './intro.scss';
 @import './main.scss';
-@import './keyword.scss'
-@import './sign.scss'
+@import './keyword.scss';
+@import './sign.scss';
+@import './usersetting.scss';
+@import './nodesetting.scss';

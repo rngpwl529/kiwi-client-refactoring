@@ -1,18 +1,9 @@
 import MapController from '../components/Main/MapController'
 import MainSearchBar from '../components/Main/MainSearchBar'
-import React,{useState} from 'react';
-import Keyword from '../components/Main/Keyword'
+import React from 'react';
+import ProfileSetting from '../components/Main/ProfileSetting'
 
 const Header = ()=>{
-  const [keywordOpen, setKeywordOpen] = useState(false)
-  const keywordHandler=()=>{
-    if(!keywordOpen){
-      setKeywordOpen(true)
-    }
-    else{
-      setKeywordOpen(false)
-    }
-  }
 
   return(
     <div id = 'header'>
@@ -20,12 +11,8 @@ const Header = ()=>{
       <MapController />
       <div className='right'>
         <MainSearchBar />
-        <ion-icon name="person-outline"></ion-icon>
-        <ion-icon name="settings-outline"></ion-icon>
-        <ion-icon name="bookmark-outline" onClick={keywordHandler}></ion-icon>
-        <ion-icon name="image-outline"></ion-icon>
+        <ProfileSetting />
       </div>
-      {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
     </div>
   )
 }
