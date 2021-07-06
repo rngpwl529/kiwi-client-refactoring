@@ -98,7 +98,7 @@ $sqrt_2: 1.41421356237;
   &:before, &:after {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 51%;
     left: 50%;
     width: round($size*$sqrt_2 - $thick);
     height: $thick;
