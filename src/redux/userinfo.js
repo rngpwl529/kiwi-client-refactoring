@@ -1,6 +1,6 @@
 //초기 상태값 초기화
 const initailState = {
-
+    
 }
 
 //액션

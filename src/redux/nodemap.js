@@ -5,10 +5,13 @@ const initialState = {
 };
 //액션
 //노드데이터
-const HANDLE_NODEMAP_DATA = "HANDLE_NODEMAP_DATA";
+
 const GET_NODEDATA = "GET_NODE_DATA";
 const ADD_NODEDATA = "ADD_EDGE_DATA";
 const DELETE_NODEDATA = "DELETE_NODEDATA";
+
+//엣지데이터
+const GET_EDGE
 //엣지 추가 삭제 수정
 //노드 맵 데이터
 

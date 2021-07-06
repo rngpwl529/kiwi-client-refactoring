@@ -1,13 +1,13 @@
 const initialState = {
-    isWhichModal: "",
-    isOpenModal: false,
+    isSettingModalOpen = false,
+
 };
 //액션
-const HANDLE_SETTING_MODAL = "HANDLE_SETTING_MODAL";
-const HANDLE_USERINFO_MODAL = "HANDLE_USERINFO_MODAL";
-const HANDLE_SIGNUP_MODAL = "HANDLE_SIGNUP_MODAL";
-const HANDLE_SIGNIN_MODAL = "HANDLE_SIGNIN_MODAL";
-const HANDLE_MODAL_OPEN = "HANDLE_MODAL_OPEN";
+const HANDLE_SETTING_MODAL = "HANDLE_SETTING_MODAL";//
+const HANDLE_USERINFO_MODAL = "HANDLE_USERINFO_MODAL";//
+const HANDLE_SIGNUP_MODAL = "HANDLE_SIGNUP_MODAL";//
+const HANDLE_SIGNIN_MODAL = "HANDLE_SIGNIN_MODAL";//
+// 확인창, 완료창, 
 
 //액션생성함수
 export const handleSettingModal = (setting) => ({

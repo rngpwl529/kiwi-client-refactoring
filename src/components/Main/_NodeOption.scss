@@ -2,7 +2,7 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.747);
+    background-color: rgba(0, 0, 0, 0.615);
     z-index: 5;
     display: flex;
     justify-content: center;
@@ -27,18 +27,121 @@
     box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.26);
     display:flex;
     flex-direction:column;
+    justify-content: space-evenly;
+    align-items:center;
     padding: 20px 40px; // TODO: Padding 통일
     .nodeoption-x-box {
+      .iconCancel{
+      @include iconCancel(20px);
+      top: -10px;
+      left:10rem;
+      }
+  }
+  .nodeoption-header{
+    font-size:$h4;
+  }
+    .nodeoption-setting{
+      width:90%;
+      height:50%;
+      @mixin option {
+       
         display:flex;
         justify-content: space-between;
-        .nodeoption-x{
-            cursor: pointer;
+        margin-top: $margin * 2;
+      }
+    .nodeoption-nodename{
+        @include option;
+        .nodeoption-nodename-input{
+          height:2rem;
+          border-radius:20px;
+          border: 1px solid $basic--blue--;
+          display:flex;
+          justify-content: center;
+          align-items: center;
+          & input{
+            border:none;
+            margin:0 $margin;
+          }
         }
+       
     }
-    .nodeoption-header{
-        &before{
-        outline: 1px solid black;
-        }
+    .nodeoption-parentnode{
+      @include option;
     }
+    .setting-node-colors{
+      @include option;
+      flex-direction:column;
+      & > div{
+        margin-top: $margin;
+      }
+    }
+    @mixin color {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 3px solid rgba(32, 32, 32, 0.2);
+      margin-right: $margin;
+      cursor: pointer;
+      transition: all .55s cubic-bezier(.77,0,.175,1);
+      &.selected {
+        border: 3px solid $basic--blue--;
+        transform: scale(1.2);
+        box-shadow: 1px 1px 5px 1px rgba(85, 85, 85, 0.2);
+        transition: all .55s cubic-bezier(.77,0,.175,1);
+      }
+    }
+    .colors{
+      display:flex;
+      justify-content: space-evenly;
+      & .blue {
+        @include color;
+        background-color: blue;
+      }
+
+      & .red {
+        @include color;
+        background-color: red;
+      }
+
+      & .orange {
+        @include color;
+        background-color: orange;
+      }
+
+      & .yellow {
+        @include color;
+        background-color: yellow;
+      }
+
+      & .green {
+        @include color;
+        background-color: green;
+      }
+    }
+  }
+  .nodeoption-footer{
+    height:30%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    .nodeaddBtn {
+      height:2rem;
+      width:10rem;
+      border-radius:20px;
+      border: 1px solid black;
+      cursor: pointer;
+      display:inherit;
+      justify-content: center;
+      align-items: center;
+      &:hover {
+        border: 3px solid $basic--blue--;
+        background-color: $basic--blue--;
+        color:white;
+        transform: scale(1.2);
+        box-shadow: 1px 1px 5px 1px rgba(85, 85, 85, 0.2);
+        transition: all .2s cubic-bezier(.77,0,.175,1);
+      }
+    }
+  }
 }
 
