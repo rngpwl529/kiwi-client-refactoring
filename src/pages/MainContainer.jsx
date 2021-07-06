@@ -17,6 +17,7 @@ import Header from '../containers/Header'
 // import validCheck from "../utils/validCheck";
 
 const MainContainer = () => {
+<<<<<<< HEAD
 
     const modal= useSelector(state => state.modal);
     const dispatch = useDispatch();
@@ -30,6 +31,15 @@ const MainContainer = () => {
         {modal.signupModal? <SignUp />: false}
         {modal.signinModal? <SignIn />: false}
       </div>
+=======
+  console.log(`${MainSearchBar},${MapController},${NodeOption},${NodeSetting},${SignIn},${SignUp},${SiteSetting},${UserSetting}`);
+  return(
+    <div id='main-container'>
+      <NodeMap />
+      <Header />
+      <UserSetting />
+    </div>
+>>>>>>> 49bdb0790366acc8d414e5e40a5003a6fc8195f9
   )
 }
 
