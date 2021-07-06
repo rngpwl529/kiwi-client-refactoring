@@ -1,9 +1,7 @@
 //초기 상태값 초기화
 const initailState = {
-    userInfo: {
-        email ="",
-        username="",
-    },
+    email: "",
+    username:  "",
     bookmarkKeyword: [],
 }
 
@@ -51,13 +49,17 @@ export const userInfo = (state=initailState, action) => {
             
         case ADD_BOOKMARK_KEYWORD:
             return Object.assign({}, state, { bookmarkKeyword: action.payload.keyword });
-        case GET_BOOKMARK_KEYWORD:
+
+        case GET_BOOKMARK_KEYWORD: 
             return Object.assign({}, state, { bookmarkKeyword: [...state.bookmarkKeyword, action.payload.keyword] });
-        case DELETE_BOOKMARK_KEYWORD:
-            const idx = state.bookmarkKeyword.findIndex(keyword===action.payload.keyword);
+
+        case DELETE_BOOKMARK_KEYWORD: {
+            const idx = state.bookmarkKeyword.findIndex((keyword)=>(keyword===action.payload.keyword));
             const result = Object.assign({}, state);
             result.bookmarkKeyword.splice(idx,1);
             return result;
+        }
+
         default:
             return state;
     }

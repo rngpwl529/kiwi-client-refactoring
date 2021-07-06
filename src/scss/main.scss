@@ -10,7 +10,7 @@
   ion-icon {
     --ionicon-stroke-width: 36px;
     &:hover{
-      color: #200096;
+      color: $basic--blue--;
     }
   }
   #header{

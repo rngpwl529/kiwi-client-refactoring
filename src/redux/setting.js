@@ -1,8 +1,6 @@
 const initialState = {
-    setting: {
-        color: 'blue',
-        font:'',
-    }
+    color: 'blue',
+    font:'',
   }
 
 //액션
