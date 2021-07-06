@@ -10,7 +10,7 @@
   ion-icon {
     --ionicon-stroke-width: 36px;
     &:hover{
-      color: #200096;
+      color: $basic--blue--;
     }
   }
   #header{
@@ -48,7 +48,7 @@
     #main-search{
       display: flex;
       align-items: center;
-      border: solid $basic-blue 2px;
+      border: solid $basic--blue-- 2px;
       border-radius: 3rem;
       background-color: white;
       input{

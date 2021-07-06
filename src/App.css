@@ -1,7 +1,57 @@
+@charset "UTF-8";
+/*----------------태그 디폴트------------------*/
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  scroll-behavior: smooth; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  overflow: hidden; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/*----------------컬러, 폰트사이즈, 마진, 패딩--------------------*/
 * {
   margin: 0;
   font-family: 'Roboto';
@@ -211,7 +261,7 @@ a {
   #main-container ion-icon {
     --ionicon-stroke-width: 36px; }
     #main-container ion-icon:hover {
-      color: #200096; }
+      color: #5D97DA; }
   #main-container #header {
     display: flex;
     width: 100%;
@@ -255,3 +305,37 @@ a {
         margin: 0 3px 0 10px; }
         #main-container #header #main-search input:focus {
           width: 10rem; }
+
+#keyword-container {
+  position: absolute;
+  right: 1rem;
+  top: 4rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-width: 25rem;
+  max-width: 30rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); }
+  #keyword-container ion-icon {
+    position: absolute;
+    left: 0rem;
+    top: 0.3rem; }
+  #keyword-container div {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; }
+  #keyword-container ul {
+    display: flex;
+    flex-wrap: wrap; }
+    #keyword-container ul li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 4rem;
+      height: 1.5rem;
+      padding: 3px 15px 0 15px;
+      margin: 0.3rem;
+      border-radius: 4rem;
+      background-color: gray; }
