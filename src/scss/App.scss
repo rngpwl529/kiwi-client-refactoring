@@ -79,6 +79,40 @@ $h1:64px;
 
 $padding:1rem;
 $margin:1rem;
+$sqrt_2: 1.41421356237;
+
+// X icon SCSS mixin
+@mixin iconCancel($size: 21px, $thick: 2px, $color: #000, $padding: 0, $display: inline-block, $position: relative) {
+  position: $position;
+  display: $display;
+  width: $size + $padding*2;
+  height: $size + $padding*2;
+  &:hover:before, &:hover:after{
+	  background-color: $basic--blue--;
+	  color: $basic--blue--;
+	  cursor:pointer;
+  }
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    width: round($size*$sqrt_2 - $thick);
+    height: $thick;
+    background-color: $color;
+  }
+
+  &:before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:after {
+    -webkit-transform: translate(-50%, -50%) rotate(135deg);
+    transform: translate(-50%, -50%) rotate(135deg);
+  }
+}
 
 
 @import './intro.scss';
