@@ -1,59 +1,70 @@
 const initialState = {
-    isWhichModal: "",
-    isOpenModal: false,
+    modal: {
+        settingModal: false,
+        userInfoModal: false,
+        signupModal: false,
+        signinModal: false,
+    }
 };
 //액션
-const HANDLE_SETTING_MODAL = "HANDLE_SETTING_MODAL";
-const HANDLE_USERINFO_MODAL = "HANDLE_USERINFO_MODAL";
-const HANDLE_SIGNUP_MODAL = "HANDLE_SIGNUP_MODAL";
-const HANDLE_SIGNIN_MODAL = "HANDLE_SIGNIN_MODAL";
-const HANDLE_MODAL_OPEN = "HANDLE_MODAL_OPEN";
+const OPEN_SETTING_MODAL = "OPEN_SETTING_MODAL";
+const CLOSE_SETTING_MODAL = "CLOSE_SETTING_MODAL";
+const OPEN_USERINFO_MODAL = "OPEN_USERINFO_MODAL";
+const CLOSE_USERINFO_MODAL = "CLOSE_USERINFO_MODAL";
+const OPEN_SIGNUP_MODAL = "OPEN_SIGNUP_MODAL";
+const CLOSE_SIGNUP_MODAL = "CLOSE_SIGNUP_MODAL";
+const OPEN_SIGNIN_MODAL = "OPEN_SIGNIN_MODAL";
+const CLOSE_SIGNIN_MODAL = "CLOSE_SIGNIN_MODAL";
 
 //액션생성함수
-export const handleSettingModal = (setting) => ({
-    type: HANDLE_SETTING_MODAL,
-    payload: {
-        setting
-    }
+export const openSettingModal = () => ({
+    type: OPEN_SETTING_MODAL
 });
-export const handleUserinfoModal = (userinfo) => ({
-    type: HANDLE_USERINFO_MODAL,
-    payload: {
-        userinfo
-    }
+export const closeSettingModal = () => ({
+    type: CLOSE_SETTING_MODAL
 });
-export const handleSignupModal = (signup) => ({
-    type: HANDLE_SIGNUP_MODAL,
-    payload: {
-        signup
-    }
+export const openUserinfoModal = () => ({
+    type: OPEN_USERINFO_MODAL
 });
-export const handleSigninModal = (signin) => ({
-    type: HANDLE_SIGNIN_MODAL,
-    payload: {
-        signin
-    }
+export const closeUserinfoModal = () => ({
+    type: CLOSE_USERINFO_MODAL
 });
-export const hanleModalOpen = (modal) => ({
-    type: HANDLE_MODAL_OPEN,
-    payload: {
-        modal
-    }
-})
+export const openSignupModal = () => ({
+    type: OPEN_SIGNUP_MODAL
+});
+export const closeSignupModal = () => ({
+    type: CLOSE_SIGNUP_MODAL
+});
+export const openSigninModal = () => ({
+    type: OPEN_SIGNIN_MODAL
+});
+export const closeSigninModal = () => ({
+    type: CLOSE_SIGNIN_MODAL
+});
 
 //리듀서
 const settingModal = (state = initialState, action) => {
     switch (action.type) {
-        case HANDLE_SETTING_MODAL:
-            return Object.assign({}, state, { isSettingModal: action.payload.setting });
-        case HANDLE_USERINFO_MODAL:
-            return Object.assign({}, state, { isUserInfoModal: action.payload.userinfo });
-        case HANDLE_SIGNUP_MODAL:
-            return Object.assign({}, state, { isSignUpModal: action.payload.signup });
-        case HANDLE_SIGNIN_MODAL:
-            return Object.assign({}, state, { isSignInModal: action.payload.signin });
-        case HANDLE_MODAL_OPEN:
-            return Object.assign({}, state, { isModalOpen: action.payload.isModalOpen });
+        case OPEN_SETTING_MODAL:
+            return Object.assign({}, state, { modal: {...modal, settingModal: true} });
+        case CLOSE_SETTING_MODAL:
+            return Object.assign({}, state, { modal: {...modal, settingModal: false} });
+                
+        case OPEN_USERINFO_MODAL:
+            return Object.assign({}, state, { modal: {...modal, userinfoModal: true} });
+        case CLOSE_USERINFO_MODAL:
+            return Object.assign({}, state, { modal: {...modal, userinfoModal: false} });
+            
+        case OPEN_SIGNUP_MODAL:
+            return Object.assign({}, state, { modal: {...modal, signupModal: true} });
+        case CLOSE_SIGNUP_MODAL:
+            return Object.assign({}, state, { modal: {...modal, signupModal: false} });
+            
+        case OPEN_SIGNIN_MODAL:
+            return Object.assign({}, state, { modal: {...modal, signinModal: true} });
+        case CLOSE_SIGNIN_MODAL:
+            return Object.assign({}, state, { modal: {...modal, signinModal: false} });
+            
         default:
             return state;
     }

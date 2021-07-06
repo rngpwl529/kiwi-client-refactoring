@@ -1,7 +1,8 @@
 const initialState = {
-    backgroundColor: 'blue',
-    introColor :'',
-    isRandomOn: false
+    setting: {
+        color: 'blue',
+        font:'',
+    }
   }
 
 //액션
@@ -28,9 +29,9 @@ export const changeFont = (font) => ({
 export const setting = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_FONT:
-            return Object.assign({}, state, { nodeFont: action.payload.font, siteFont: action.payload.font });
+            return Object.assign({}, state, { setting: { ...state.setting, font: action.payload.font }});
         case CHANGE_COLOR:
-            return Object.assign({}, state, { siteColor: action.payload.color });
+            return Object.assign({}, state, { setting: { ...state.setting, color: action.payload.color }});
         default:
             return state;
     }

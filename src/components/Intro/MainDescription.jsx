@@ -20,7 +20,7 @@ const MainDescription = () =>{
             It becomes a new milestone for accessing new information.
             </div>
             <button id='goBtn'>
-              <Link to='/main'>LET'S GO</Link>
+              <Link to='/main'>LETS GO</Link>
               </button>
           </section>
           <div className='imgbox'>

@@ -1,64 +1,100 @@
 //초기 상태값 초기화
 const initialState = {
-    nodeData: {},
-    edgeData: {},
+    nodemap: {
+        nodeData: [],
+        edgeData: [],
+        nodeHistory: [],
+    }
 };
+
 //액션
+
 //노드데이터
-const HANDLE_NODEMAP_DATA = "HANDLE_NODEMAP_DATA";
-const GET_NODEDATA = "GET_NODE_DATA";
-const ADD_NODEDATA = "ADD_EDGE_DATA";
-const DELETE_NODEDATA = "DELETE_NODEDATA";
+const POST_NODE_DATA = "POST_NODE_DATA";
+const ADD_NODE_DATA = "ADD_EDGE_DATA";
+const UPDATE_NODE_DATA = "UPDATE_EDGE_DATA";
+const DELETE_NODE_DATA = "DELETE_NODE_DATA";
+
 //엣지 추가 삭제 수정
-//노드 맵 데이터
+const POST_EDGE_DATA = "POST_EDGE_DATA";
+const ADD_EDGE_DATA = "ADD_EDGE_DATA";
+const DELETE_EDGE_DATA = "DELETE_EDGE_DATA";
 
 
 //액션생성함수
-export const handleNodemapData = (nodemap) => ({
-    type: HANDLE_NODEMAP_DATA,
+export const getNodeData = (nodeData) => ({
+    type: POST_NODE_DATA,
     payload: {
-        nodemap
+        nodeData
     }
 });
-export const handleNodeData = (node) => ({
-    type: HANDLE_NODE_DATA,
+export const addNodeData = (nodeData) => ({
+    type: ADD_NODE_DATA,
     payload: {
-        node
+        nodeData
     }
 });
-export const handleEdgeData = (edge) => ({
-    type: HANDLE_EDGE_DATA,
+export const updateNodeData = (nodeData) => ({
+    type: UPDATE_NODE_DATA,
     payload: {
-        edge
+        nodeData
+    }
+});
+export const deleteNodeData = (nodeData) => ({
+    type: DELETE_NODE_DATA,
+    payload: {
+        nodeData
+    }
+});
+
+export const postEdgeData = (edgeData) => ({
+    type: POST_EDGE_DATA,
+    payload: {
+        edgeData
+    }
+});
+export const addEdgeData = (edgeData) => ({
+    type: ADD_EDGE_DATA,
+    payload: {
+        edgeData
+    }
+});
+export const deleteEdgeData = (edgeData) => ({
+    type: DELETE_EDGE_DATA,
+    payload: {
+        edgeData
     }
 });
 
 //리듀서
-export const nodemapData = (state, action) => {
+export const nodemap = (state=initialState, action) => {
     switch (action.type) {
-        case HANDLE_NODEMAP_DATA:
-            return Object.assign({}, state, { nodemapData: action.payload.nodemap });
+        case POST_NODE_DATA:
+            return Object.assign({}, state, { nodeData: action.payload.nodeData });
+        case ADD_NODE_DATA:
+            return Object.assign({}, state, { nodeData: [ ...state.nodeData, action.payload.nodeData ] });
+        case UPDATE_NODE_DATA:
+            const result = Object.assign({}, state);
+            const idx = state.nodeData.findIndex(node.id===action.payload.nodeData.id);
+            result[idx] = action.payload.nodeData
+            return result;                           // 수정 필요
+        case DELETE_NODE_DATA:
+            const result = Object.assign({}, state);
+            const idx = state.nodeData.findIndex(node.id===action.payload.nodeData.id);
+            result.nodeData.splice(idx,1);  
+            return result;                            // 수정 필요
+
+        case POST_EDGE_DATA:
+            return Object.assign({}, state, { edgeData: action.payload.edgeData });
+        case ADD_EDGE_DATA:
+            return Object.assign({}, state, { edgeData: [ ...state.edgeData, action.payload.edgeData ]});
+        case DELETE_EDGE_DATA:
+            const result = Object.assign({}, state);
+            const idx = state.edgeData.findIndex(node.id===action.payload.edgeData.id);
+            result.edgeData.splice(idx,1);
+            return result;
         default:
             return state;
     }
 };
-
-export const nodeData = (state, action) => {
-    switch (action.type) {
-        case HANDLE_NODE_DATA:
-            return Object.assign({}, state, { nodeData: action.payload.node });
-        default:
-            return state;
-    }
-};
-
-export const edgeData = (state, action) => {
-    switch (action.type) {
-        case HANDLE_EDGE_DATA:
-            return Object.assign({}, state, { edgeData: action.payload.edge });
-        default:
-            return state;
-    }
-};
-
 export default nodemap;

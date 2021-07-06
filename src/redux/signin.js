@@ -1,34 +1,30 @@
 const initialState = {
-    isSignin: false,
+    isSignIn: false,
     accessToken: "",
 };
 //액션
-const HANDLE_SIGNIN = "HANDLE_SIGNIN";
-const HANDLE_TOKEN_SET = "HANDLE_TOKEN_SET";
-
+const SIGN_IN = "SIGN_IN";
+const SIGN_OUT = "SIGN_OUT";
 
 //액션생성함수
-export const handleSignin = (signin) => ({
-    type: HANDLE_SIGNIN,
+export const signIn = (accessToken) => ({
+    type: SIGN_IN,
     payload: {
-        signin
+        accessToken
     }
 });
-export const handleTokenSet = (tokenset) => ({
-    type: HANDLE_TOKEN_SET,
-    payload: {
-        tokenset
-    }
+export const signOut = () => ({
+    type: SIGN_OUT,
 });
 
 
 //리듀서
 export const signin = (state = initialState, action) => {
     switch (action.type) {
-        case HANDLE_SIGNIN:
-            return Object.assign({}, state, { isSignIn: action.payload.signin });
-        case HANDLE_TOKEN_SET:
-            return Object.assign({}, state, { localStorage: action.payload.signin, cookie: action.payload.tokenset });
+        case SIGN_IN:
+            return Object.assign({}, state, { isSignIn: true, accessToken: action.payload.accessToken });
+        case SIGN_OUT:
+            return Object.assign({}, state, { isSignIn: false, accessToken: "" });
         default:
             return state;
     }

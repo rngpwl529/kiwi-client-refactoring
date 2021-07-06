@@ -1,60 +1,66 @@
 //초기 상태값 초기화
 const initailState = {
-
+    userInfo: {
+        email ="",
+        username="",
+    },
+    bookmarkKeyword: [],
 }
 
 //액션
-const HANDLE_USERINFO_CHANGE_MODE = "HANDLE_USERINFO_CHANGE_MODE";
-const HANDLE_USERINFO = "HANDLE_USERINFO";
-const HANDEL_TREND_KEYWORD = "HANDEL_TREND_KEYWORD";
+const UPDATE_USERINFO = "HANDLE_USERINFO";
+
+const GET_BOOKMARK_KEYWORD = "GET_BOOKMARK_KEYWORD";
+const ADD_BOOKMARK_KEYWORD = "ADD_BOOKMARK_KEYWORD";
+const DELETE_BOOKMARK_KEYWORD = "DELETE_BOOKMARK_KEYWORD";
+
 
 
 //액션생성함수
-export const handleUserinfoChangeMode = (mode) => ({
-    type: HANDLE_USERINFO_CHANGE_MODE,
+export const updateUserInfo = (userInfo) => ({
+    type: UPDATE_USERINFO,
     payload: {
-        mode
+        userInfo,
     }
 });
-export const handleUserinfo = (userinfo) => ({
-    type: HANDLE_USERINFO,
+
+export const getBookmarkKeyword = (keyword) => ({
+    type: GET_BOOKMARK_KEYWORD,
     payload: {
-        userinfo
+        keyword
     }
 });
-export const handelTrendKeyword = (keyword) => ({
-    type: HANDLE_USERINFO,
+export const addBookmarkKeyword = (keyword) => ({
+    type: ADD_BOOKMARK_KEYWORD,
+    payload: {
+        keyword
+    }
+});
+export const deleteBookmarkKeyword = (keyword) => ({
+    type: DELETE_BOOKMARK_KEYWORD,
     payload: {
         keyword
     }
 });
 
 //리듀서
-export const userinfoChangeMode = (state, action) => {
+export const userInfo = (state=initailState, action) => {
     switch (action.type) {
-        case HANDLE_USERINFO_CHANGE_MODE:
-            return Object.assign({}, state, { isChangeMode: action.payload.mode });
+        case UPDATE_USERINFO:
+            return Object.assign({}, state, { userInfo: { ...action.payload.userInfo }});
+            
+        case ADD_BOOKMARK_KEYWORD:
+            return Object.assign({}, state, { bookmarkKeyword: action.payload.keyword });
+        case GET_BOOKMARK_KEYWORD:
+            return Object.assign({}, state, { bookmarkKeyword: [...state.bookmarkKeyword, action.payload.keyword] });
+        case DELETE_BOOKMARK_KEYWORD:
+            const idx = state.bookmarkKeyword.findIndex(keyword===action.payload.keyword);
+            const result = Object.assign({}, state);
+            result.bookmarkKeyword.splice(idx,1);
+            return result;
         default:
             return state;
     }
 };
 
-export const userinfo = (state, action) => {
-    switch (action.type) {
-        case HANDLE_USERINFO:
-            return Object.assign({}, state, { userInfo: action.payload.userinfo });
-        default:
-            return state;
-    }
-};
-
-export const trendKeyword = (state, action) => {
-    switch (action.type) {
-        case HANDEL_TREND_KEYWORD:
-            return Object.assign({}, state, { trendKeywords: action.payload.keyword });
-        default:
-            return state;
-    }
-};
-
-export default userinfo;
+export default userInfo;
