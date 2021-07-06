@@ -17,7 +17,7 @@ const MainContainer = () => {
     <div id='main-container'>
       <NodeMap />
       <Header />
-      <NodeOption/>
+      <SiteSetting/>
     </div>
   )
 }
