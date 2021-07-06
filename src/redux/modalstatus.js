@@ -1,10 +1,8 @@
 const initialState = {
-    modal: {
-        settingModal: false,
-        userInfoModal: false,
-        signupModal: false,
-        signinModal: false,
-    }
+    settingModal: false,
+    userInfoModal: false,
+    signupModal: false,
+    signinModal: false,
 };
 //액션
 const OPEN_SETTING_MODAL = "OPEN_SETTING_MODAL";
@@ -46,24 +44,24 @@ export const closeSigninModal = () => ({
 const settingModal = (state = initialState, action) => {
     switch (action.type) {
         case OPEN_SETTING_MODAL:
-            return Object.assign({}, state, { modal: {...modal, settingModal: true} });
+            return Object.assign({}, state, { modal: {...state.modal, settingModal: true} });
         case CLOSE_SETTING_MODAL:
-            return Object.assign({}, state, { modal: {...modal, settingModal: false} });
+            return Object.assign({}, state, { modal: {...state.modal, settingModal: false} });
                 
         case OPEN_USERINFO_MODAL:
-            return Object.assign({}, state, { modal: {...modal, userinfoModal: true} });
+            return Object.assign({}, state, { modal: {...state.modal, userinfoModal: true} });
         case CLOSE_USERINFO_MODAL:
-            return Object.assign({}, state, { modal: {...modal, userinfoModal: false} });
+            return Object.assign({}, state, { modal: {...state.modal, userinfoModal: false} });
             
         case OPEN_SIGNUP_MODAL:
-            return Object.assign({}, state, { modal: {...modal, signupModal: true} });
+            return Object.assign({}, state, { modal: {...state.modal, signupModal: true} });
         case CLOSE_SIGNUP_MODAL:
-            return Object.assign({}, state, { modal: {...modal, signupModal: false} });
+            return Object.assign({}, state, { modal: {...state.modal, signupModal: false} });
             
         case OPEN_SIGNIN_MODAL:
-            return Object.assign({}, state, { modal: {...modal, signinModal: true} });
+            return Object.assign({}, state, { modal: {...state.modal, signinModal: true} });
         case CLOSE_SIGNIN_MODAL:
-            return Object.assign({}, state, { modal: {...modal, signinModal: false} });
+            return Object.assign({}, state, { modal: {...state.modal, signinModal: false} });
             
         default:
             return state;

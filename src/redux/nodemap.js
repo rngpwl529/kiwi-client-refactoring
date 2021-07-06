@@ -1,10 +1,8 @@
 //초기 상태값 초기화
 const initialState = {
-    nodemap: {
-        nodeData: [],
-        edgeData: [],
-        nodeHistory: [],
-    }
+    nodeData: [],
+    edgeData: [],
+    nodeHistory: [],
 };
 
 //액션
@@ -19,6 +17,9 @@ const DELETE_NODE_DATA = "DELETE_NODE_DATA";
 const POST_EDGE_DATA = "POST_EDGE_DATA";
 const ADD_EDGE_DATA = "ADD_EDGE_DATA";
 const DELETE_EDGE_DATA = "DELETE_EDGE_DATA";
+
+//노드 히스토리 생성
+// const 
 
 
 //액션생성함수
@@ -71,28 +72,38 @@ export const nodemap = (state=initialState, action) => {
     switch (action.type) {
         case POST_NODE_DATA:
             return Object.assign({}, state, { nodeData: action.payload.nodeData });
+
         case ADD_NODE_DATA:
             return Object.assign({}, state, { nodeData: [ ...state.nodeData, action.payload.nodeData ] });
-        case UPDATE_NODE_DATA:
+
+        case UPDATE_NODE_DATA: {
             const result = Object.assign({}, state);
-            const idx = state.nodeData.findIndex(node.id===action.payload.nodeData.id);
+            const idx = state.nodeData.findIndex((node)=>(node.id===action.payload.nodeData.id));
             result[idx] = action.payload.nodeData
-            return result;                           // 수정 필요
-        case DELETE_NODE_DATA:
+            return result;  
+            // 수정 필요
+        }
+
+        case DELETE_NODE_DATA: {
             const result = Object.assign({}, state);
-            const idx = state.nodeData.findIndex(node.id===action.payload.nodeData.id);
+            const idx = state.nodeData.findIndex((node)=>(node.id===action.payload.nodeData.id));
             result.nodeData.splice(idx,1);  
-            return result;                            // 수정 필요
+            return result;   
+        }                            // 수정 필요
 
         case POST_EDGE_DATA:
             return Object.assign({}, state, { edgeData: action.payload.edgeData });
+
         case ADD_EDGE_DATA:
             return Object.assign({}, state, { edgeData: [ ...state.edgeData, action.payload.edgeData ]});
-        case DELETE_EDGE_DATA:
+
+        case DELETE_EDGE_DATA: {
             const result = Object.assign({}, state);
-            const idx = state.edgeData.findIndex(node.id===action.payload.edgeData.id);
+            const idx = state.edgeData.findIndex((node)=>(node.id===action.payload.edgeData.id));
             result.edgeData.splice(idx,1);
             return result;
+        }
+
         default:
             return state;
     }
