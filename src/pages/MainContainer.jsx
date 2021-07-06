@@ -17,7 +17,7 @@ import UserSetting from "../components/Main/UserSetting"
 import NodeMap from '../components/Main/NodeMap'
 import Header from '../containers/Header'
 
-<<<<<<< HEAD
+import action from "../redux/modalstatus";
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import data from '../data/data.json';
 const MainContainer = () => {
@@ -28,49 +28,27 @@ const MainContainer = () => {
   <b> name : ${node.name}</b>
   <b> gender : ${node.gender}</b>
 </div>`;
-}, []);
-  return(
+  }, []);
+  console.log(action);
+  const modal = useSelector(state => state.modal);
+  const dispatch = useDispatch();
+  
+  return (
     <div id='main-container'>
-      <NodeMap />
+      <NodeMap dispatch={dispatch} />
       <Header />
+      {modal.settingModal ? <SiteSetting /> : false}
+      {modal.userInfoModal ? <UserSetting /> : false}
+      {modal.signupModal ? <SignUp /> : false}
+      {modal.signinModal ? <SignIn /> : false}
       <section className="Main">
-                <ForceGraph
-                    linksData={data.links}
-                    nodesData={data.nodes}
-                    nodeHoverTooltip={nodeHoverTooltip}
-                />
-            </section>
+        <ForceGraph
+          linksData={data.links}
+          nodesData={data.nodes}
+          nodeHoverTooltip={nodeHoverTooltip}
+        />
+      </section>
     </div>
-=======
-// import googleTrend from '../utils/googleTrend';
-// import validCheck from "../utils/validCheck";
-
-import action from "../redux/modalstatus";
-
-const MainContainer = () => {
-  console.log(action)
-
-    const modal= useSelector(state => state.modal);
-    const dispatch = useDispatch();
-
-    return(
-      <div id='main-container'>
-        <NodeMap dispatch={dispatch}/>
-        <Header />
-        {modal.settingModal? <SiteSetting />: false}
-        {modal.userInfoModal? <UserSetting />: false}
-        {modal.signupModal? <SignUp />: false}
-        {modal.signinModal? <SignIn />: false}
-      </div>
->>>>>>> 0ac64d5f15b576eff4bed2ec251edc8a8bbc5466
   )
 }
-
-export default MainContainer
-
-{/*       <NodeSetting></NodeSetting>
-      <NodeOption></NodeOption>
-      <SiteSetting></SiteSetting>
-      <UserSetting></UserSetting>
-      <SignIn></SignIn>
-      <SignUp></SignUp> */}
+  export default MainContainer;

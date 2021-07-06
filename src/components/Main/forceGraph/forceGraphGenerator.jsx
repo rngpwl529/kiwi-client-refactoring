@@ -1,13 +1,14 @@
 import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./_forceGraph.scss";
-
+// import React from "react";
 export function runForceGraph(
     container, //박스
     linksData, //edge
     nodesData, //node
     nodeHoverTooltip //hover툴팁
 ) {
+    // let [clicked, setClick] = React.useState(null);
     const links = linksData.map((d) => Object.assign({}, d));//link data
     const nodes = nodesData.map((d) => Object.assign({}, d));//nodes data
     const containerRect = container.getBoundingClientRect(); //container 영역
@@ -82,16 +83,16 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-500)) // 간격
+        .force("charge", d3.forceManyBody().strength(-500)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY());
 
     const svg = d3
         .select(container) //container 그리기
         .append("svg")
-        .attr("viewBox", [-width/2, -height/2, width, height])
+        .attr("viewBox", [-width/2, -height/2, width, height]) // container 위치
         .call(
-            d3.zoom().on("zoom", function () {
+            d3.zoom().on("zoom", function () { // zoom 기능
                 svg.attr("transform", d3.event.transform);
             })
         );
@@ -112,12 +113,18 @@ export function runForceGraph(
         .selectAll("circle")    //원을 모두 잡아서
         .data(nodes)            //데이터를 넣음
         .join("circle")         //원과 합침
-        .attr("r", (d) => { return d.name.length * 4.5;}) // 원 반지름
-        .attr("fill", (d) => { return d.color;}) // 원 컬러
+        .attr("r", (d) => { return d.name.length * 4.5; }) // 원 반지름
+        .attr("fill", (d) => { return d.color; }) // 원 컬러
         .attr("id", (d) => { //속성 id값
             return d.name;
         })
-        .call(drag(simulation))
+        .on("click", function (d) {
+            console.log(d.name);
+            
+        })
+        .call(drag(simulation));
+        
+        
        
     const label = svg //text 라벨링
         .append("g")
@@ -142,16 +149,16 @@ export function runForceGraph(
         });
 
     simulation.on("tick", () => {
-        //update link positions
+        //링크 위치 업데이트
         link.attr("x1", (d) => d.source.x)
             .attr("y1", (d) => d.source.y)
             .attr("x2", (d) => d.target.x)
             .attr("y2", (d) => d.target.y);
 
-        // update node positions
+        //노드 위치 업데이트
         node.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
 
-        // update label positions
+        //라벨링 위치 업데이트
         label
             .attr("x", (d) => {
                 return d.x;
