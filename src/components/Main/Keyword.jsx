@@ -12,7 +12,7 @@ const Keyword = ({setKeywordOpen}) => {
 
     axios
     .get(
-        `${SERVER_URL}/users/keyword`,
+        `${SERVER_URL}/users/keyword`,  //서버에서 params로 받아야함
         {params:{
             userId: 2
         }}

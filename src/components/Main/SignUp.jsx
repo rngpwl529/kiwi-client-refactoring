@@ -6,8 +6,8 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    // const [password2, setPassword2] = useState("");
-
+    const [passwordCheck, setPasswordCheck] = useState("");
+    console.log(passwordCheck)
     const handleOnClick= ()=>{
         axios
         .post(
@@ -64,7 +64,7 @@ const SignUp = () => {
                             type='password'
                             placeholder='password check'
                             onChange={event => {
-                                setPassword(event.target.value);
+                                setPasswordCheck(event.target.value);
                             }}
                         ></input>
                         <ion-icon name='close-circle-outline'></ion-icon>

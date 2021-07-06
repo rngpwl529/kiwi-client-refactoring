@@ -80,10 +80,12 @@ $h1:64px;
 $padding:1rem;
 $margin:1rem;
 
-// @import "../components/Main/NodeOption"; //임시 스타일
+
 @import './intro.scss';
 @import './main.scss';
 @import './keyword.scss';
 @import './sign.scss';
 @import './usersetting.scss';
 @import './nodesetting.scss';
+@import './NodeOption.scss';
+@import './SiteSetting.scss';

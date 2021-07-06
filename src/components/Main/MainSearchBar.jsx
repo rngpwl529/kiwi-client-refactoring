@@ -2,7 +2,7 @@ import { useState } from "react"
 import React from "react"
 const MainSearchBar = ()=>{
 
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState(""); //검색 API필요
     const handler = () => {
         console.log(searchTerm);
     }

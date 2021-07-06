@@ -28,6 +28,7 @@ const MainContainer = () => {
       <div id='main-container'>
         <NodeMap dispatch={dispatch}/>
         <Header />
+        <SiteSetting />
         {modal.settingModal? <SiteSetting />: false}
         {modal.userInfoModal? <UserSetting />: false}
         {modal.signupModal? <SignUp />: false}
