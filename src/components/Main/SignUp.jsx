@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import { useState, React } from "react";
-
-const SignUp = ()=>{
-=======
 import axios from 'axios';
 import React,{ useState } from 'react';
->>>>>>> 49bdb0790366acc8d414e5e40a5003a6fc8195f9
 
 const SignUp = () => {
     let SERVER_URL = process.env.REACT_APP_SERVER_URL

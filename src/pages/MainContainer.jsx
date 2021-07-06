@@ -16,8 +16,10 @@ import Header from '../containers/Header'
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
 
+import action from "../redux/modalstatus";
+
 const MainContainer = () => {
-<<<<<<< HEAD
+  console.log(action)
 
     const modal= useSelector(state => state.modal);
     const dispatch = useDispatch();
@@ -26,20 +28,11 @@ const MainContainer = () => {
       <div id='main-container'>
         <NodeMap dispatch={dispatch}/>
         <Header />
-        {modal.settingModal? <SiteSetting dispatch={dispatch}/>: false}
+        {modal.settingModal? <SiteSetting />: false}
         {modal.userInfoModal? <UserSetting />: false}
         {modal.signupModal? <SignUp />: false}
         {modal.signinModal? <SignIn />: false}
       </div>
-=======
-  console.log(`${MainSearchBar},${MapController},${NodeOption},${NodeSetting},${SignIn},${SignUp},${SiteSetting},${UserSetting}`);
-  return(
-    <div id='main-container'>
-      <NodeMap />
-      <Header />
-      <UserSetting />
-    </div>
->>>>>>> 49bdb0790366acc8d414e5e40a5003a6fc8195f9
   )
 }
 

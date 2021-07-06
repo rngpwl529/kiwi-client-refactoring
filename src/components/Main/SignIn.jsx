@@ -6,8 +6,6 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-<<<<<<< HEAD
-=======
     const handleOnClick = ()=>{
         axios
         .post(
@@ -25,7 +23,6 @@ const SignIn = () => {
         })
     }
 
->>>>>>> 49bdb0790366acc8d414e5e40a5003a6fc8195f9
     return (
         <div id='signin-container'>
             <div className='sign-img'></div>
