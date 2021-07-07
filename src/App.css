@@ -260,8 +260,6 @@ a {
     margin: 0 0.5rem 0 0.5rem; }
   #main-container ion-icon {
     --ionicon-stroke-width: 36px; }
-    #main-container ion-icon:hover {
-      color: #5D97DA; }
   #main-container #header {
     display: flex;
     z-index: 50;
@@ -270,6 +268,8 @@ a {
     align-items: center;
     justify-content: space-between;
     position: fixed; }
+    #main-container #header ion-icon:hover {
+      color: #5D97DA; }
     #main-container #header .logo {
       margin-left: 1rem;
       height: 3rem; }
@@ -286,7 +286,8 @@ a {
       left: 45%;
       background-color: white;
       border-radius: 5px;
-      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); }
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      z-index: 4; }
       #main-container #header #control-box .splitter {
         width: 2px;
         height: 1.4rem;
@@ -312,7 +313,7 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.615);
-  z-index: 5;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -323,6 +324,15 @@ a {
     opacity: 0; }
   to {
     opacity: 1; } }
+  .darkbackground ion-icon[name='close-outline'] {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    cursor: pointer;
+    --ionicon-stroke-width: 64px;
+    color: #bdbdbd; }
+    .darkbackground ion-icon[name='close-outline']:hover {
+      color: #8d8d8d; }
 
 #keyword-container {
   position: absolute;
@@ -365,13 +375,12 @@ a {
   height: 500px;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: white;
-  z-index: 5; }
+  background-color: white; }
   #signin-container ion-icon {
     width: 1.5rem;
     height: 1.5rem;
-    position: absolute;
-    right: 10px; }
+    right: 10px;
+    --ionicon-stroke-width: 64px; }
   #signin-container .sign-img {
     width: 50%;
     background-color: #000000; }
@@ -391,7 +400,10 @@ a {
       justify-content: center;
       margin-bottom: 1rem; }
       #signin-container #signin-form .box ion-icon {
-        position: static; }
+        position: static;
+        cursor: default;
+        --ionicon-stroke-width: 32px;
+        color: #8d8d8d; }
       #signin-container #signin-form .box .input {
         height: 2.2rem;
         width: 280px;
@@ -408,6 +420,10 @@ a {
         font-size: 14px; }
         #signin-container #signin-form .box input:focus {
           outline: none; }
+      #signin-container #signin-form .box .invalid {
+        border: 2px solid #ff3d00; }
+        #signin-container #signin-form .box .invalid ion-icon {
+          color: #ff3d00; }
     #signin-container #signin-form .submit {
       display: flex;
       flex-direction: column;
@@ -420,14 +436,16 @@ a {
         justify-content: center;
         width: 280px;
         border-radius: 2.2rem;
-        cursor: default; }
+        cursor: pointer; }
       #signin-container #signin-form .submit .sign {
         background-color: #167EF4;
         color: white; }
         #signin-container #signin-form .submit .sign:hover {
-          background-color: #407BFF; }
+          background-color: #0053c0; }
       #signin-container #signin-form .submit .kakao {
         background-color: #FDE20B; }
+        #signin-container #signin-form .submit .kakao:hover {
+          background-color: #c6b100; }
       #signin-container #signin-form .submit .splitter {
         display: flex;
         align-items: center;
@@ -442,6 +460,10 @@ a {
           margin: 0 15px 0 15px; }
     #signin-container #signin-form .link {
       font-size: 12px; }
+      #signin-container #signin-form .link span {
+        color: #167EF4; }
+        #signin-container #signin-form .link span:hover {
+          cursor: pointer; }
 
 #user-container {
   background-color: white;
@@ -522,7 +544,7 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.615);
-  z-index: 5;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -709,7 +731,7 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.615);
-  z-index: 5;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;

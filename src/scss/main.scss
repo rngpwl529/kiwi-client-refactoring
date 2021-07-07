@@ -9,9 +9,6 @@
   }
   ion-icon {
     --ionicon-stroke-width: 36px;
-    &:hover{
-      color: $basic--blue--;
-    }
   }
   #header{
     display: flex;
@@ -21,6 +18,11 @@
     align-items: center;
     justify-content: space-between;
     position: fixed;
+    ion-icon {
+      &:hover{
+        color: $basic--blue--;
+      }
+    }
     .logo{
       margin-left: 1rem;
       height: 3rem;
@@ -40,6 +42,7 @@
       background-color: white;
       border-radius: 5px;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      z-index: 4;
       .splitter{
         width: 2px;
         height: 1.4rem;
@@ -72,7 +75,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.615);
-  z-index: 5;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,6 +87,17 @@
     }
     to {
       opacity: 1;
+    }
+  }
+  ion-icon[name='close-outline']{
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    cursor: pointer;
+    --ionicon-stroke-width: 64px;
+    color: $light--grey--;
+    &:hover{
+        color: $dark--grey--;
     }
   }
 }
