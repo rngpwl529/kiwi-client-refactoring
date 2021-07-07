@@ -2,7 +2,7 @@ import axios from 'axios';
 import React,{ useState } from 'react';
 
 const SignUp = () => {
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL
+    let SERVER_URL = process.env.REACT_APP_SERVER_URL;
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
