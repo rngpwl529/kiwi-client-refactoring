@@ -4,7 +4,6 @@ import axios from 'axios'
 const UserSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
 
-    const dispatch = useDispatch();
     const [edit, setEdit] = useState('')
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -16,9 +15,6 @@ const UserSetting = ()=>{
         else{
             setEdit(true)
         }
-    }
-    const handleCloseButtonClick = () => {
-        dispatch(closeUserinfoModal());
     }
 
     const submitHandler= ()=>{
@@ -51,7 +47,7 @@ const UserSetting = ()=>{
 
     return (
         <div id='user-container'>
-            <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>
+            <ion-icon name="close-outline"></ion-icon>
             <span className='title'>User Information</span>
             <div className='form'>
                 <div className='box'>

@@ -10,9 +10,9 @@ const MainSearchBar = () => {
 
     return (
         <div id='main-search'>
-            <input type="text" onClick={()=>{setIsOpen(true)}} onChange={(event)=>{setSearchTerm(event.target.value)}}/>
+            <input type="text" onChange={(event)=>{setSearchTerm(event.target.value)}}/>
             <ion-icon name="search-outline" onClick={handler}></ion-icon>
-            {isOpen? <TrendKeyword></TrendKeyword>: false}
+            <TrendKeyword></TrendKeyword>
         </div>
     )
 }
