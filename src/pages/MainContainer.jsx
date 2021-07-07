@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // import MainSearchBar from "../components/Main/MainSearchBar"
 // import MapController from "../components/Main/MapController"
@@ -13,25 +13,19 @@ import UserSetting from "../components/Main/UserSetting"
 import NodeMap from '../components/Main/NodeMap'
 import Header from '../containers/Header'
 
-// import googleTrend from '../utils/googleTrend';
-// import validCheck from "../utils/validCheck";
-
-import action from "../redux/modalstatus";
-
 const MainContainer = () => {
-  console.log(action)
 
-    const modal= useSelector(state => state.modal);
-    const dispatch = useDispatch();
+    const state= useSelector(state => state);
+    console.log(state)
 
     return(
       <div id='main-container'>
-        <NodeMap dispatch={dispatch}/>
+        <NodeMap />
         <Header />
-        {modal.settingModal? <SiteSetting />: false}
-        {modal.userInfoModal? <UserSetting />: false}
-        {modal.signupModal? <SignUp />: false}
-        {modal.signinModal? <SignIn />: false}
+        {state.modal.settingModal? <SiteSetting />: false}
+        {state.modal.userinfoModal? <UserSetting />: false}
+        {state.modal.signupModal? <SignUp />: false}
+        {state.modal.signinModal? <SignIn />: false}
       </div>
   )
 }

@@ -1,11 +1,14 @@
-import { useState } from "react"
-import React from "react"
-import Keyword from "../Main/Keyword"
+import { useState, React } from "react";
+import { useDispatch } from 'react-redux';
+import { openSigninModal, openSettingModal } from '../../redux/modalstatus';
+import Keyword from "../Main/Keyword";
+
+
 const ProfileSetting = ()=>{
 
-    // const [settingIsOpen, setsettingIsOpen] = useState(false);
-    // const [profileIsOpen, setprofileIsOpen] = useState(false);
     const [keywordOpen, setKeywordOpen] = useState(false)
+    const dispatch = useDispatch();
+
     const keywordHandler=()=>{
         if(!keywordOpen){
         setKeywordOpen(true)
@@ -14,11 +17,16 @@ const ProfileSetting = ()=>{
         setKeywordOpen(false)
         }
     }
-
+    const handleProfileClick = () => {
+        dispatch(openSigninModal());
+    }
+    const handleSettingClick = () => {
+        dispatch(openSettingModal());
+    }
     return (
         <div id='profile-container'>
-            <ion-icon name="person-outline"></ion-icon>
-            <ion-icon name="settings-outline"></ion-icon>
+            <ion-icon name="person-outline" onClick={handleProfileClick} ></ion-icon>
+            <ion-icon name="settings-outline" onClick={handleSettingClick}></ion-icon>
             <ion-icon name="bookmark-outline" onClick={keywordHandler}></ion-icon>
             <ion-icon name="image-outline"></ion-icon>
             {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}

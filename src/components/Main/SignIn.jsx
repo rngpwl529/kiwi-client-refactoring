@@ -1,10 +1,16 @@
 import axios from 'axios';
 import React,{ useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { closeSigninModal, openSignupModal } from '../../redux/modalstatus';
 
 const SignIn = () => {
+
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
 
     const handleOnClick = ()=>{
         axios
@@ -22,12 +28,20 @@ const SignIn = () => {
             console.log(err)
         })
     }
+    const handleCloseButtonClick = () => {
+        dispatch(closeSigninModal());
+    }
+    const handleSignupClick = () => {
+        dispatch(closeSigninModal());
+        dispatch(openSignupModal());
+    }
 
     return (
         <div id='signin-container'>
             <div className='sign-img'></div>
             <div id='signin-form'>
                 <span className='title'>SignIn</span>
+                <span onClick={handleCloseButtonClick}>X</span>
                 <div className='box'>
                     <div className='input'>
                         <ion-icon name='person-outline'></ion-icon>
@@ -67,7 +81,7 @@ const SignIn = () => {
                     <div className='btn kakao'>카카오 로그인</div>
                 </div>
                 <span className='link'>
-                    아직 회원이 아니신가요? <a href='/'>회원가입하기</a>
+                    아직 회원이 아니신가요? <span onClick={handleSignupClick}>회원가입하기</span>
                 </span>
             </div>
         </div>
