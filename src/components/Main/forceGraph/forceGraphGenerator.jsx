@@ -1,16 +1,20 @@
 import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./_forceGraph.scss";
+
 // import React from "react";
 export function runForceGraph(
     container, //박스
     linksData, //edge
-    nodesData, //node
-    nodeHoverTooltip //hover툴팁
+    nodeData, //node
+    nodeHoverTooltip, //hover툴팁
+    handleNodeoptionModal,
+    setParentNode,
 ) {
-    // let [clicked, setClick] = React.useState(null);
+    
+    
     const links = linksData.map((d) => Object.assign({}, d));//link data
-    const nodes = nodesData.map((d) => Object.assign({}, d));//nodes data
+    const nodes = nodeData.map((d) => Object.assign({}, d));//nodes data
     const containerRect = container.getBoundingClientRect(); //container 영역
     const height = containerRect.height;                     //container 높이
     const width = containerRect.width;                       //container 너비
@@ -120,9 +124,10 @@ export function runForceGraph(
         .attr("id", (d) => {                               //속성 id값
             return d.name;
         })
-        .on("click", function (d) {
-            console.log(d.name);
-            //클릭이벤트 노드버블
+        .on("click", (d) => {
+            console.log(d.name, "모달열림");
+            setParentNode(d);
+            handleNodeoptionModal();
         })
         .call(drag(simulation));
         

@@ -32,9 +32,11 @@ export const openUserinfoModal = () => ({
 export const closeUserinfoModal = () => ({
     type: CLOSE_USERINFO_MODAL,
 });
-export const openSignupModal = () => ({
-    type: OPEN_SIGNUP_MODAL,
-});
+export const openSignupModal = () => {
+    return {
+        type: OPEN_SIGNUP_MODAL,
+    };
+};
 export const closeSignupModal = () => ({
     type: CLOSE_SIGNUP_MODAL,
 });

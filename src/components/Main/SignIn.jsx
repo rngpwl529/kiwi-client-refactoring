@@ -2,6 +2,7 @@ import axios from 'axios';
 import React,{ useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeSigninModal, openSignupModal } from '../../redux/modalstatus';
+import { signIn } from '../../redux/signin';
 
 const SignIn = () => {
 
@@ -11,22 +12,36 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
-
-    const handleOnClick = ()=>{
+    const handleSignIn = (accessToken) => {
+        dispatch(signIn(accessToken));
+    }
+    const handleOnClick = () => {
+        // if (!email || !password) {
+        // 아이디 비밀번호 항목이 비워진 경우    
+        // }
         axios
         .post(
             `${SERVER_URL}/users/signin`,
             {
-                email,
-                password
+                email : email,
+                password : password,
             }
         )
-        .then(res=>{
-            console.log(res)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+            .then(res => res.data)
+            .then(data => {
+                if (data.message === 'passwords don\'t match') {
+                    console.log("비밀번호가 일치하지 않음");
+                } else if (data.message === 'not authorized') {
+                    console.log("권한이 없음");
+                } else if (data.message === 'login successfully') {
+                    handleSignIn(data.accessToken); 
+                    localStorage.setItem('token', JSON.stringify(data.accessToken));
+                    window.location.reload();
+                }
+            })
+            .catch(err=>{
+                console.log(err)
+            })
     }
     const handleCloseButtonClick = () => {
         dispatch(closeSigninModal());
@@ -37,52 +52,54 @@ const SignIn = () => {
     }
 
     return (
-        <div id='signin-container'>
-            <div className='sign-img'></div>
-            <div id='signin-form'>
-                <span className='title'>SignIn</span>
-                <span onClick={handleCloseButtonClick}>X</span>
-                <div className='box'>
-                    <div className='input'>
-                        <ion-icon name='person-outline'></ion-icon>
-                        <input
-                            type='text'
-                            placeholder='email'
-                            onChange={event => {
-                                setEmail(event.target.value);
-                            }}
-                        ></input>
-                        <ion-icon name='checkmark-circle-outline'></ion-icon>
+        <div className="darkbackground">
+            <div id='signin-container'>
+                <div className='sign-img'></div>
+                <div id='signin-form'>
+                    <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>
+                    <span className='title'>SignIn</span>
+                    <div className='box'>
+                        <div className='input'>
+                            <ion-icon name='person-outline'></ion-icon>
+                            <input
+                                type='text'
+                                placeholder='email'
+                                onChange={event => {
+                                    setEmail(event.target.value);
+                                }}
+                            ></input>
+                            <ion-icon name='checkmark-circle-outline'></ion-icon>
+                        </div>
+                        <div className='input'>
+                            <ion-icon name='lock-closed-outline'></ion-icon>
+                            <input
+                                type='password'
+                                placeholder='password'
+                                onChange={event => {
+                                    setPassword(event.target.value);
+                                }}
+                            ></input>
+                            <ion-icon name='close-circle-outline'></ion-icon>
+                        </div>
                     </div>
-                    <div className='input'>
-                        <ion-icon name='lock-closed-outline'></ion-icon>
-                        <input
-                            type='password'
-                            placeholder='password'
-                            onChange={event => {
-                                setPassword(event.target.value);
-                            }}
-                        ></input>
-                        <ion-icon name='close-circle-outline'></ion-icon>
+                    <div className='submit'>
+                        <div
+                            className='btn sign'
+                            onClick={handleOnClick}
+                        >
+                            로그인
+                        </div>
+                        <div className='splitter'>
+                            <div className='line'></div>
+                            <div>OR</div>
+                            <div className='line'></div>
+                        </div>
+                        <div className='btn kakao'>카카오 로그인</div>
                     </div>
+                    <span className='link'>
+                        아직 회원이 아니신가요? <span onClick={handleSignupClick}>회원가입하기</span>
+                    </span>
                 </div>
-                <div className='submit'>
-                    <div
-                        className='btn sign'
-                        onClick={handleOnClick}
-                    >
-                        로그인
-                    </div>
-                    <div className='splitter'>
-                        <div className='line'></div>
-                        <div>OR</div>
-                        <div className='line'></div>
-                    </div>
-                    <div className='btn kakao'>카카오 로그인</div>
-                </div>
-                <span className='link'>
-                    아직 회원이 아니신가요? <span onClick={handleSignupClick}>회원가입하기</span>
-                </span>
             </div>
         </div>
     );

@@ -27,29 +27,38 @@
     box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.26);
     display:flex;
     flex-direction:column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items:center;
     padding: 20px 40px; // TODO: Padding 통일
-    .nodeoption-x-box {
-      .iconCancel{
+    position: relative;
+    .iconCancel{
       @include iconCancel(20px);
-      top: -10px;
-      left:10rem;
-      }
-  }
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
   .nodeoption-header{
     font-size:$h4;
+    color: $dark--blue--;
   }
     .nodeoption-setting{
       width:90%;
-      height:50%;
+      height:100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       @mixin option {
-       
+      
         display:flex;
         justify-content: space-between;
         margin-top: $margin * 2;
       }
     .nodeoption-nodename{
+      span{
+        display: flex;
+        align-items: center
+      }
         @include option;
         .nodeoption-nodename-input{
           height:2rem;
@@ -63,7 +72,7 @@
             margin:0 $margin;
           }
         }
-       
+      
     }
     .nodeoption-parentnode{
       @include option;
