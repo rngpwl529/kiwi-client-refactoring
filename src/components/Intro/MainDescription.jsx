@@ -19,9 +19,11 @@ const MainDescription = () =>{
             It can be a roadmap for finding information. <br />
             It becomes a new milestone for accessing new information.
             </div>
-            <button id='goBtn'>
-              <Link to='/main'>LET&apos;S GO</Link>
+            <Link to='/main'>
+              <button id='goBtn'>
+                <span>LET&apos;S GO</span>
               </button>
+            </Link>
           </section>
           <div className='imgbox'>
             <svg width="557" height="721" viewBox="0 0 557 721" fill="none" xmlns="http://www.w3.org/2000/svg" className='main-imgbox'>
