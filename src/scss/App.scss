@@ -114,10 +114,12 @@ $sqrt_2: 1.41421356237;
   }
 }
 
-// @import "../components/Main/NodeOption"; //임시 스타일
+
 @import './intro.scss';
 @import './main.scss';
 @import './keyword.scss';
 @import './sign.scss';
 @import './usersetting.scss';
 @import './nodesetting.scss';
+@import './NodeOption.scss';
+@import './SiteSetting.scss';

@@ -6,9 +6,12 @@
     border-radius: 1rem;
     overflow: hidden;
     background-color: white;
-    ion-Icon{
+    z-index: 5;
+    ion-icon{
         width: 1.5rem;
         height: 1.5rem;
+        position: absolute;
+        right: 10px;
     }
     .sign-img{
         width: 50%;
@@ -21,16 +24,19 @@
         align-items: center;
         margin: 1rem;
         .title{
-        font-size: 2rem;
-        margin-top: 20px;
+            font-size: 2rem;
+            margin-top: 20px;
         }
         .box{
-        height: 16rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-bottom: 1rem;
-        .input{
+            height: 16rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 1rem;
+            ion-icon{
+                position: static;
+            }
+            .input{
             height: 2.2rem;
             width: 280px;
             border: 2px solid #949494;
@@ -62,10 +68,14 @@
             justify-content: center;
             width: 280px;
             border-radius: 2.2rem;
+            cursor: default;
         }
         .sign{
             background-color: #167EF4;
             color: white;
+            &:hover{
+                background-color: #407BFF;
+            }
         }
         .kakao{
             background-color: #FDE20B;

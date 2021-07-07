@@ -3,9 +3,7 @@ import TrendKeyword from "./TrendKeyword";
 
 const MainSearchBar = () => {
 
-    const [searchTerm, setSearchTerm] = useState("");
-    const [isOpen, setIsOpen] = useState(true);
-
+    const [searchTerm, setSearchTerm] = useState(""); //검색 API필요
     const handler = () => {
         console.log(searchTerm);
     }

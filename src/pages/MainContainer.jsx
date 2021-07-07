@@ -1,17 +1,9 @@
-import { React } from 'react';
-// import { React, useCallback } from 'react';
+import { React} from 'react';
 // import MainSearchBar from "../components/Main/MainSearchBar"
 // import MapController from "../components/Main/MapController"
 // import NodeOption from "../components/Main/NodeOption"
 // import NodeSetting from "../components/Main/NodeSetting"
-import { useSelector } from 'react-redux';
-// import { useSelector, useDispatch } from 'react-redux';
-
-
-// import MainSearchBar from "../components/Main/MainSearchBar"
-// import MapController from "../components/Main/MapController"
-// import NodeOption from "../components/Main/NodeOption"
-// import NodeSetting from "../components/Main/NodeSetting"
+import { useSelector, /* useDispatch */ } from 'react-redux';
 import SignIn from "../components/Main/SignIn"
 
 import SignUp from "../components/Main/SignUp"
@@ -44,9 +36,3 @@ const MainContainer = () => {
 
 export default MainContainer
 
-{/*       <NodeSetting></NodeSetting>
-      <NodeOption></NodeOption>
-      <SiteSetting></SiteSetting>
-      <UserSetting></UserSetting>
-      <SignIn></SignIn>
-      <SignUp></SignUp> */}
