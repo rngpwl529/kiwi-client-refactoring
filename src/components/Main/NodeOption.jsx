@@ -1,12 +1,19 @@
 import { useRef, useState } from "react"
 import React from "react"
+import axios from 'axios';
 
 
 const NodeOption = ()=>{
-
+    let SERVER_URL = process.env.REACT_APP_SERVER_URL
     let nodeName = useRef();
 
     const [color, setColor] = useState("");
+    // const [nodeName, setNodeName] = useState("")
+
+    const submitHandler = ()=>{
+        console.log(nodeName)
+    }
+
     return (
         <div className='nodeoption-darkbackground'>
             <div className='nodeoption-container'>
@@ -19,12 +26,13 @@ const NodeOption = ()=>{
                 <section className='nodeoption-setting'>
                     <div className='nodeoption-nodename'>
                     <span>Node Name</span>
-                    <div className='nodeoption-nodename-input'><input type="text" placeholder='Node Name' ref={nodeName}></input></div>
+                    <div className='nodeoption-nodename-input'><input type="text" placeholder='Node Name' ref={nodeName} /* onClick={(e)=>{setNodeName(e.target.value)}} */></input></div>
             </div>
             <div className='nodeoption-parentnode'>
                 <span>Parent Node</span>
                 <span>Programming</span>
             </div>
+            
             <div className='setting-node-colors'>
                 <p>Node Color</p>
                     <div className='colors'>
@@ -48,7 +56,7 @@ const NodeOption = ()=>{
                 </div>
                 </section>
                 <section className='nodeoption-footer'>
-        <div className='nodeaddBtn' onClick={() => { alert(`${nodeName} 추가`) }}><span>ADD</span></div>
+        <div className='nodeaddBtn' onClick={submitHandler}><span>ADD</span></div>
         </section>
     </div>
 </div>

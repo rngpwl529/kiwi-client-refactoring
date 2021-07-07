@@ -66,3 +66,24 @@
     }
   }
 }
+
+.darkbackground {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.615);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadein 0.5s forwards;
+  
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

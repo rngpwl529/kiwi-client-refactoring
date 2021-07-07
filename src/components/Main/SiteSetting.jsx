@@ -1,16 +1,38 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import React from "react"
+import axios from 'axios';
 const SiteSetting = ()=>{
 
+    let SERVER_URL = process.env.REACT_APP_SERVER_URL
     
     const [backGroundColor, setBackGroundColor] = useState("blue");
+    const [fontSize, setFontSize] = useState("24px")
+
+    const fontHandler = (e)=>{
+        setFontSize(e.target.value)
+    }
+
+    useEffect(()=>{
+        axios
+        .post(
+            `${SERVER_URL}/users/setting`,
+            {
+                email:'a@naver.com',
+                backGroundColor,
+                fontSize
+            }
+        )
+        .then(
+            console.log('사이트설정 성공')
+        )
+    }
+    ,[backGroundColor, fontSize])
+    
 
     return (
         <div className="sitesetting-darkbackground">
             <div className='sitesetting-container'>
-                <div className='sitesetting-x-box'>
-                    <i className='iconCancel' role='img' aria-label='cancle'></i>
-                </div>
+                <i className='iconCancel' role='img' aria-label='cancle'></i>
             <header className='sitesetting-header'>
                 <span>Site Settings</span>
             </header>
@@ -18,9 +40,17 @@ const SiteSetting = ()=>{
                 <div className='sitesetting-fontsize'>
                     <span>Font Size</span>
                     <div className='sitesetting-slider'>
-                        <input type='range' min="10" max="60" step='4' />
+                        <div className='scale'>
+                            <p onClick={fontHandler}>12px</p>
+                            <p onClick={fontHandler}>16px</p>
+                            <p onClick={fontHandler}>20px</p>
+                            <p onClick={fontHandler}>24px</p>
+                            <p onClick={fontHandler}>28px</p>
+                            <p onClick={fontHandler}>32px</p>
+                        </div>
                     </div>
                 </div>
+                <div className="splitter"></div>
                 <div className='sitesetting-color'>
                     <p>Background Color</p>
                     <div className='colors'>
