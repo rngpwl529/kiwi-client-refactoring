@@ -6,12 +6,11 @@
     border-radius: 1rem;
     overflow: hidden;
     background-color: white;
-    z-index: 5;
     ion-icon{
         width: 1.5rem;
         height: 1.5rem;
-        position: absolute;
         right: 10px;
+        --ionicon-stroke-width: 64px;
     }
     .sign-img{
         width: 50%;
@@ -26,6 +25,7 @@
         .title{
             font-size: 2rem;
             margin-top: 20px;
+            
         }
         .box{
             height: 16rem;
@@ -35,6 +35,9 @@
             margin-bottom: 1rem;
             ion-icon{
                 position: static;
+                cursor: default;
+                --ionicon-stroke-width: 32px;
+                color: $dark--grey--;
             }
             .input{
             height: 2.2rem;
@@ -45,16 +48,22 @@
             align-items: center;
             border-radius: 1.5rem;
             margin: 12px 0px 12px 0px;
-        }
-        input{
-            width: 180px;
-            height: 26px;
-            border: none;
-            font-size: 14px;
-            &:focus{
-            outline: none;
             }
-        }
+            input{
+                width: 180px;
+                height: 26px;
+                border: none;
+                font-size: 14px;
+                &:focus{
+                outline: none;
+                }
+            }
+            .invalid{
+                border: 2px solid #ff3d00;
+                ion-icon{
+                    color: #ff3d00;
+                }
+            }
         }
         .submit{
         display: flex;
@@ -68,17 +77,20 @@
             justify-content: center;
             width: 280px;
             border-radius: 2.2rem;
-            cursor: default;
+            cursor: pointer;
         }
         .sign{
             background-color: #167EF4;
             color: white;
             &:hover{
-                background-color: #407BFF;
+                background-color: #0053c0;
             }
         }
         .kakao{
             background-color: #FDE20B;
+            &:hover{
+                background-color: #c6b100;
+            }
         }
         .splitter{
             display: flex;
@@ -96,7 +108,13 @@
         }
         }
         .link{
-        font-size: 12px;
+            font-size: 12px;
+            span{
+                color: #167EF4;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
         }
     }
     
