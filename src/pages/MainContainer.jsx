@@ -1,9 +1,12 @@
-import { React, useCallback } from 'react';
-import MainSearchBar from "../components/Main/MainSearchBar"
-import MapController from "../components/Main/MapController"
-import NodeOption from "../components/Main/NodeOption"
-import NodeSetting from "../components/Main/NodeSetting"
-import { useSelector, useDispatch } from 'react-redux';
+import { React } from 'react';
+// import { React, useCallback } from 'react';
+// import MainSearchBar from "../components/Main/MainSearchBar"
+// import MapController from "../components/Main/MapController"
+// import NodeOption from "../components/Main/NodeOption"
+// import NodeSetting from "../components/Main/NodeSetting"
+import { useSelector } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+
 
 // import MainSearchBar from "../components/Main/MainSearchBar"
 // import MapController from "../components/Main/MapController"
@@ -20,7 +23,7 @@ import Header from '../containers/Header'
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
 
-import action from "../redux/modalstatus";
+// import action from "../redux/modalstatus";
 
 const MainContainer = () => {
 

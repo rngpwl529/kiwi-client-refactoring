@@ -1,9 +1,11 @@
-import React,{ useState } from "react"
+import React,{ useState } from "react";
+import { useDispatch } from 'react-redux';
+import { closeUserinfoModal } from '../../redux/modalstatus';
+
 
 const UserSetting = ()=>{
 
-    // const [fontSize, setFontSize] = useState(14);
-    // const [backGroundColor, setBackGroundColor] = useState("blue");
+    const dispatch = useDispatch();
     const [edit, setEdit] = useState('')
 
     const eidtHandler = ()=>{
@@ -13,6 +15,9 @@ const UserSetting = ()=>{
         else{
             setEdit(true)
         }
+    }
+    const handleCloseButtonClick = () => {
+        dispatch(closeUserinfoModal());
     }
 
     // const submitHandler= ()=>{
@@ -24,7 +29,7 @@ const UserSetting = ()=>{
 
     return (
         <div id='user-container'>
-            <ion-icon name="close-outline"></ion-icon>
+            <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>
             <span className='title'>User Information</span>
             <div className='form'>
                 <div className='box'>

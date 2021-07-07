@@ -38,7 +38,7 @@ const SignUp = () => {
             <div className='sign-img'></div>
             <div id='signin-form'>
                 <span className='title'>SignUp</span>
-                <span onClick={handleCloseButtonClick}>X</span>
+                <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>
                 <div className='box'>
                     <div className='input'>
                         <ion-icon name='person-outline'></ion-icon>

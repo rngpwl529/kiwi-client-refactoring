@@ -49,9 +49,9 @@ const settingModal = (state = initialState, action) => {
             return Object.assign({}, state, {settingModal: false});
                 
         case OPEN_USERINFO_MODAL:
-            return Object.assign({}, state, {userinfoModal: true});
+            return Object.assign({}, state, {userInfoModal: true});
         case CLOSE_USERINFO_MODAL:
-            return Object.assign({}, state, {userinfoModal: false});
+            return Object.assign({}, state, {userInfoModal: false});
             
         case OPEN_SIGNUP_MODAL:
             return Object.assign({}, state, {signupModal: true});
