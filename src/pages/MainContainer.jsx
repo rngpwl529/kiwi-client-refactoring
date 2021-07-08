@@ -1,20 +1,18 @@
 import React, { useEffect, useCallback } from 'react';
 // import MainSearchBar from "../components/Main/MainSearchBar"
 // import MapController from "../components/Main/MapController"
-import NodeOption from "../components/Main/NodeOption"
+
 // import NodeSetting from "../components/Main/NodeSetting"
 import { useSelector, useDispatch } from 'react-redux';
-import SignIn from "../components/Main/SignIn"
-import SignUp from "../components/Main/SignUp"
-import SiteSetting from "../components/Main/SiteSetting"
-import UserSetting from "../components/Main/UserSetting"
-import NodeMap from '../components/Main/NodeMap'
-import Header from '../containers/Header'
 
+import NodeMap from '../components/Main/NodeMap'
+import HeaderContainer from '../containers/HeaderContainer'
+import ModalContainer from '../containers/ModalContainer';
 import action from "../redux/modalstatus";
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import data from '../data/data.json';
 import { signinMaintain } from "../redux/signin";
+import { setNodeData, /*addEdgeData, updateNodeData, deleteNodeData,*/ handleLoadingOn } from "../redux/node";
 import axios from 'axios';
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
@@ -22,7 +20,6 @@ import axios from 'axios';
 // import action from "../redux/modalstatus";
 
 const MainContainer = () => {
-  console.log(`${SignIn},${SignUp},${SiteSetting},${UserSetting}`);
   const nodeHoverTooltip = useCallback((node, x, y) => {
     return `<div> ${x}, ${y}
   <b> id : ${node.id}</b>
@@ -30,9 +27,8 @@ const MainContainer = () => {
   <b> gender : ${node.gender}</b>
 </div>`;
   }, []);
-  
+  const dispatch = useDispatch();
   console.log(action);
-  const modal = useSelector(state => state.modal);
   // const { nodeData } = useSelector(state => state.node);
   // const { edgeData } = useSelector(state => state.edge);
   // const { isLoadingOn } = useSelector(state => state.node);
@@ -47,9 +43,46 @@ const MainContainer = () => {
   // const fontSize = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
 
-  const dispatch = useDispatch();
+      //엣지데이터 요청
+    // const loadEdgedata = async () => {
+    //     await axios.get('https://kiwimap.shop/nodemap/edge',
+    //     { headers: { withCredentials: true } })
+    //     .then(res => res.data)
+    //     .then(data => {
+    //         console.log(data);
+    //         if (data.message === 'internal server error') {
+    //             alert('서버가 정상적으로 동작하지 않습니다.')
+    //         } else {
+    //             dispatch(setEdgeData(data.edgeData));
+    //         }
+    //     })
+    //     .catch(e => console.log(e));
+    // }
+    //노드데이터 요청
+    const loadNodedata = async () => {
+      await axios.get('https://kiwimap.shop/nodemap/node',
+      { withCredentials: true })
+      .then(res => res.data)
+      .then(data => {
+          console.log(data);
+          if (data.message === 'internal server error') {
+              alert('서버가 정상적으로 동작하지 않습니다.')
+          } else {
+              dispatch(setNodeData(data.nodeData));
+          }
+      })
+      .catch(e => console.log(e));
+  }
+  //초기 데이터 세팅
+  const loadNodemapData = async () => {
+      dispatch(handleLoadingOn());
+      loadNodedata();
+      // loadEdgedata();
+  }
+  
   //로그인 유지 함수
   useEffect(() => {
+    loadNodemapData();
     let token = localStorage.getItem('token');
     //handleLoadingOn();
     // setTimeout(() => {
@@ -76,7 +109,6 @@ const MainContainer = () => {
           }
         })
         .catch(error => {
-          console.log("cors 에러 뜸");
           if (error.response.status === 400) {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
@@ -92,12 +124,8 @@ const MainContainer = () => {
   return (
     <div id='main-container'>
       <NodeMap dispatch={dispatch} />
-      <Header />
-      {modal.settingModal ? <SiteSetting /> : false}
-      {modal.userInfoModal ? <UserSetting /> : false}
-      {modal.signupModal ? <SignUp /> : false}
-      {modal.signinModal ? <SignIn /> : false}
-      {modal.nodeoptionModal ? <NodeOption /> : false}
+      <HeaderContainer />
+      <ModalContainer/>
       <section className="Main">
         <ForceGraph
           nodesData={data.nodes}

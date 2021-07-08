@@ -49,9 +49,12 @@ const SignIn = () => {
             .post(
                 `${SERVER_URL}/users/signin`,
                 {
-                    email: email,
-                    password: password,
-                }
+                    email,
+                    password
+                },
+                {headers:{
+                    withCredentials : true
+                }}
             )
             .then(res => res.data)
             .then(data => {

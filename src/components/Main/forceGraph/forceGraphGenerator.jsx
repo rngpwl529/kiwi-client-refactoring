@@ -2,15 +2,13 @@ import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./_forceGraph.scss";
 
-
 // import React from "react";
 export function runForceGraph(
     container, //박스
     linksData, //edge
     nodeData, //node
     nodeHoverTooltip, //hover툴팁
-    handleNodeoptionModal,
-    setParentNode,
+    handleNodesettingModal,
 ) {
     
 
@@ -19,7 +17,6 @@ export function runForceGraph(
     const containerRect = container.getBoundingClientRect(); //container 영역
     const height = containerRect.height;                     //container 높이
     const width = containerRect.width;                       //container 너비
-
     // const color = () => {
     //     return "red";
     // };
@@ -128,10 +125,9 @@ export function runForceGraph(
         .attr("id", (d) => {                               //속성 id값
             return d.name;
         })
-        .on("click", (d) => {
-            console.log(d.name, "모달열림");
-            setParentNode(d.name);
-            handleNodeoptionModal();
+        .on("click", () => {
+            handleNodesettingModal();
+            
         })
         .call(drag(simulation));
         

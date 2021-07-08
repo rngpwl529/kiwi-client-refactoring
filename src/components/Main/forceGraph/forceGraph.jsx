@@ -2,12 +2,9 @@ import  React, { useRef, useEffect } from "react";
 import { runForceGraph } from "./forceGraphGenerator";
 import { useDispatch, useSelector } from 'react-redux';
 // import { fetchData, getNodeData, postEdgeData } from "../../../redux/node"; //노드 리듀서
-import { openNodeoptionModal } from "../../../redux/modalstatus"; //노드 리듀서
-import { setParentnode, setNodeData, handleLoadingOn } from "../../../redux/node";
-
-import axios from "axios";
+import { openNodesettingModal } from "../../../redux/modalstatus"; //노드 리듀서
 import "./_forceGraph.scss";
-import { setEdgeData } from '../../../redux/edge';
+
 
 
 
@@ -19,53 +16,33 @@ function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
     
     const dispatch = useDispatch();
     const { nodeData } = useSelector(state => state.node);
+    const { edgeData } = useSelector(state => state.edge);
+    const store = useSelector(state => state);
     
+
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
-    const handleNodeoptionModal = () => {
-        dispatch(openNodeoptionModal());
+    const handleNodesettingModal = () => {
+        dispatch(openNodesettingModal());
+        console.log(store);
     }
-    //부모 노드 지정
-    const setParentNode = (d) => {
-        console.log(d);
-        dispatch(setParentnode(d));
-    }
-    //초기 데이터 세팅
-    const loadNodemapData = () => {
-        dispatch(handleLoadingOn());
-        axios.get('https://kiwimap.shop/nodemap/node',
-            { withCredentials: true }
-        )
-            .then(res => res.data)
-            .then(data => {
-                console.log(data);
-                if (data.message === 'internal server error') {
-                    alert('서버가 정상적으로 동작하지 않습니다.')
-                } else {
-                    dispatch(setNodeData(data.nodeData));
-                }
-            }).then(() => {
-                axios.get('https://kiwimap.shop/nodemap/edge',
-                    { headers: { withCredentials: true } }
-                )
-                    .then(res => res.data)
-                    .then(data => {
-                        console.log(data);
-                        if (data.message === 'internal server error') {
-                            alert('서버가 정상적으로 동작하지 않습니다.')
-                        } else {
-                            setEdgeData(data.edgeData);
-                        }
-                    })
-                    .catch(e => console.log(e));
-            })
-            .catch(e => console.log(e));
-    }
-    
-    useEffect(() => {
-        loadNodemapData();
-    }, [])
+    // //노드 추가 하기
+    // const addNode = (d) => {
+    //     //서버요청 후 반영
+    //     dispatch();
+    // }
+    // const deleteNode = () => {
+    //     //서버요청 후 반영
+    //     dispatch();
+    // }
+    // const updateNode = () => {
+    //     //서버요청 후 반영
+    //     dispatch();
+    // }
+   
+   
+
     
     // redux-store 상태 조회
     // const isOpenNodeoptionModal = useSelector((state)=> state.nodeoptionModal);
@@ -84,21 +61,18 @@ function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
 
     useEffect(() => {
         //처음 render 됐을 때, 그리고 업데이트 될때마다 재렌더
-        
         if (containerRef.current) {
             const { destroy } = runForceGraph(
                 containerRef.current,
                 linksData,
                 nodesData,
                 nodeHoverTooltip,
-                handleNodeoptionModal,
-                setParentNode,
+                handleNodesettingModal,
             );
-            
             destroyFn = destroy;
         }
         return destroyFn;
-    },[nodeData]);
+    },[nodeData, edgeData]);
     //컴포넌트가 화면에서 사라질 때
     return <div ref={containerRef} className="container"/>;
 }
