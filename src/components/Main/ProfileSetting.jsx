@@ -11,11 +11,14 @@ const ProfileSetting = ()=>{
     const store = useSelector((state)=>(state))
 
     const keywordHandler=()=>{
-        if(!keywordOpen){
-        setKeywordOpen(true)
-            }
-            else{
-        setKeywordOpen(false)
+        if(!keywordOpen && store.sign.isSignIn){
+            setKeywordOpen(true)
+        }
+        else if(!store.sign.isSignIn){
+            dispatch(openSigninModal())
+        }
+        else{
+            setKeywordOpen(false)
         }
     }
     const handleProfileClick = () => {
@@ -26,7 +29,12 @@ const ProfileSetting = ()=>{
         }
     }
     const handleSettingClick = () => {
-        dispatch(openSettingModal());
+        if(store.sign.isSignIn){
+            dispatch(openSettingModal());
+        }
+        else{
+            dispatch(openSigninModal())
+        }
     }
     return (
         <div id='profile-container'>
