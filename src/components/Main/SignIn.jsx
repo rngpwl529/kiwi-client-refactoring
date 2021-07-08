@@ -2,7 +2,8 @@ import axios from 'axios';
 import React,{ useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeSigninModal } from '../../redux/modalstatus';
-import { emailValid, passwordValid } from '../../utils/validCheck'
+import {signIn} from '../../redux/signin'
+import { emailValid, passwordValid} from '../../utils/validCheck'
 import SignUp from './SignUp'
 
 const SignIn = () => {
@@ -11,44 +12,58 @@ const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [signup, setSignup] = useState('')
+    const [isEmailValid, setIsEmailValid] = useState('')
+    const [isPasswordValid, setIsPasswordValid] = useState('')
+    const [emailIcon, setEmailIcon] = useState('')
+    const [passwordIcon, setPasswordIcon] = useState('')
     const dispatch = useDispatch();
-    let emailInput = document.querySelector('.emailInput')
-    let passwordInput = document.querySelector('.passwordInput')
     //이메일, 비밀번호 유효성 검사
     useEffect(()=>{
+        setIsEmailValid('')
+        setIsPasswordValid('')
         if(emailValid(email)){
-            emailInput.classList.remove('invalid')
+            setIsEmailValid('valid')
+            setEmailIcon('checkmark-circle-outline')
         }
-        else{
-            emailInput.classList.add('invalid')
+        else if(emailValid(email)===false&&email.length>0){
+            setIsEmailValid('invalid')
+            setEmailIcon('close-circle-outline')
         }
         if(passwordValid(password)){
-            passwordInput.classList.remove('invalid')
+            setIsPasswordValid('valid')
+            setPasswordIcon('checkmark-circle-outline')
         }
-        else{
-            passwordInput.classList.add('invalid')
+        else if(passwordValid(password)===false&&password.length>0){
+            setIsPasswordValid('invalid')
+            setPasswordIcon('close-circle-outline')
         }
-
     },[email,password])
 
 
+    //로그인 요청
     const handleSignIn = ()=>{
-        axios
-        .post(
-            `${SERVER_URL}/users/signin`,
-            {
-                email,
-                password
-            }
-        )
-        .then(res=>{
-            console.log(res)
-            console.log('로그인 성공!')
-            dispatch(closeSigninModal())
-        })
-        .catch(err=>{
-            console.log(err)
-        })
+        if(!(isPasswordValid==='valid'&&isEmailValid==='valid')){
+            alert('올바르지 않은 형식이 포함되어 있습니다.')
+        }
+        else{
+            axios
+            .post(
+                `${SERVER_URL}/users/signin`,
+                {
+                    email,
+                    password
+                }
+            )
+            .then(res=>{
+                console.log(res)
+                console.log('로그인 성공!')
+                dispatch(signIn())
+                dispatch(closeSigninModal())
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
     }
     const handleCloseButtonClick = () => {
         dispatch(closeSigninModal());
@@ -68,19 +83,23 @@ const SignIn = () => {
                         <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>
                         <span className='title'>SignIn</span>
                         <div className='box'>
-                            <div className='input emailInput'>
+                            <div className={`input ${isEmailValid}`}>
                                 <ion-icon name='person-outline'></ion-icon>
                                 <input
-                                    type='text'
+                                    type='email'
                                     placeholder='email'
                                     className='email'
                                     onChange={event => {
                                         setEmail(event.target.value);
                                     }}
                                 ></input>
-                                <ion-icon name='checkmark-circle-outline'></ion-icon>
+                                {isEmailValid ==='invalid'
+                                ? <>
+                                    <ion-icon name={emailIcon}></ion-icon>
+                                    <p>@를 포함해 입력해주세요</p>
+                                </>:null}
                             </div>
-                            <div className='input passwordInput'>
+                            <div className={`input ${isPasswordValid}`}>
                                 <ion-icon name='lock-closed-outline'></ion-icon>
                                 <input
                                     type='password'
@@ -90,7 +109,11 @@ const SignIn = () => {
                                         setPassword(event.target.value);
                                     }}
                                 ></input>
-                                <ion-icon name='close-circle-outline'></ion-icon>
+                                {isPasswordValid ==='invalid'
+                                ?<>
+                                    <ion-icon name={passwordIcon}></ion-icon>
+                                    <p>특수문자, 숫자, 영어를 포함해 입력해주세요</p>
+                                </> :null}
                             </div>
                         </div>
                         <div className='submit'>

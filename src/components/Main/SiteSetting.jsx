@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react"
 import React from "react"
+import {useDispatch} from 'react-redux'
+import {closeSettingModal} from '../../redux/modalstatus'
 import axios from 'axios';
-const SiteSetting = ()=>{
 
+const SiteSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
     
     const [backGroundColor, setBackGroundColor] = useState("blue");
     const [fontSize, setFontSize] = useState("24px")
+    let dispatch = useDispatch()
 
     const fontHandler = (e)=>{
         setFontSize(e.target.value)
     }
+
 
     useEffect(()=>{
         axios
@@ -27,12 +31,16 @@ const SiteSetting = ()=>{
         )
     }
     ,[backGroundColor, fontSize])
-    
+    //사이트 세팅 요청 없음
+
+    const closehandler = ()=>{
+        dispatch(closeSettingModal())
+    }
 
     return (
         <div className="sitesetting-darkbackground">
             <div className='sitesetting-container'>
-                <i className='iconCancel' role='img' aria-label='cancle'></i>
+            <i className='iconCancel' role='img' aria-label='cancle' onClick={closehandler}></i>
             <header className='sitesetting-header'>
                 <span>Site Settings</span>
             </header>

@@ -27,7 +27,7 @@ const MainContainer = () => {
         <NodeMap />
         <Header />
         {state.modal.settingModal? <SiteSetting />: false}
-        {state.modal.userinfoModal? <UserSetting />: false}
+        {state.modal.userInfoModal? <UserSetting />: false}
         {state.modal.signupModal? <SignUp />: false}
         {state.modal.signinModal? <SignIn />: false}
       </div>

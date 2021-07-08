@@ -1,7 +1,9 @@
 const Parser = require('rss-parser');
-const parser = new Parser();
+const parser = new rssParser();
 
-module.exports = async () => {
+const googleTrend = async () => {
     const feed = await parser.parseURL("https://trends.google.com/trends/trendingsearches/daily/rss?geo=KR");
-    return feed.items.map((item)=>item.title);
+    console.log(feed)
 };
+
+export default googleTrend

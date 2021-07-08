@@ -1,5 +1,5 @@
 import { useState, React } from "react";
-import TrendKeyword from "./TrendKeyword";
+// import TrendKeyword from "./TrendKeyword";
 
 const MainSearchBar = () => {
 
@@ -12,7 +12,7 @@ const MainSearchBar = () => {
         <div id='main-search'>
             <input type="text" onChange={(event)=>{setSearchTerm(event.target.value)}}/>
             <ion-icon name="search-outline" onClick={handler}></ion-icon>
-            <TrendKeyword></TrendKeyword>
+            {/* <TrendKeyword></TrendKeyword> */}
         </div>
     )
 }

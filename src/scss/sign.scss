@@ -44,16 +44,25 @@
             width: 280px;
             border: 2px solid #949494;
             display: flex;
-            justify-content: space-evenly;
+
             align-items: center;
             border-radius: 1.5rem;
             margin: 12px 0px 12px 0px;
+            position: relative;
+                p{
+                    position: absolute;
+                    font-size: 12px;
+                    right: 15px;
+                    top: 38px;
+                    color: #ff3d00;
+                }
             }
             input{
                 width: 180px;
                 height: 26px;
                 border: none;
                 font-size: 14px;
+                margin-right: 20px;
                 &:focus{
                 outline: none;
                 }
@@ -62,6 +71,12 @@
                 border: 2px solid #ff3d00;
                 ion-icon{
                     color: #ff3d00;
+                }
+            }
+            .valid{
+                border: 2px solid #43972A;
+                ion-icon{
+                    color: #43972A;
                 }
             }
         }
