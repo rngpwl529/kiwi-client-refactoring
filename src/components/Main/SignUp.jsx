@@ -74,7 +74,10 @@ const SignUp = ({setSignup, handleCloseButtonClick}) => {
                     email,
                     userName,
                     password,
-                }
+                },
+                {headers:{
+                    withCredentials : true
+                }}
             )
             .then((res)=>{
                     console.log(res)
@@ -83,9 +86,10 @@ const SignUp = ({setSignup, handleCloseButtonClick}) => {
                 }
             )
             .catch((err)=>{
-                    if(err.response.status === 409){
-                        alert('이미 존재하는 이메일입니다')
-                    }
+                console.log(err)
+                    // if(err.response.status === 409){
+                    //     alert('이미 존재하는 이메일입니다')
+                    // }
                 }
             )
         }

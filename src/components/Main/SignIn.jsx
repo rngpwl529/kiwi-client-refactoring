@@ -52,7 +52,10 @@ const SignIn = () => {
                 {
                     email,
                     password
-                }
+                },
+                {headers:{
+                    withCredentials : true
+                }}
             )
             .then(res=>{
                 console.log(res)

@@ -4,7 +4,7 @@ const MainDescription = () =>{
   return(
     <div className='container' id='maindescription-container'>
       <div  className='box'>
-        <img className='logo' src='images/bitmap.png' alt='KiWi logo'/>
+        <img className='logo' src='images/logo.svg' alt='KiWi logo'/>
         <div className='content'>
           <section className='main-container text'>
             
