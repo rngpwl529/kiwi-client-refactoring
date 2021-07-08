@@ -9,16 +9,22 @@ const initialState = {
 //액션
 const OPEN_SETTING_MODAL = 'OPEN_SETTING_MODAL';
 const CLOSE_SETTING_MODAL = 'CLOSE_SETTING_MODAL';
+
 const OPEN_USERINFO_MODAL = 'OPEN_USERINFO_MODAL';
 const CLOSE_USERINFO_MODAL = 'CLOSE_USERINFO_MODAL';
+
 const OPEN_SIGNUP_MODAL = 'OPEN_SIGNUP_MODAL';
 const CLOSE_SIGNUP_MODAL = 'CLOSE_SIGNUP_MODAL';
+
 const OPEN_SIGNIN_MODAL = 'OPEN_SIGNIN_MODAL';
 const CLOSE_SIGNIN_MODAL = 'CLOSE_SIGNIN_MODAL';
+
 const OPEN_NODEOPTION_MODAL = 'OPEN_NODEOPTION_MODAL';
 const CLOSE_NODEOPTION_MODAL = 'CLOSE_NODEOPTION_MODAL';
+
 const OPEN_NODESETTING_MODAL = 'OPEN_NODESETTING_MODAL';
 const CLOSE_NODESETTING_MODAL = 'CLOSE_NODESETTING_MODAL';
+
 //액션생성함수
 export const openSettingModal = () => ({
     type: OPEN_SETTING_MODAL,
@@ -68,10 +74,10 @@ const settingModal = (state = initialState, action) => {
             return Object.assign({}, state, { settingModal: false });
 
         case OPEN_USERINFO_MODAL:
-            return Object.assign({}, state, { userinfoModal: true });
+            return Object.assign({}, state, {userInfoModal: true});
         case CLOSE_USERINFO_MODAL:
-            return Object.assign({}, state, { userinfoModal: false });
-
+            return Object.assign({}, state, {userInfoModal: false});
+            
         case OPEN_SIGNUP_MODAL:
             return Object.assign({}, state, { signupModal: true });
         case CLOSE_SIGNUP_MODAL:

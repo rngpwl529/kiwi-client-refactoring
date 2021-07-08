@@ -4,8 +4,6 @@ import axios from 'axios'
 const UserSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
 
-    // const [fontSize, setFontSize] = useState(14);
-    // const [backGroundColor, setBackGroundColor] = useState("blue");
     const [edit, setEdit] = useState('')
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')

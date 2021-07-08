@@ -33,9 +33,9 @@ const MainContainer = () => {
   
   console.log(action);
   const modal = useSelector(state => state.modal);
-  const { nodeData } = useSelector(state => state.node);
-  const { edgeData } = useSelector(state => state.edge);
-  const { isLoadingOn } = useSelector(state => state.node);
+  // const { nodeData } = useSelector(state => state.node);
+  // const { edgeData } = useSelector(state => state.edge);
+  // const { isLoadingOn } = useSelector(state => state.node);
 
 
   
@@ -60,7 +60,7 @@ const MainContainer = () => {
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
       let token = localStorage.getItem('token');
       axios.get(
-        'https://localhost:80/users/userinfo',
+        `https://kiwimap.shop/users/userinfo`,
         { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       )
         .then(res => res.data)
@@ -76,7 +76,7 @@ const MainContainer = () => {
           }
         })
         .catch(error => {
-          console.log(error.response);
+          console.log("cors 에러 뜸");
           if (error.response.status === 400) {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
@@ -100,6 +100,7 @@ const MainContainer = () => {
       {modal.nodeoptionModal ? <NodeOption /> : false}
       <section className="Main">
         <ForceGraph
+          nodesData={data.nodes}
           linksData={data.links}
           nodeHoverTooltip={nodeHoverTooltip}
         />

@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./_forceGraph.scss";
 
+
 // import React from "react";
 export function runForceGraph(
     container, //박스
@@ -12,9 +13,9 @@ export function runForceGraph(
     setParentNode,
 ) {
     
-    
+
     const links = linksData.map((d) => Object.assign({}, d));//link data
-    const nodes = nodeData.map((d) => Object.assign({}, d));//nodes data
+    const nodes = nodeData.map((d) => Object.assign({}, d)); //nodes data
     const containerRect = container.getBoundingClientRect(); //container 영역
     const height = containerRect.height;                     //container 높이
     const width = containerRect.width;                       //container 너비
@@ -91,17 +92,20 @@ export function runForceGraph(
         .force("x", d3.forceX())
         .force("y", d3.forceY());
     
-    
+  
     // 컨테이너 그리기
     const svg = d3
-        .select(container) 
+        .select(container)
         .append("svg")
-        .attr("viewBox", [-width/2, -height/2, width, height]) // container 위치
-        .call(
-            d3.zoom().on("zoom", function () { // zoom 기능
-                svg.attr("transform", d3.event.transform);
-            })
-        );
+        .attr("viewBox", [-width / 2, -height / 2, width, height]) // container 위치
+        .call(d3.zoom().on("zoom", function () {
+            svg.attr("transform", d3.event.transform)
+         }))
+    
+    
+    
+   
+    
     // 링크 그리기
     const link = svg
         .append("g")
@@ -112,7 +116,7 @@ export function runForceGraph(
         .join("line")                         //line이랑 합침
         .attr("stroke-width", (d) => d.value);//링크 두께
     //노드 버블 그리기
-    const node = svg 
+    const node = svg
         .append("g")
         .attr("stroke", "#fff")                            //노드 외곽선 색
         .attr("stroke-width", 3)                           //노드 외곽선 두께
@@ -126,14 +130,14 @@ export function runForceGraph(
         })
         .on("click", (d) => {
             console.log(d.name, "모달열림");
-            setParentNode(d);
+            setParentNode(d.name);
             handleNodeoptionModal();
         })
         .call(drag(simulation));
         
         
     // 텍스트 라벨링 그리기
-    const label = svg 
+    const label = svg
         .append("g")
         .attr("class", "labels")
         .selectAll("text")
@@ -156,25 +160,26 @@ export function runForceGraph(
         });
 
     simulation.on("tick", () => {
-        //링크 위치 업데이트
         link.attr("x1", (d) => d.source.x)
-            .attr("y1", (d) => d.source.y)
-            .attr("x2", (d) => d.target.x)
-            .attr("y2", (d) => d.target.y);
+        .attr("y1", (d) => d.source.y)
+        .attr("x2", (d) => d.target.x)
+        .attr("y2", (d) => d.target.y);
 
-        //노드 위치 업데이트
-        node.attr("cx", (d) => d.x)
-            .attr("cy", (d) => d.y);
+    //노드 위치 업데이트
+    node.attr("cx", (d) => d.x)
+        .attr("cy", (d) => d.y);
 
-        //라벨링 위치 업데이트
-        label
-            .attr("x", (d) => {
-                return d.x;
-            })
-            .attr("y", (d) => {
-                return d.y;
-            });
+    //라벨링 위치 업데이트
+    label
+        .attr("x", (d) => {
+            return d.x;
+        })
+        .attr("y", (d) => {
+            return d.y;
+        });
     });
+
+    
 
     return {
         destroy: () => {
@@ -184,4 +189,5 @@ export function runForceGraph(
             return svg.node();
         },
     };
+
 }
