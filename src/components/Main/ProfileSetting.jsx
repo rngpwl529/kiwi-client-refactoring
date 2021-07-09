@@ -11,7 +11,7 @@ const ProfileSetting = ()=>{
     const store = useSelector((state)=>(state))
 
     const keywordHandler=()=>{
-        if(!keywordOpen && store.sign.isSignIn){
+        if(!keywordOpen /*&& store.sign.isSignIn*/){
             setKeywordOpen(true)
         }
         else if(!store.sign.isSignIn){
@@ -33,14 +33,14 @@ const ProfileSetting = ()=>{
             dispatch(openSettingModal());
         }
         else{
-            dispatch(openSigninModal())
+            dispatch(openSettingModal())
         }
     }
     return (
         <div id='profile-container'>
-            <ion-icon name="person-outline" onClick={handleProfileClick} ></ion-icon>
-            <ion-icon name="settings-outline" onClick={handleSettingClick}></ion-icon>
-            <ion-icon name="bookmark-outline" onClick={keywordHandler}></ion-icon>
+            <ion-icon name="person-outline" onClick={() => { handleProfileClick(); }} ></ion-icon>
+            <ion-icon name="settings-outline" onClick={() => { handleSettingClick(); }}></ion-icon>
+            <ion-icon name="bookmark-outline" onClick={() => { keywordHandler(); }}></ion-icon>
             <ion-icon name="image-outline"></ion-icon>
             {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
         </div>
