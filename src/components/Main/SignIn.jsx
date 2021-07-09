@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { closeSigninModal } from '../../redux/modalstatus';
 import {updateUserInfo} from '../../redux/userinfo'
 import {signIn} from '../../redux/signin'
-import { emailValid, passwordValid} from '../../utils/validCheck'
+import { emailValid, passwordValid } from '../../utils/validCheck'
 import SignUp from './SignUp'
 import dotenv from 'dotenv';
 dotenv.config();

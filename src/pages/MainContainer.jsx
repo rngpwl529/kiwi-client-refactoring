@@ -6,6 +6,7 @@ import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import NodeMap from '../components/Main/NodeMap'
+
 import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer';
 import action, { closeNodesettingModal } from "../redux/modalstatus";
@@ -15,6 +16,7 @@ import { signinMaintain } from "../redux/signin";
 import { setNodeData, /*addEdgeData, updateNodeData, deleteNodeData,*/ handleLoadingOn } from "../redux/node";
 // import { closeNodesettingModal } from '../redux/modalstatus'
 import axios from 'axios';
+
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
 
@@ -50,6 +52,20 @@ const MainContainer = () => {
   // const fontSize = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
 
+<<<<<<< HEAD
+    return(
+      <div id='main-container'>
+        <NodeMap />
+        <Header />
+        {state.modal.settingModal? <SiteSetting />: false}
+        {state.modal.userInfoModal? <UserSetting />: false}
+        {state.modal.signupModal? <SignUp />: false}
+        {state.modal.signinModal? <SignIn />: false}
+        {state.modal.captureModal? <Capture />: false}
+      </div>
+  )
+}
+=======
       //엣지데이터 요청
     // const loadEdgedata = async () => {
     //     await axios.get('https://kiwimap.shop/nodemap/edge',
@@ -127,6 +143,7 @@ const MainContainer = () => {
     }
     console.log('로그인유지 작동');
   }, [])
+>>>>>>> 3b64158aafd20b00effa51660c212b557d47eccc
 
   return (
     <div id='main-container'>
