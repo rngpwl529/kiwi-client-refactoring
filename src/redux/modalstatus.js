@@ -52,7 +52,8 @@ export const openSigninModal = () => ({
 export const closeSigninModal = () => ({
     type: CLOSE_SIGNIN_MODAL,
 });
-export const openNodesettingModal = () => ({
+export const openNodesettingModal = (x, y) => ({
+    payload: [x, y],
     type: OPEN_NODESETTING_MODAL,
 });
 export const closeNodesettingModal = () => ({
@@ -74,10 +75,10 @@ const settingModal = (state = initialState, action) => {
             return Object.assign({}, state, { settingModal: false });
 
         case OPEN_USERINFO_MODAL:
-            return Object.assign({}, state, {userInfoModal: true});
+            return Object.assign({}, state, { userInfoModal: true });
         case CLOSE_USERINFO_MODAL:
-            return Object.assign({}, state, {userInfoModal: false});
-            
+            return Object.assign({}, state, { userInfoModal: false });
+
         case OPEN_SIGNUP_MODAL:
             return Object.assign({}, state, { signupModal: true });
         case CLOSE_SIGNUP_MODAL:
@@ -89,7 +90,9 @@ const settingModal = (state = initialState, action) => {
             return Object.assign({}, state, { signinModal: false });
 
         case OPEN_NODESETTING_MODAL:
-            return Object.assign({}, state, { nodesettingModal: true });
+            return Object.assign({}, state, {
+                nodesettingModal: action.payload,
+            });
         case CLOSE_NODESETTING_MODAL:
             return Object.assign({}, state, { nodesettingModal: false });
 

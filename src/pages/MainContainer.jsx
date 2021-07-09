@@ -13,6 +13,7 @@ import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import data from '../data/data.json';
 import { signinMaintain } from "../redux/signin";
 import { setNodeData, /*addEdgeData, updateNodeData, deleteNodeData,*/ handleLoadingOn } from "../redux/node";
+// import { closeNodesettingModal } from '../redux/modalstatus'
 import axios from 'axios';
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
@@ -20,6 +21,7 @@ import axios from 'axios';
 // import action from "../redux/modalstatus";
 
 const MainContainer = () => {
+  console.log("MainContainer");
   const nodeHoverTooltip = useCallback((node, x, y) => {
     return `<div> ${x}, ${y}
   <b> id : ${node.id}</b>
@@ -33,10 +35,15 @@ const MainContainer = () => {
   // const { edgeData } = useSelector(state => state.edge);
   // const { isLoadingOn } = useSelector(state => state.node);
 
-
+ 
   
   const { siteColor, siteFont } = useSelector(state => state.setting);
   
+  const closeNodesetting = (e) => {
+    if(e.target.tagName!=='text' && e.target.tagName !=='circle'){
+      dispatch(closeNodesettingModal())
+    }
+  }
   const handleLoginMaintain = () => {
     dispatch(signinMaintain());
   }
@@ -79,11 +86,7 @@ const MainContainer = () => {
       loadNodedata();
       // loadEdgedata();
   }
-  const handler = (e)=>{
-    if(e.target.tagName!=='text' && e.target.tagName !=='circle'){
-      dispatch(closeNodesettingModal())
-    }
-  }
+
   //로그인 유지 함수
   useEffect(() => {
     loadNodemapData();
@@ -130,7 +133,7 @@ const MainContainer = () => {
       <NodeMap dispatch={dispatch} />
       <HeaderContainer/>
       <ModalContainer/>
-      <section className="Main" onClick={handler}>
+      <section className="Main" onClick={closeNodesetting} >
         <ForceGraph
           nodesData={data.nodes}
           linksData={data.links}

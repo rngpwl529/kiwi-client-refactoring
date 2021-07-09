@@ -2,7 +2,8 @@ import  React, { useRef, useEffect } from "react";
 import { runForceGraph } from "./forceGraphGenerator";
 import { useDispatch, useSelector } from 'react-redux';
 // import { fetchData, getNodeData, postEdgeData } from "../../../redux/node"; //노드 리듀서
-import { openNodesettingModal } from "../../../redux/modalstatus"; //노드 리듀서
+import { setParentnode } from "../../../redux/node"; //노드 리듀서
+import { openNodesettingModal } from "../../../redux/modalstatus";
 import "./_forceGraph.scss";
 
 function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
@@ -13,32 +14,18 @@ function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
     const dispatch = useDispatch();
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.edge);
-    // const store = useSelector(state => state);
+   
     
-
+    console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
-    const handleNodesettingModal = () => {
-        dispatch(openNodesettingModal());
+    const handleNodesettingModal = (node, x, y) => {
+        dispatch(setParentnode(node));
+        dispatch(openNodesettingModal(x, y));
     }
-
-
-    // //노드 추가 하기
-    // const addNode = (d) => {
-    //     //서버요청 후 반영
-    //     dispatch();
-    // }
-    // const deleteNode = () => {
-    //     //서버요청 후 반영
-    //     dispatch();
-    // }
-    // const updateNode = () => {
-    //     //서버요청 후 반영
-    //     dispatch();
-    // }
    
-   
+    
 
     
     // redux-store 상태 조회
