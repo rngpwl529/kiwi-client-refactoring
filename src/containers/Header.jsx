@@ -44,7 +44,7 @@ const Header = ()=>{
 
   return(
     <div id = 'header'>
-      <img src='images/bitmap.png' alt='KiWi logo' className='logo' />
+      <img src='images/logo.svg' alt='KiWi logo' className='logo' />
       <MapController />
       <div className='right'>
         <MainSearchBar />
