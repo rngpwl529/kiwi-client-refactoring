@@ -3,7 +3,7 @@ import React,{ useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeSigninModal } from '../../redux/modalstatus';
 import {signIn} from '../../redux/signin'
-import { emailValid, passwordValid} from '../../utils/validCheck'
+import { emailValid, passwordValid } from '../../utils/validCheck'
 import SignUp from './SignUp'
 
 const SignIn = () => {

@@ -3,6 +3,7 @@ const initialState = {
     userInfoModal: false,
     signupModal: false,
     signinModal: false,
+    captureModal: false,
 };
 //액션
 const OPEN_SETTING_MODAL = "OPEN_SETTING_MODAL";
@@ -13,6 +14,8 @@ const OPEN_SIGNUP_MODAL = "OPEN_SIGNUP_MODAL";
 const CLOSE_SIGNUP_MODAL = "CLOSE_SIGNUP_MODAL";
 const OPEN_SIGNIN_MODAL = "OPEN_SIGNIN_MODAL";
 const CLOSE_SIGNIN_MODAL = "CLOSE_SIGNIN_MODAL";
+const OPEN_CAPTURE_MODAL = "OPEN_CAPTURE_MODAL";
+const CLOSE_CAPTURE_MODAL = "CLOSE_CAPTURE_MODAL";
 
 //액션생성함수
 export const openSettingModal = () => ({
@@ -39,6 +42,12 @@ export const openSigninModal = () => ({
 export const closeSigninModal = () => ({
     type: CLOSE_SIGNIN_MODAL
 });
+export const openCaptureModal = () => ({
+    type: OPEN_CAPTURE_MODAL
+});
+export const closeCaptureModal = () => ({
+    type: CLOSE_CAPTURE_MODAL
+});
 
 //리듀서
 const settingModal = (state = initialState, action) => {
@@ -63,6 +72,11 @@ const settingModal = (state = initialState, action) => {
         case CLOSE_SIGNIN_MODAL:
             return Object.assign({}, state, {signinModal: false});
             
+        case OPEN_CAPTURE_MODAL:
+            return Object.assign({}, state, {captureModal: true});
+        case CLOSE_CAPTURE_MODAL:
+            return Object.assign({}, state, {captureModal: false});
+
         default:
             return state;
     }

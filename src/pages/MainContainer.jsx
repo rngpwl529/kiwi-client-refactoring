@@ -11,6 +11,7 @@ import SiteSetting from "../components/Main/SiteSetting"
 import UserSetting from "../components/Main/UserSetting"
 import NodeMap from '../components/Main/NodeMap'
 import Header from '../containers/Header'
+import Capture from '../components/Main/capture'
 
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
@@ -30,6 +31,7 @@ const MainContainer = () => {
         {state.modal.userInfoModal? <UserSetting />: false}
         {state.modal.signupModal? <SignUp />: false}
         {state.modal.signinModal? <SignIn />: false}
+        {state.modal.captureModal? <Capture />: false}
       </div>
   )
 }
