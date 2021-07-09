@@ -1,6 +1,6 @@
 const initialState = {
     nodeData: [],
-    parentNode: '',
+    parentNode: null,
     isLoadingOn: false,
 };
 //서버에 데이터 요청

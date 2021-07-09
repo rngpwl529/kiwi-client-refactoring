@@ -87,6 +87,7 @@ const SignIn = () => {
                     console.log(err)
                 });
         }
+    }
         const kakaoSignin = () => {
             console.log("카카오 로그인");
         }
@@ -167,6 +168,6 @@ const SignIn = () => {
             </div>
         );
     }
-}
+
 
 export default SignIn;
