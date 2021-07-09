@@ -563,7 +563,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 100;
   width: 11rem;
   height: 2.5rem;
   background-color: white;
@@ -583,7 +583,7 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.615);
-  z-index: 100;
+  z-index: 200;
   display: flex;
   justify-content: center;
   align-items: center;

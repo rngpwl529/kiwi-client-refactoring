@@ -6,7 +6,7 @@ import { setParentnode } from "../../../redux/node"; //노드 리듀서
 import { openNodesettingModal } from "../../../redux/modalstatus";
 import "./_forceGraph.scss";
 
-function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
+function ForceGraph({ nodesData, linksData, /* nodeHoverTooltip */ }) {
     const containerRef = useRef(null);//Div 선택자
     
     let destroyFn;
@@ -50,7 +50,7 @@ function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
                 containerRef.current,
                 linksData,
                 nodesData,
-                nodeHoverTooltip,
+                /* nodeHoverTooltip, */
                 handleNodesettingModal,
             );
             destroyFn = destroy;

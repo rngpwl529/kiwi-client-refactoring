@@ -4,14 +4,16 @@ import { useDispatch } from 'react-redux';
 import { closeSigninModal } from '../../redux/modalstatus';
 import {updateUserInfo} from '../../redux/userinfo'
 import {signIn} from '../../redux/signin'
-import { emailValid, passwordValid} from '../../utils/validCheck'
+import { emailValid, passwordValid } from '../../utils/validCheck'
 import SignUp from './SignUp'
 import dotenv from 'dotenv';
 dotenv.config();
 
 const SignIn = () => {
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL;
-
+    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+    const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;
+    const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [signup, setSignup] = useState('')
@@ -91,7 +93,10 @@ const SignIn = () => {
         }
     }
         const kakaoSignin = () => {
-            console.log("카카오 로그인");
+            window.location.assign(
+                `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`
+            );
+            //mainpage redirect
         }
 
     

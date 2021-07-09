@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import styles from "./_forceGraph.scss";
+// import styles from "./_forceGraph.scss";
 
 export function runForceGraph(
     container, //박스
@@ -56,26 +56,26 @@ export function runForceGraph(
     };
 
     // 그래프 툴팁
-    const tooltip = document.querySelector("#graph-tooltip");
-    if (!tooltip) {
-        const tooltipDiv = document.createElement("div");
-        tooltipDiv.classList.add(styles.tooltip);
-        tooltipDiv.style.opacity = "0";
-        tooltipDiv.id = "graph-tooltip";
-        document.body.appendChild(tooltipDiv);
-    }
-    const div = d3.select("#graph-tooltip");
+    // const tooltip = document.querySelector("#graph-tooltip");
+    // if (!tooltip) {
+    //     const tooltipDiv = document.createElement("div");
+    //     tooltipDiv.classList.add(styles.tooltip);
+    //     tooltipDiv.style.opacity = "0";
+    //     tooltipDiv.id = "graph-tooltip";
+    //     document.body.appendChild(tooltipDiv);
+    // }
+    // const div = d3.select("#graph-tooltip");
 
-    const addTooltip = (d, x, y, callback) => {
-        div.transition().duration(200).style("opacity", 0.9);
-        div.html(callback(d, x, y))
-            .style("left", `${x}px`)
-            .style("top", `${y - 28}px`);
-    };
+    // const addTooltip = (d, x, y, callback) => {
+    //     div.transition().duration(200).style("opacity", 0.9);
+    //     div.html(callback(d, x, y))
+    //         .style("left", `${x}px`)
+    //         .style("top", `${y - 28}px`);
+    // };
 
-    const removeTooltip = () => {
-        div.transition().duration(1000).style("opacity", 0);
-    };
+    // const removeTooltip = () => {
+    //     div.transition().duration(1000).style("opacity", 0);
+    // };
 
     //simulation 그리기
     const simulation = d3
@@ -146,12 +146,12 @@ export function runForceGraph(
         })
 
     label
-        .on("mouseover", (d) => {
-            addTooltip(d, d3.event.pageX, d3.event.pageY, nodeHoverTooltip);
-        })
-        .on("mouseout", () => {
-            removeTooltip();
-        });
+        // .on("mouseover", (d) => {
+        //     addTooltip(d, d3.event.pageX, d3.event.pageY, nodeHoverTooltip);
+        // })
+        // .on("mouseout", () => {
+        //     removeTooltip();
+        // });
 
     simulation.on("tick", () => {
         link.attr("x1", (d) => d.source.x)

@@ -25,6 +25,9 @@ const CLOSE_NODEOPTION_MODAL = 'CLOSE_NODEOPTION_MODAL';
 const OPEN_NODESETTING_MODAL = 'OPEN_NODESETTING_MODAL';
 const CLOSE_NODESETTING_MODAL = 'CLOSE_NODESETTING_MODAL';
 
+const OPEN_CAPTURE_MODAL = 'OPEN_CAPTURE_MODAL'
+const CLOSE_CAPTURE_MODAL = 'CLOSE_CAPTURE_MODAL'
+
 //액션생성함수
 export const openSettingModal = () => ({
     type: OPEN_SETTING_MODAL,
@@ -64,6 +67,12 @@ export const openNodeoptionModal = () => ({
 });
 export const closeNodeoptionModal = () => ({
     type: CLOSE_NODEOPTION_MODAL,
+});
+export const openCaptureModal = () => ({
+    type: OPEN_CAPTURE_MODAL
+});
+export const closeCaptureModal = () => ({
+    type: CLOSE_CAPTURE_MODAL
 });
 
 //리듀서
