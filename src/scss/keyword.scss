@@ -5,7 +5,7 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    min-width: 25rem;
+    min-width: 30rem;
     max-width: 30rem;
     border-radius: 1rem;
     padding: $padding 0 $padding $padding;
@@ -24,6 +24,7 @@
     ul{
         display: flex;
         flex-wrap: wrap;
+        transition: 0.5s;
         li{
             display: flex;
             align-items: center;

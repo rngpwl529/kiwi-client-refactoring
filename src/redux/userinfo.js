@@ -1,5 +1,6 @@
 //초기 상태값 초기화
 const initailState = {
+    id: "",
     email: "",
     username:  "",
     bookmarkKeyword: [],
@@ -45,7 +46,7 @@ export const deleteBookmarkKeyword = (keyword) => ({
 export const userInfo = (state=initailState, action) => {
     switch (action.type) {
         case UPDATE_USERINFO:
-            return Object.assign({}, state, { userInfo: { ...action.payload.userInfo }});
+            return Object.assign({}, state, {  ...action.payload.userInfo });
             
         case ADD_BOOKMARK_KEYWORD:
             return Object.assign({}, state, { bookmarkKeyword: action.payload.keyword });
