@@ -40,7 +40,7 @@ const MainContainer = () => {
   const { siteColor, siteFont } = useSelector(state => state.setting);
   
   const closeNodesetting = (e) => {
-    if(e.target.tagName!=='text' && e.target.tagName !=='circle'){
+    if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'){
       dispatch(closeNodesettingModal())
     }
   }
