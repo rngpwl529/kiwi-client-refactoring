@@ -6,7 +6,7 @@ export function runForceGraph(
     container, //박스
     linksData, //edge
     nodeData, //node
-    nodeHoverTooltip, //hover툴팁
+    // nodeHoverTooltip, //hover툴팁
     handleNodesettingModal,
 ) {
     
@@ -55,7 +55,7 @@ export function runForceGraph(
             .on("end", dragended);
     };
 
-    // 그래프 툴팁
+    // // 그래프 툴팁
     // const tooltip = document.querySelector("#graph-tooltip");
     // if (!tooltip) {
     //     const tooltipDiv = document.createElement("div");
@@ -145,13 +145,13 @@ export function runForceGraph(
             return d.name;
         })
 
-    label
-        // .on("mouseover", (d) => {
-        //     addTooltip(d, d3.event.pageX, d3.event.pageY, nodeHoverTooltip);
-        // })
-        // .on("mouseout", () => {
-        //     removeTooltip();
-        // });
+    // label
+    //     .on("mouseover", (d) => {
+    //         addTooltip(d, d3.event.pageX, d3.event.pageY, nodeHoverTooltip);
+    //     })
+    //     .on("mouseout", () => {
+    //         removeTooltip();
+    //     });
 
     simulation.on("tick", () => {
         link.attr("x1", (d) => d.source.x)
