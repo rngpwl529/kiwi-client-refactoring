@@ -1,43 +1,74 @@
-import React, { useEffect, useCallback } from 'react';
-// import MainSearchBar from "../components/Main/MainSearchBar"
-// import MapController from "../components/Main/MapController"
-
-// import NodeSetting from "../components/Main/NodeSetting"
+// 리액트/리덕스
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import NodeMap from '../components/Main/NodeMap'
-import HeaderContainer from '../containers/HeaderContainer'
-import ModalContainer from '../containers/ModalContainer';
-import action, { closeNodesettingModal } from "../redux/modalstatus";
-import ForceGraph from '../components/Main/forceGraph/forceGraph';
-import data from '../data/data.json';
-import { signinMaintain } from "../redux/signin";
-import { setNodeData, /*addEdgeData, updateNodeData, deleteNodeData,*/ handleLoadingOn } from "../redux/node";
-// import { closeNodesettingModal } from '../redux/modalstatus'
 import axios from 'axios';
-// import googleTrend from '../utils/googleTrend';
-// import validCheck from "../utils/validCheck";
+// 컨테이너 컴포넌트
+import NodeMap from '../components/Main/NodeMap';
+import ForceGraph from '../components/Main/forceGraph/forceGraph';
+import { HeaderContainer, ModalContainer } from '../containers/HeaderContainer'
+// 액션생성함수
+import { closeNodesettingModal } from "../redux/modalstatus";
+import { signinMaintain } from "../redux/signin";
+import { setNodeData, handleLoadingOn } from "../redux/node";
 
-// import action from "../redux/modalstatus";
+import data from '../data/data.json'; // 임시더미데이터
+const SERVER_API = process.env.REACT_APP_SERVER_API;
 
 const MainContainer = () => {
   console.log("MainContainer");
-  const nodeHoverTooltip = useCallback((node, x, y) => {
-    return `<div> ${x}, ${y}
-  <b> id : ${node.id}</b>
-  <b> name : ${node.name}</b>
-  <b> gender : ${node.gender}</b>
-</div>`;
-  }, []);
+  
   const dispatch = useDispatch();
-  console.log(action);
+  const { siteColor, siteFont } = useSelector(state => state.setting);
+//   const nodeHoverTooltip = useCallback((node, x, y) => {
+//     return `<div> ${x}, ${y}
+//   <b> id : ${node.id}</b>
+//   <b> name : ${node.name}</b>
+//   <b> gender : ${node.gender}</b>
+// </div>`;
+//   }, []);
+  
+// TODO: NODEMAP DATA
   // const { nodeData } = useSelector(state => state.node);
   // const { edgeData } = useSelector(state => state.edge);
   // const { isLoadingOn } = useSelector(state => state.node);
 
- 
+// TODO:social Login
+//  if (!this.props.isSignIn) {
+//   // 로그인이 아닐때
+//   const url = new URL(window.location.href);
+//   const authorizationCode = url.searchParams.get("code");
+//   if (authorizationCode) {
+//       this.getAccessToken(authorizationCode);
+//   }
+// }
+
+// TODO:get AccessToken 
+  //Access Token 받아오는 메서드
+//  const getAccessToken = async (authCode) => {
+//   console.log(authCode);
+//   await axios
+//       .post(
+//           `${SERVER_API}/users/socialsignin`,
+//           {
+//               authorizationCode: authCode,
+//           },
+//           {
+//               "Content-Type": "appliaction/json",
+//               withCredentials: true,
+//           }
+//       )
+//       .then((res) => {
+//           console.log("문제없음");
+//           console.log(res);
+//           this.props.signIn();
+//       })
+//       .catch((err) => {
+//           console.log("문제있음");
+//           console.log(err);
+//       });
+// };
   
-  const { siteColor, siteFont } = useSelector(state => state.setting);
+  
   
   const closeNodesetting = (e) => {
     if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'){
@@ -67,7 +98,7 @@ const MainContainer = () => {
     // }
     //노드데이터 요청
     const loadNodedata = async () => {
-      await axios.get('https://kiwimap.shop/nodemap/node',
+      await axios.get(`${SERVER_API}/nodemap/node`,
       { withCredentials: true })
       .then(res => res.data)
       .then(data => {
@@ -137,7 +168,7 @@ const MainContainer = () => {
         <ForceGraph
           nodesData={data.nodes}
           linksData={data.links}
-          nodeHoverTooltip={nodeHoverTooltip}
+          // nodeHoverTooltip={nodeHoverTooltip}
         />
       </section>
     </div>)
