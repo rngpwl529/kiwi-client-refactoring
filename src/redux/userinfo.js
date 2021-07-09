@@ -49,15 +49,12 @@ export const userInfo = (state = initailState, action) => {
             
         case ADD_BOOKMARK_KEYWORD:
             return Object.assign({}, state, {
-                bookmarkKeyword: action.payload.keyword,
+                bookmarkKeyword: [...state.bookmarkKeyword,action.payload.keyword],
             });
 
         case GET_BOOKMARK_KEYWORD:
             return Object.assign({}, state, {
-                bookmarkKeyword: [
-                    ...state.bookmarkKeyword,
-                    action.payload.keyword,
-                ],
+                    bookmarkKeyword:[...action.payload.keyword],
             });
 
         case DELETE_BOOKMARK_KEYWORD: {

@@ -1,7 +1,8 @@
 import React,{ useEffect, useState } from "react"
 import axios from 'axios'
 import { closeUserinfoModal } from '../../redux/modalstatus'
-import { useDispatch, /* useSelector */ } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+// import {updateUserInfo} from '../../redux/userinfo'
 
 const UserSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
@@ -12,7 +13,8 @@ const UserSetting = ()=>{
     const [edit, setEdit] = useState('')
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
+    const [userinfo, setUserinfo] = useState('')
+    let userinfoState = useSelector(state=>state.userinfo)
 
     const eidtHandler = ()=>{
         if(edit){
@@ -26,10 +28,14 @@ const UserSetting = ()=>{
     useEffect(()=>{
         axios
         .get(
-            `${SERVER_URL}/users/userinfo/2`
+            `${SERVER_URL}/users/userinfo/${userinfoState.id}`
             )
-            .then(res=>console.log(res))
+            .then(res=>{
+                setUserinfo(res.data.userData)
+            })
     },[])
+
+    console.log(userinfo)
 
     const closeHandler=()=>{
         dispatch(closeUserinfoModal())
@@ -39,7 +45,7 @@ const UserSetting = ()=>{
         .post(
             `${SERVER_URL}/users/userinfo`,
             {
-                id:2,
+                id:userinfo.id,
                 email:'a@naver.com',
                 userName,
                 password,
@@ -77,12 +83,12 @@ const UserSetting = ()=>{
                 <div className='form'>
                     <div className='box'>
                         <span className='left'>Email</span>
-                        <span className='right'>a@naver.com</span>
+                        <span className='right'>{userinfo.email}</span>
                     </div>
                     <div className='box'>
                         <span className='left'>Username</span>
                         {edit ? <input type="text" className="username" onChange={(e)=>{setUsername(e.target.value)}}/>
-                            :<span className='right'>James</span>
+                            :<span className='right'>{userinfo.userName}</span>
                         }
                     </div>
                     <div className='box'>
@@ -101,7 +107,10 @@ const UserSetting = ()=>{
                 </div>
                 <div className='edit'>
                 {edit ? 
-                    <div className='ok' onClick={submitHandler}>Eidt</div>
+                    <>
+                    <div className="cancle" onClick={eidtHandler}>cancle</div>
+                    <div className='ok' onClick={submitHandler}>Edit</div>
+                    </>
                     :<div>
                         <div className='logout' onClick={logouthandler}>Logout</div>
                         <div className='user-edit' onClick={eidtHandler}>Edit</div>

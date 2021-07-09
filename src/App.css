@@ -341,7 +341,7 @@ a {
   background-color: white;
   display: flex;
   flex-direction: column;
-  min-width: 25rem;
+  min-width: 30rem;
   max-width: 30rem;
   border-radius: 1rem;
   padding: 1rem 0 1rem 1rem;
@@ -356,7 +356,8 @@ a {
     margin-bottom: 10px; }
   #keyword-container ul {
     display: flex;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    transition: 0.5s; }
     #keyword-container ul li {
       display: flex;
       align-items: center;
@@ -541,15 +542,19 @@ a {
         border-color: #8d8d8d;
         padding: 0 10px 0 10px; }
   #user-container .edit {
-    margin-bottom: 40px; }
+    margin-bottom: 40px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly; }
     #user-container .edit div {
       display: flex;
-      width: 380px;
-      justify-content: space-evenly; }
+      justify-content: space-evenly;
+      cursor: pointer; }
       #user-container .edit div div {
         width: 80px; }
         #user-container .edit div div:hover {
-          background-color: #efefef; }
+          background-color: #efefef;
+          cursor: pointer; }
     #user-container .edit .withdraw {
       color: red; }
 
@@ -558,11 +563,13 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
   width: 11rem;
   height: 2.5rem;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); }
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  z-index: 100; }
   #node-setting-container ion-icon {
     width: 1.5rem;
     height: 1.5rem; }
@@ -940,3 +947,9 @@ a {
               transform: scale(1.2);
               box-shadow: 1px 1px 5px 1px rgba(85, 85, 85, 0.2);
               transition: all 0.55s cubic-bezier(0.77, 0, 0.175, 1); }
+
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: red; }

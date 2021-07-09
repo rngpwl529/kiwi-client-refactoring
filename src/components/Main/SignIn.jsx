@@ -49,7 +49,9 @@ const SignIn = () => {
         if (!(isPasswordValid === 'valid' && isEmailValid === 'valid')) {
             alert('올바르지 않은 형식이 포함되어 있습니다.');
         }
+        
         else {
+            console.log('a')
             axios
                 .post(
                     `${SERVER_URL}/users/signin`,
@@ -80,7 +82,7 @@ const SignIn = () => {
                             username: '',       //TODO:SERVER에서 보내줘야하는 데이터 양식
                         }))
                         localStorage.setItem('token', JSON.stringify(data.accessToken));
-                        window.location.reload();
+                        // window.location.reload();
                     }
                 })
                 .catch(err => {
