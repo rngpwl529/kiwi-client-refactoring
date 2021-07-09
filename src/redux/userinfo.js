@@ -4,60 +4,75 @@ const initailState = {
     email: "",
     username:  "",
     bookmarkKeyword: [],
-}
+    userInfoChangeMode: false,
+    windowWidth: null,
+};
 
 //액션
-const UPDATE_USERINFO = "HANDLE_USERINFO";
-
-const GET_BOOKMARK_KEYWORD = "GET_BOOKMARK_KEYWORD";
-const ADD_BOOKMARK_KEYWORD = "ADD_BOOKMARK_KEYWORD";
-const DELETE_BOOKMARK_KEYWORD = "DELETE_BOOKMARK_KEYWORD";
-
-
+const UPDATE_USERINFO = 'HANDLE_USERINFO';
+const GET_BOOKMARK_KEYWORD = 'GET_BOOKMARK_KEYWORD';
+const ADD_BOOKMARK_KEYWORD = 'ADD_BOOKMARK_KEYWORD';
+const DELETE_BOOKMARK_KEYWORD = 'DELETE_BOOKMARK_KEYWORD';
 
 //액션생성함수
 export const updateUserInfo = (userInfo) => ({
     type: UPDATE_USERINFO,
     payload: {
         userInfo,
-    }
+    },
 });
 
 export const getBookmarkKeyword = (keyword) => ({
     type: GET_BOOKMARK_KEYWORD,
     payload: {
-        keyword
-    }
+        keyword,
+    },
 });
 export const addBookmarkKeyword = (keyword) => ({
     type: ADD_BOOKMARK_KEYWORD,
     payload: {
-        keyword
-    }
+        keyword,
+    },
 });
 export const deleteBookmarkKeyword = (keyword) => ({
     type: DELETE_BOOKMARK_KEYWORD,
     payload: {
-        keyword
-    }
+        keyword,
+    },
 });
 
 //리듀서
-export const userInfo = (state=initailState, action) => {
+export const userInfo = (state = initailState, action) => {
     switch (action.type) {
         case UPDATE_USERINFO:
+<<<<<<< HEAD
+            return Object.assign({}, state, {
+                userInfo: { ...action.payload.userInfo },
+            });
+
+=======
             return Object.assign({}, state, {  ...action.payload.userInfo });
             
+>>>>>>> 1ee6ee9ba3b5a3f186641e9365243bd1ea216da0
         case ADD_BOOKMARK_KEYWORD:
-            return Object.assign({}, state, { bookmarkKeyword: action.payload.keyword });
+            return Object.assign({}, state, {
+                bookmarkKeyword: action.payload.keyword,
+            });
 
-        case GET_BOOKMARK_KEYWORD: 
-            return Object.assign({}, state, { bookmarkKeyword: [...state.bookmarkKeyword, action.payload.keyword] });
+        case GET_BOOKMARK_KEYWORD:
+            return Object.assign({}, state, {
+                bookmarkKeyword: [
+                    ...state.bookmarkKeyword,
+                    action.payload.keyword,
+                ],
+            });
 
         case DELETE_BOOKMARK_KEYWORD: {
-            const idx = state.bookmarkKeyword.findIndex((keyword)=>(keyword===action.payload.keyword));
+            const idx = state.bookmarkKeyword.findIndex(
+                (keyword) => keyword === action.payload.keyword
+            );
             const result = Object.assign({}, state);
-            result.bookmarkKeyword.splice(idx,1);
+            result.bookmarkKeyword.splice(idx, 1);
             return result;
         }
 
