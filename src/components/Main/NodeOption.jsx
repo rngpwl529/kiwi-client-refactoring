@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 const NodeOption = ()=>{
-    // let SERVER_URL = process.env.REACT_APP_SERVER_URL;
+    let SERVER_URL = process.env.REACT_APP_SERVER_URL;
     let nodeName = useRef();
     const dispatch = useDispatch();
     const [color, setColor] = useState("");
@@ -17,12 +17,21 @@ const NodeOption = ()=>{
         dispatch(closeNodeoptionModal());
     }
     const submitHandler = ()=>{
-        axios.post("https://kiwimap.shop/nodemap/edge",
-            { nodeColor: color, nodeName: nodeName.current.value },
+        axios.post(`${SERVER_URL}/nodemap/node`,
+            { nodeColor: color, nodeName: nodeName.current.value, source: parentNode.name },
             { headers: { withCredentials: true } })
             .then(res => res.data)
             .then(data => console.log(data))
-            .catch(err => console.log(err));
+            .catch(error => {  //TODO:TOKEN확인여부를 가지고 로그인 창을 띄움
+                console.log(error.response);
+                if (error.response.status === 400) {
+                    //! 세션만료 모달, 로그인 해제
+                    localStorage.clear();
+                   //TODO:로그아웃 해야함
+                    window.location.reload();
+                    return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
+                }
+            });
     }
 
     return (
@@ -41,7 +50,7 @@ const NodeOption = ()=>{
             </div>
             <div className='nodeoption-parentnode'>
                 <span>Parent Node</span>
-                <span>{parentNode}</span>
+                <span>{parentNode.name}</span>
             </div>
             
             <div className='setting-node-colors'>
