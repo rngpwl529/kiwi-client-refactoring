@@ -12,6 +12,7 @@ import NodeSetting from '../components/Main/NodeSetting';
 //헤더 ==> 로고, undo, root, redo, searchbar, mypage, setting, bookmark, img(캡처)
 const ModalContainer = ()=>{
   const { settingModal, userInfoModal, signupModal, signinModal, nodeoptionModal, nodesettingModal } = useSelector(state => state.modal);
+  
   // let SERVER_URL = process.env.REACT_APP_SERVER_URL;
   // const [ undo, setUndo ] = useState("");
   // const [ root, setRoot ] = useState("");
@@ -54,7 +55,7 @@ const ModalContainer = ()=>{
       {signupModal ? <SignUp /> : false}
       {signinModal ? <SignIn /> : false}
       {nodeoptionModal ? <NodeOption/> : false}
-      {nodesettingModal ? <NodeSetting/> : false}
+      {nodesettingModal ? <NodeSetting cord={nodesettingModal}/> : false}
     </div>
   )
 }

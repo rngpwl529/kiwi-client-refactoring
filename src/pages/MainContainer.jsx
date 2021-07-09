@@ -8,11 +8,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import NodeMap from '../components/Main/NodeMap'
 import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer';
-import action from "../redux/modalstatus";
+import action, { closeNodesettingModal } from "../redux/modalstatus";
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import data from '../data/data.json';
 import { signinMaintain } from "../redux/signin";
 import { setNodeData, /*addEdgeData, updateNodeData, deleteNodeData,*/ handleLoadingOn } from "../redux/node";
+// import { closeNodesettingModal } from '../redux/modalstatus'
 import axios from 'axios';
 // import googleTrend from '../utils/googleTrend';
 // import validCheck from "../utils/validCheck";
@@ -20,6 +21,7 @@ import axios from 'axios';
 // import action from "../redux/modalstatus";
 
 const MainContainer = () => {
+  console.log("MainContainer");
   const nodeHoverTooltip = useCallback((node, x, y) => {
     return `<div> ${x}, ${y}
   <b> id : ${node.id}</b>
@@ -33,10 +35,15 @@ const MainContainer = () => {
   // const { edgeData } = useSelector(state => state.edge);
   // const { isLoadingOn } = useSelector(state => state.node);
 
-
+ 
   
   const { siteColor, siteFont } = useSelector(state => state.setting);
   
+  const closeNodesetting = (e) => {
+    if(e.target.tagName!=='text' && e.target.tagName !=='circle'){
+      dispatch(closeNodesettingModal())
+    }
+  }
   const handleLoginMaintain = () => {
     dispatch(signinMaintain());
   }
@@ -126,7 +133,7 @@ const MainContainer = () => {
       <NodeMap dispatch={dispatch} />
       <HeaderContainer />
       <ModalContainer/>
-      <section className="Main">
+      <section className="Main" onClick={closeNodesetting} >
         <ForceGraph
           nodesData={data.nodes}
           linksData={data.links}

@@ -2,7 +2,6 @@ import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import styles from "./_forceGraph.scss";
 
-// import React from "react";
 export function runForceGraph(
     container, //박스
     linksData, //edge
@@ -11,7 +10,7 @@ export function runForceGraph(
     handleNodesettingModal,
 ) {
     
-
+    
     const links = linksData.map((d) => Object.assign({}, d));//link data
     const nodes = nodeData.map((d) => Object.assign({}, d)); //nodes data
     const containerRect = container.getBoundingClientRect(); //container 영역
@@ -88,7 +87,7 @@ export function runForceGraph(
         .force("charge", d3.forceManyBody().strength(-500)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY());
-    
+        
   
     // 컨테이너 그리기
     const svg = d3
@@ -97,9 +96,8 @@ export function runForceGraph(
         .attr("viewBox", [-width / 2, -height / 2, width, height]) // container 위치
         .call(d3.zoom().on("zoom", function () {
             svg.attr("transform", d3.event.transform)
-         }))
-    
-    
+        }))
+       
     
    
     
@@ -112,6 +110,7 @@ export function runForceGraph(
         .data(links)                          //데이터를 연결함
         .join("line")                         //line이랑 합침
         .attr("stroke-width", (d) => d.value);//링크 두께
+    
     //노드 버블 그리기
     const node = svg
         .append("g")
@@ -125,9 +124,8 @@ export function runForceGraph(
         .attr("id", (d) => {                               //속성 id값
             return d.name;
         })
-        .on("click", () => {
-            handleNodesettingModal();
-            
+        .on("click", (d) => {
+            handleNodesettingModal(d, d3.event.x, d3.event.y);
         })
         .call(drag(simulation));
         
