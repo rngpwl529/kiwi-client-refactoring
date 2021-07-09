@@ -5,7 +5,8 @@ import axios from 'axios';
 // 컨테이너 컴포넌트
 import NodeMap from '../components/Main/NodeMap';
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
-import { HeaderContainer, ModalContainer } from '../containers/HeaderContainer'
+import HeaderContainer from '../containers/HeaderContainer'
+import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
 import { signinMaintain } from "../redux/signin";

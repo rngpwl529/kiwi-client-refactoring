@@ -3,21 +3,6 @@ const initialState = {
     userInfoModal: false,
     signupModal: false,
     signinModal: false,
-<<<<<<< HEAD
-    captureModal: false,
-};
-//액션
-const OPEN_SETTING_MODAL = "OPEN_SETTING_MODAL";
-const CLOSE_SETTING_MODAL = "CLOSE_SETTING_MODAL";
-const OPEN_USERINFO_MODAL = "OPEN_USERINFO_MODAL";
-const CLOSE_USERINFO_MODAL = "CLOSE_USERINFO_MODAL";
-const OPEN_SIGNUP_MODAL = "OPEN_SIGNUP_MODAL";
-const CLOSE_SIGNUP_MODAL = "CLOSE_SIGNUP_MODAL";
-const OPEN_SIGNIN_MODAL = "OPEN_SIGNIN_MODAL";
-const CLOSE_SIGNIN_MODAL = "CLOSE_SIGNIN_MODAL";
-const OPEN_CAPTURE_MODAL = "OPEN_CAPTURE_MODAL";
-const CLOSE_CAPTURE_MODAL = "CLOSE_CAPTURE_MODAL";
-=======
     nodeoptionModal: false,
     nodesettingModal: false,
 };
@@ -39,7 +24,9 @@ const CLOSE_NODEOPTION_MODAL = 'CLOSE_NODEOPTION_MODAL';
 
 const OPEN_NODESETTING_MODAL = 'OPEN_NODESETTING_MODAL';
 const CLOSE_NODESETTING_MODAL = 'CLOSE_NODESETTING_MODAL';
->>>>>>> 3b64158aafd20b00effa51660c212b557d47eccc
+
+const OPEN_CAPTURE_MODAL = 'OPEN_CAPTURE_MODAL';
+const CLOSE_CAPTURE_MODAL = 'CLOSE_CAPTURE_MODAL';
 
 //액션생성함수
 export const openSettingModal = () => ({
@@ -82,10 +69,10 @@ export const closeNodeoptionModal = () => ({
     type: CLOSE_NODEOPTION_MODAL,
 });
 export const openCaptureModal = () => ({
-    type: OPEN_CAPTURE_MODAL
+    type: OPEN_CAPTURE_MODAL,
 });
 export const closeCaptureModal = () => ({
-    type: CLOSE_CAPTURE_MODAL
+    type: CLOSE_CAPTURE_MODAL,
 });
 
 //리듀서
@@ -109,15 +96,12 @@ const settingModal = (state = initialState, action) => {
         case OPEN_SIGNIN_MODAL:
             return Object.assign({}, state, { signinModal: true });
         case CLOSE_SIGNIN_MODAL:
-<<<<<<< HEAD
-            return Object.assign({}, state, {signinModal: false});
-            
-        case OPEN_CAPTURE_MODAL:
-            return Object.assign({}, state, {captureModal: true});
-        case CLOSE_CAPTURE_MODAL:
-            return Object.assign({}, state, {captureModal: false});
-=======
             return Object.assign({}, state, { signinModal: false });
+
+        case OPEN_CAPTURE_MODAL:
+            return Object.assign({}, state, { captureModal: true });
+        case CLOSE_CAPTURE_MODAL:
+            return Object.assign({}, state, { captureModal: false });
 
         case OPEN_NODESETTING_MODAL:
             return Object.assign({}, state, {
@@ -130,7 +114,6 @@ const settingModal = (state = initialState, action) => {
             return Object.assign({}, state, { nodeoptionModal: true });
         case CLOSE_NODEOPTION_MODAL:
             return Object.assign({}, state, { nodeoptionModal: false });
->>>>>>> 3b64158aafd20b00effa51660c212b557d47eccc
 
         default:
             return state;
