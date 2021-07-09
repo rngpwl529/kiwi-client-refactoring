@@ -10,6 +10,7 @@ const Keyword = ({setKeywordOpen}) => {
     
     const state= useSelector(state => state.userinfo);
     
+    //키워드 가져오기
     useEffect(()=>{
         axios
         .get(
@@ -26,7 +27,8 @@ const Keyword = ({setKeywordOpen}) => {
     const handler= ()=>{
         setKeywordOpen(false)
     }
-
+    
+    // 키워드 삭제
     const deleteHandler = (e)=>{
         axios
         .delete(

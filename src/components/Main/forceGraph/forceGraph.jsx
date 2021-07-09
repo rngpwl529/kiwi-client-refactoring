@@ -5,10 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { openNodesettingModal } from "../../../redux/modalstatus"; //노드 리듀서
 import "./_forceGraph.scss";
 
-
-
-
-
 function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
     const containerRef = useRef(null);//Div 선택자
     
@@ -17,7 +13,7 @@ function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
     const dispatch = useDispatch();
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.edge);
-    const store = useSelector(state => state);
+    // const store = useSelector(state => state);
     
 
     // const edgeData = useSelector(state => state.edgeData);
@@ -25,8 +21,9 @@ function ForceGraph({ nodesData, linksData, nodeHoverTooltip }) {
     //노드 옵션 모달 오픈
     const handleNodesettingModal = () => {
         dispatch(openNodesettingModal());
-        console.log(store);
     }
+
+
     // //노드 추가 하기
     // const addNode = (d) => {
     //     //서버요청 후 반영

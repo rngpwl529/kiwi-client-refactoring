@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NodeMap from '../components/Main/NodeMap'
 import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer';
-import action from "../redux/modalstatus";
+import action, { closeNodesettingModal } from "../redux/modalstatus";
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import data from '../data/data.json';
 import { signinMaintain } from "../redux/signin";
@@ -79,7 +79,11 @@ const MainContainer = () => {
       loadNodedata();
       // loadEdgedata();
   }
-  
+  const handler = (e)=>{
+    if(e.target.tagName!=='text' && e.target.tagName !=='circle'){
+      dispatch(closeNodesettingModal())
+    }
+  }
   //로그인 유지 함수
   useEffect(() => {
     loadNodemapData();
@@ -124,9 +128,9 @@ const MainContainer = () => {
   return (
     <div id='main-container'>
       <NodeMap dispatch={dispatch} />
-      <HeaderContainer />
+      <HeaderContainer/>
       <ModalContainer/>
-      <section className="Main">
+      <section className="Main" onClick={handler}>
         <ForceGraph
           nodesData={data.nodes}
           linksData={data.links}

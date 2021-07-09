@@ -45,15 +45,8 @@ export const deleteBookmarkKeyword = (keyword) => ({
 export const userInfo = (state = initailState, action) => {
     switch (action.type) {
         case UPDATE_USERINFO:
-<<<<<<< HEAD
-            return Object.assign({}, state, {
-                userInfo: { ...action.payload.userInfo },
-            });
-
-=======
             return Object.assign({}, state, {  ...action.payload.userInfo });
             
->>>>>>> 1ee6ee9ba3b5a3f186641e9365243bd1ea216da0
         case ADD_BOOKMARK_KEYWORD:
             return Object.assign({}, state, {
                 bookmarkKeyword: action.payload.keyword,

@@ -1,16 +1,18 @@
 import React,{ useEffect, useState } from "react"
 import axios from 'axios'
 import { closeUserinfoModal } from '../../redux/modalstatus'
-import { useDispatch } from 'react-redux'
+import { useDispatch, /* useSelector */ } from 'react-redux'
 
 const UserSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
     let dispatch = useDispatch()
+    // let userid = useSelector(state=>state.userinfo.id)
     // const [fontSize, setFontSize] = useState(14);
     // const [backGroundColor, setBackGroundColor] = useState("blue");
     const [edit, setEdit] = useState('')
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
 
     const eidtHandler = ()=>{
         if(edit){

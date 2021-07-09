@@ -125,9 +125,9 @@ export function runForceGraph(
         .attr("id", (d) => {                               //속성 id값
             return d.name;
         })
-        .on("click", () => {
-            handleNodesettingModal();
-            
+        .on("click", (d) => {
+            handleNodesettingModal(d);
+            // console.log(d3.event.x)
         })
         .call(drag(simulation));
         
