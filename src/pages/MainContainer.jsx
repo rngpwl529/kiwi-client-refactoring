@@ -9,7 +9,7 @@ import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
-import { signinMaintain } from "../redux/signin";
+// import { signinMaintain } from "../redux/signin";
 import { setNodeData, handleLoadingOn } from "../redux/node";
 
 import data from '../data/data.json'; // 임시더미데이터
@@ -76,9 +76,9 @@ const MainContainer = () => {
       dispatch(closeNodesettingModal())
     }
   }
-  const handleLoginMaintain = () => {
-    dispatch(signinMaintain());
-  }
+  // const handleLoginMaintain = () => {
+  //   dispatch(signinMaintain());
+  // }
   // const fontSize = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
 
@@ -118,7 +118,7 @@ const MainContainer = () => {
       loadNodedata();
       // loadEdgedata();
   }
-  
+
   //로그인 유지 함수
   useEffect(() => {
     loadNodemapData();
@@ -128,7 +128,7 @@ const MainContainer = () => {
     //   handleLoadingOn();
     // }, 3000)
     if (JSON.parse(token)) {
-      handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
+      // handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
       let token = localStorage.getItem('token');
       axios.get(
@@ -152,7 +152,7 @@ const MainContainer = () => {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
             // handleLogin();
-            window.location.reload();
+            // window.location.reload();
             return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
           }
         })
@@ -163,7 +163,7 @@ const MainContainer = () => {
   return (
     <div id='main-container'>
       <NodeMap dispatch={dispatch} />
-      <HeaderContainer />
+      <HeaderContainer/>
       <ModalContainer/>
       <section className="Main" onClick={closeNodesetting} >
         <ForceGraph

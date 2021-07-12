@@ -18,7 +18,6 @@ function ForceGraph({ nodesData, linksData, /* nodeHoverTooltip */ }) {
     const dispatch = useDispatch();
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.edge);
-   
     
     console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
