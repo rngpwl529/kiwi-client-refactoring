@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from "react"
 import axios from 'axios'
 import {useSelector} from 'react-redux'
-
+//:TODO 로그인 한 상태에서만 사용할 수 있음
 const Keyword = ({setKeywordOpen}) => {
     const SERVER_URL = process.env.REACT_APP_SERVER_URL
     const [keywords, setKeywords] = useState([])

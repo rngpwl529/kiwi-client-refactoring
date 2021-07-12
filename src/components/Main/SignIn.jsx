@@ -83,6 +83,7 @@ const SignIn = () => {
                         }))
                         localStorage.setItem('token', JSON.stringify(data.accessToken));
                         window.location.reload();
+                        
                     }
                 })
                 .catch(err => {
