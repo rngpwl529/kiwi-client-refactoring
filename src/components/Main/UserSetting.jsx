@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react"
 import axios from 'axios'
 import { closeUserinfoModal } from '../../redux/modalstatus'
 import { useDispatch, useSelector } from 'react-redux'
-// import {updateUserInfo} from '../../redux/userinfo'
+import { updateUserInfo } from '../../redux/userinfo'
 
 const UserSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
@@ -13,8 +13,7 @@ const UserSetting = ()=>{
     const [edit, setEdit] = useState('')
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [userinfo, setUserinfo] = useState('')
-    let userinfoState = useSelector(state=>state.userinfo)
+    let userinfo = useSelector(state=>state.userinfo)
 
     const eidtHandler = ()=>{
         if(edit){
@@ -25,46 +24,48 @@ const UserSetting = ()=>{
         }
     }
 
-    useEffect(()=>{
-        axios
-        .get(
-            `${SERVER_URL}/users/userinfo/${userinfoState.id}`
-            )
-            .then(res=>{
-                setUserinfo(res.data.userData)
-            })
-    },[])
-
-    console.log(userinfo)
-
+    
+    
     const closeHandler=()=>{
         dispatch(closeUserinfoModal())
     }
+    
     const submitHandler= ()=>{
         axios
         .post(
             `${SERVER_URL}/users/userinfo`,
             {
                 id:userinfo.id,
-                email:'a@naver.com',
+                email: userinfo.email,
                 userName,
                 password,
             }
+        )
+        .then(
+            setEdit(false),
+            console.log(userName),
+            dispatch(updateUserInfo({userName:userName}))
         )
         .catch(err=>{
             console.log(err)
         })
     }
 
+    useEffect(()=>{
+        axios
+        .get(
+            `${SERVER_URL}/users/userinfo/${userinfo.id}`
+            )
+            .then(res=>{
+                dispatch(updateUserInfo(res.data.userData))
+            })
+        console.log('실행')
+    },[])
+
     const withdrawHandler = ()=>{
         axios
         .delete(
-            `${SERVER_URL}/users/userinfo`,
-            {
-                params:{
-                    id: 2 
-                }
-            }
+            `${SERVER_URL}/users/userinfo${userinfo.id}`,
         )
     }
 
@@ -75,6 +76,8 @@ const UserSetting = ()=>{
         )
     }
 
+    console.log(userinfo)
+    
     return (
         <div className='darkbackground'>
             <div id='user-container'>
@@ -93,14 +96,14 @@ const UserSetting = ()=>{
                     </div>
                     <div className='box'>
                         <span className='left'>Password</span>
-                        {edit ? <input type="text" className="password" onChange={(e)=>{setPassword(e.target.value)}}/>
+                        {edit ? <input type="password" className="password" onChange={(e)=>{setPassword(e.target.value)}}/>
                             :<span className='right'>******</span>
                         }
                     </div>
                     {edit ?
                         <div className='box'>
                             <span className='left'>Password check</span>
-                            <input type="text" className="passwordCheck" />
+                            <input type="password" className="passwordCheck" />
                         </div>
                         :null
                     }

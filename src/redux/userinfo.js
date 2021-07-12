@@ -2,7 +2,7 @@
 const initailState = {
     id: "",
     email: "",
-    username:  "",
+    userName:  "",
     bookmarkKeyword: [],
     userInfoChangeMode: false,
     windowWidth: null,
@@ -45,7 +45,7 @@ export const deleteBookmarkKeyword = (keyword) => ({
 export const userInfo = (state = initailState, action) => {
     switch (action.type) {
         case UPDATE_USERINFO:
-            return Object.assign({}, state, {  ...action.payload.userInfo });
+            return Object.assign({}, state, {state,...action.payload.userInfo });
             
         case ADD_BOOKMARK_KEYWORD:
             return Object.assign({}, state, {

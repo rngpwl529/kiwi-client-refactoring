@@ -1,36 +1,53 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect} from "react"
 import React from "react"
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {closeSettingModal} from '../../redux/modalstatus'
 import axios from 'axios';
 
 const SiteSetting = ()=>{
     let SERVER_URL = process.env.REACT_APP_SERVER_URL
     
-    const [backGroundColor, setBackGroundColor] = useState("blue");
-    const [fontSize, setFontSize] = useState("24px")
+    const [siteColor, setSiteColor] = useState("");
+    const [siteFont, setSiteFontSize] = useState("")
     let dispatch = useDispatch()
+    let userinfo = useSelector(state=>state.userinfo)
 
     const fontHandler = (e)=>{
-        setFontSize(e.target.value)
+        console.log(e.target.innerText)
+        setSiteFontSize(e.target.innerText)
     }
+
+    useEffect(()=>{
+        axios
+        .post(
+            `${SERVER_URL}/users/userinfo`,
+            {
+                id:userinfo.id,
+                siteFont,
+            }
+        )
+        .then(res=>{
+            console.log(res)
+        })
+    }
+    ,[siteFont])
+    
 
 
     useEffect(()=>{
         axios
         .post(
-            `${SERVER_URL}/users/setting`,
+            `${SERVER_URL}/users/userinfo`,
             {
-                email:'a@naver.com',
-                backGroundColor,
-                fontSize
+                id:userinfo.id,
+                siteColor
             }
         )
-        .then(
-            console.log('사이트설정 성공')
-        )
+        .then(res=>{
+            console.log(res)
+        })
     }
-    ,[backGroundColor, fontSize])
+    ,[siteColor])
     //사이트 세팅 요청 없음
 
     const closehandler = ()=>{
@@ -49,12 +66,12 @@ const SiteSetting = ()=>{
                     <span>Font Size</span>
                     <div className='sitesetting-slider'>
                         <div className='scale'>
-                            <p onClick={fontHandler}>12px</p>
-                            <p onClick={fontHandler}>16px</p>
-                            <p onClick={fontHandler}>20px</p>
-                            <p onClick={fontHandler}>24px</p>
-                            <p onClick={fontHandler}>28px</p>
-                            <p onClick={fontHandler}>32px</p>
+                            <div onClick={fontHandler}>12px</div>
+                            <div onClick={fontHandler}>16px</div>
+                            <div onClick={fontHandler}>20px</div>
+                            <div onClick={fontHandler}>24px</div>
+                            <div onClick={fontHandler}>28px</div>
+                            <div onClick={fontHandler}>32px</div>
                         </div>
                     </div>
                 </div>
@@ -62,11 +79,16 @@ const SiteSetting = ()=>{
                 <div className='sitesetting-color'>
                     <p>Background Color</p>
                     <div className='colors'>
-                        <div className={backGroundColor === "black" ? "black selected" : "black"} onClick={()=>{setBackGroundColor("black")}}></div>
-                        <div className={backGroundColor === "red" ? "red selected" : "red"} onClick={()=>{setBackGroundColor("red")}}></div>
-                        <div className={backGroundColor === "yellow" ? "yellow selected" : "yellow"} onClick={()=>{setBackGroundColor("yellow")}}></div>
-                        <div className={backGroundColor === "blue" ? "blue selected" : "blue"} onClick={() => { setBackGroundColor("blue") }}></div>
-                        <div className={backGroundColor === "green" ? "green selected" : "green"} onClick={()=>{setBackGroundColor("green")}}></div>
+                        <div className={siteColor === "black" ? "black selected" : "black"} onClick={()=>{
+                            setSiteColor("black")}}></div>
+                        <div className={siteColor === "red" ? "red selected" : "red"} onClick={()=>{
+                            setSiteColor("red")}}></div>
+                        <div className={siteColor === "yellow" ? "yellow selected" : "yellow"} onClick={()=>{
+                            setSiteColor("yellow")}}></div>
+                        <div className={siteColor === "blue" ? "blue selected" : "blue"} onClick={() => {
+                            setSiteColor("blue")}}></div>
+                        <div className={siteColor === "green" ? "green selected" : "green"} onClick={()=>{
+                            setSiteColor("green")}}></div>
                     </div>
                 </div>
             </section>
@@ -74,5 +96,5 @@ const SiteSetting = ()=>{
     </div>
     )
 }
-  
+
 export default SiteSetting
