@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import {  openNodeoptionModal } from '../../redux/modalstatus';
 import {addBookmarkKeyword} from '../../redux/userinfo'
 import axios from 'axios'
+// import { deleteNodeData } from '../../redux/node';
 
 const NodeSetting = () => {
     let SERVER_API = process.env.REACT_APP_SERVER_API
@@ -32,7 +33,7 @@ const NodeSetting = () => {
             }
         ).then(res=>{
             console.log(res)
-            dispatch(addBookmarkKeyword(parentNode.nodeName))
+            dispatch(addBookmarkKeyword(parentNode.name))
         }
         ).catch(err=>{
             console.log(err.statusCode)
@@ -47,7 +48,21 @@ const NodeSetting = () => {
     }
     // const handleDeletenode = () => {
     //     //서버요청 후 반영
-    //     dispatch();
+    //     dispatch(deleteNodeData(parentNode.id));
+    //     axios.post(
+    //     `${SERVER_URL}/users/keyword`,
+    //     {
+    //         userId: state.userinfo.id,
+    //         keyword: parentNode.name
+    //     }
+    // ).then(res=>{
+    //     console.log(res)
+    //     dispatch(addBookmarkKeyword(parentNode.name))
+    // }
+    // ).catch(err=>{
+    //     console.log(err.statusCode)
+    //     alert('이미 존재하는 키워드 입니다.')
+    // })
     // }
     // const handleUpdatenode = () => {
     //     //서버요청 후 반영

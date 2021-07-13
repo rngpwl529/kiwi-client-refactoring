@@ -1,4 +1,4 @@
-*,
+
 *:before,
 *:after {
   box-sizing: border-box;
@@ -73,6 +73,7 @@ p {
 
 .modal__body {
   padding: 20px;
+  background-color:white;
 }
 
 .modal__footer {
@@ -82,4 +83,5 @@ p {
 
 .image__container {
   overflow: auto;
+  background-color:white;
 }
