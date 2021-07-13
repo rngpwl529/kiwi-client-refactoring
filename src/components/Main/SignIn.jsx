@@ -10,7 +10,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const SignIn = () => {
-    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+    const SERVER_API = process.env.REACT_APP_SERVER_API;
     const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;
     const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
     
@@ -56,7 +56,7 @@ const SignIn = () => {
             console.log('a')
             axios
                 .post(
-                    `${SERVER_URL}/users/signin`,
+                    `${SERVER_API}/users/signin`,
                     {
                         email,
                         password
@@ -76,13 +76,14 @@ const SignIn = () => {
                     } else if (data.message === 'login successfully') {
                         console.log(data)
                         console.log('로그인 성공!')
-                        dispatch(signIn())
                         dispatch(closeSigninModal())
                         dispatch(updateUserInfo({
                             id: data.id,
                             email: email,
                             username: '',       //TODO:SERVER에서 보내줘야하는 데이터 양식
                         }))
+                        dispatch(signIn())
+                        
                         localStorage.setItem('token', JSON.stringify(data.accessToken));
                         // window.location.reload();
                     }
@@ -112,7 +113,11 @@ const SignIn = () => {
         return (
             <div className="darkbackground">
                 <div id='signin-container'>
-                    <div className='sign-img'></div>
+                    <div className='sign-img'>
+                        <object 
+                        type="image/svg+xml"
+                        data='/images/whitelogo.svg' className='signLogo'></object>
+                    </div>
                     {!signup ?
                         <div id='signin-form'>
                             <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>

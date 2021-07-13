@@ -95,7 +95,8 @@ a {
         display: flex;
         margin: 1rem;
         width: 10rem;
-        height: auto; }
+        height: auto;
+        z-index: 5; }
     #intro-container .container .back-number {
       position: absolute;
       top: -10rem;
@@ -120,12 +121,48 @@ a {
     animation-name: slidup;
     animation-duration: 2s;
     animation-iteration-count: infinite; }
+  @media (max-width: 768px) {
+    #intro-container {
+      text-align: center; }
+      #intro-container .container {
+        min-height: 50rem; }
+      #intro-container .back-number {
+        display: flex;
+        justify-content: center; }
+      #intro-container .title {
+        display: flex;
+        justify-content: center; }
+      #intro-container .descript {
+        display: flex;
+        justify-content: center; } }
   #intro-container #maindescription-container {
     background-color: #E8E8E8; }
     #intro-container #maindescription-container .imgbox {
       animation-name: slidup;
       animation-duration: 2s;
       animation-iteration-count: infinite; }
+    @media (max-width: 768px) {
+      #intro-container #maindescription-container {
+        height: auto; }
+        #intro-container #maindescription-container .content {
+          flex-direction: column; }
+        #intro-container #maindescription-container .back-number {
+          font-size: 10rem;
+          width: 100vw;
+          top: -8rem; }
+        #intro-container #maindescription-container .btnArea {
+          display: flex;
+          justify-content: center; }
+        #intro-container #maindescription-container .title {
+          font-size: 2.5rem; }
+        #intro-container #maindescription-container .descript {
+          font-size: 2rem; }
+        #intro-container #maindescription-container .sub-descript {
+          font-size: 1rem; }
+        #intro-container #maindescription-container .text {
+          margin: 0; }
+        #intro-container #maindescription-container .imgbox {
+          max-width: 15rem; } }
   #intro-container #introF1-container {
     background-color: #DEDEDE; }
     #intro-container #introF1-container .back-number {
@@ -144,6 +181,33 @@ a {
       text-decoration: none;
       right: 5rem;
       z-index: 2; }
+      @media (max-width: 768px) {
+        #intro-container #introF1-container a {
+          right: 3rem; } }
+    @media (max-width: 768px) {
+      #intro-container #introF1-container {
+        height: auto; }
+        #intro-container #introF1-container .content {
+          flex-direction: column-reverse; }
+        #intro-container #introF1-container .back-number {
+          font-size: 10rem;
+          width: 100vw;
+          top: -8rem; }
+        #intro-container #introF1-container svg {
+          margin-top: 10rem;
+          max-height: 30rem; }
+        #intro-container #introF1-container .title {
+          margin-top: 10rem;
+          font-size: 2.5rem; }
+        #intro-container #introF1-container .descript {
+          font-size: 2rem; }
+        #intro-container #introF1-container .sub-descript {
+          font-size: 1rem; }
+        #intro-container #introF1-container .text {
+          margin: 0; }
+        #intro-container #introF1-container .imgbox {
+          max-width: 18rem;
+          max-height: 20rem; } }
   #intro-container #introF2-container {
     background-color: #D2D2D2; }
     #intro-container #introF2-container .back-number {
@@ -152,6 +216,36 @@ a {
       padding-top: 15rem; }
     #intro-container #introF2-container .text {
       padding-bottom: 10rem; }
+    @media (max-width: 768px) {
+      #intro-container #introF2-container {
+        height: auto; }
+        #intro-container #introF2-container .content {
+          flex-direction: column; }
+        #intro-container #introF2-container .back-number {
+          font-size: 10rem;
+          width: 100vw;
+          top: -8rem; }
+        #intro-container #introF2-container .btnArea {
+          display: flex;
+          justify-content: center; }
+        #intro-container #introF2-container .text {
+          margin: 0;
+          padding: 0;
+          width: 80%; }
+        #intro-container #introF2-container svg {
+          margin-top: 5rem; }
+        #intro-container #introF2-container .back-image {
+          margin-top: 20rem; }
+        #intro-container #introF2-container .imgbox {
+          max-width: 18rem;
+          padding: 0; }
+        #intro-container #introF2-container .title {
+          margin-top: 10rem;
+          font-size: 2.5rem; }
+        #intro-container #introF2-container .descript {
+          font-size: 2rem; }
+        #intro-container #introF2-container .sub-descript {
+          font-size: 1rem; } }
   #intro-container #introF3-container {
     background-color: #BEBEBE; }
     #intro-container #introF3-container .content {
@@ -161,7 +255,8 @@ a {
     #intro-container #introF3-container .back-number {
       color: #D2D2D2; }
     #intro-container #introF3-container .imgbox {
-      padding-bottom: 5rem; }
+      padding-bottom: 5rem;
+      max-width: 40rem; }
     #intro-container #introF3-container .text {
       margin-top: 10rem;
       width: 100%;
@@ -174,7 +269,7 @@ a {
       justify-content: center; }
       #intro-container #introF3-container #intro-search-container .input-box {
         background-color: white;
-        width: 56rem;
+        width: 90%;
         height: 4rem;
         border-radius: 30rem;
         border: 5px solid;
@@ -184,11 +279,42 @@ a {
         #intro-container #introF3-container #intro-search-container .input-box .input {
           display: flex;
           border: none;
-          width: 40rem;
+          width: 80%;
           font-size: 2rem; }
         #intro-container #introF3-container #intro-search-container .input-box .search-icon {
           width: 2.5rem;
           height: auto; }
+    @media (max-width: 768px) {
+      #intro-container #introF3-container {
+        height: auto; }
+        #intro-container #introF3-container .content {
+          flex-direction: column-reverse; }
+        #intro-container #introF3-container .back-number {
+          font-size: 10rem;
+          width: 100vw;
+          top: -8rem; }
+        #intro-container #introF3-container .btnArea {
+          display: flex;
+          justify-content: center; }
+        #intro-container #introF3-container .text {
+          margin: 0;
+          padding: 0;
+          width: 80%;
+          right: 0; }
+        #intro-container #introF3-container svg {
+          margin-top: 0rem; }
+        #intro-container #introF3-container .back-image {
+          margin-top: 20rem; }
+        #intro-container #introF3-container .imgbox {
+          max-width: 18rem;
+          padding: 0; }
+        #intro-container #introF3-container .title {
+          margin-top: 10rem;
+          font-size: 2.5rem; }
+        #intro-container #introF3-container .descript {
+          font-size: 2rem; }
+        #intro-container #introF3-container .sub-descript {
+          font-size: 1rem; } }
   #intro-container #intro-footer-container {
     display: flex;
     position: relative;
@@ -206,6 +332,9 @@ a {
       left: 50%;
       right: 50%;
       padding-bottom: 1rem; }
+    @media (max-width: 768px) {
+      #intro-container #intro-footer-container .kiwi {
+        text-align: start; } }
   #intro-container .title {
     position: relative;
     font-family: 'Roboto Slab', sans-serif;
@@ -232,7 +361,7 @@ a {
   #intro-container .imgbox {
     display: flex;
     position: relative;
-    max-width: 40%;
+    max-width: 40rem;
     height: 100%;
     flex-basis: 40%;
     align-items: center;
@@ -247,13 +376,10 @@ a {
     align-items: center;
     justify-content: center;
     margin: 0 1rem 0 1rem; }
-  #intro-container .top {
-    position: fixed; }
 
 #main-container {
   height: 100%;
-  width: 100%;
-  background-color: #DEDEDE; }
+  width: 100%; }
   #main-container .icon, #main-container ion-icon {
     width: 1.5rem;
     height: 1.5rem;
@@ -405,6 +531,10 @@ a {
   #signin-container .sign-img {
     width: 50%;
     background-color: #000000; }
+    #signin-container .sign-img object {
+      width: 7rem;
+      padding: 1rem;
+      fill: white; }
   #signin-container #signin-form {
     display: flex;
     width: 50%;
@@ -849,20 +979,21 @@ a {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            align-items: center; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div {
-              cursor: pointer; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(1) {
+            align-items: center;
+            transition: 0.5s; }
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div.selected {
+              background-color: rgba(93, 151, 218, 0.42); }
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(1).selected {
               font-size: 12px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(2) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(2).selected {
               font-size: 16px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(3) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(3).selected {
               font-size: 20px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(4) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(4).selected {
               font-size: 24px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(5) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(5).selected {
               font-size: 28px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(6) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(6).selected {
               font-size: 32px; }
       .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .splitter {
         width: 2px;
@@ -915,7 +1046,7 @@ a {
             margin-right: 1rem;
             cursor: pointer;
             transition: all 0.55s cubic-bezier(0.77, 0, 0.175, 1);
-            background-color: #1A237E; }
+            background-color: #DEDEDE; }
             .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-color .colors .blue.selected {
               border: 3px solid #5D97DA;
               transform: scale(1.2);

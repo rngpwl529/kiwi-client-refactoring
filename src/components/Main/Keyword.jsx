@@ -5,7 +5,7 @@ import {getBookmarkKeyword} from '../../redux/userinfo'
 
 
 const Keyword = ({setKeywordOpen}) => {
-    const SERVER_URL = process.env.REACT_APP_SERVER_URL
+    const SERVER_API = process.env.REACT_APP_SERVER_API
     const [deleteKeyword, setDeleteKeyword] = useState('')
     let colors = ['#D5D6EA', '#F6F6EB', '#D7ECD9', '#F5D5CB', '#F6ECF5', '#F3DDF2','#D8F0FA','#C7DEFA','#91EBE8','#C2F7EB','#FCE0E8','#FFF0F0']
     
@@ -18,7 +18,7 @@ const Keyword = ({setKeywordOpen}) => {
     useEffect(()=>{
         axios
         .get(
-            `${SERVER_URL}/users/keyword/${state.id}`  //서버에서 params로 받아야함
+            `${SERVER_API}/users/keyword/${state.id}`  //서버에서 params로 받아야함
             )
             .then((res)=>{
                 dispatch(getBookmarkKeyword(res.data.keyword))
@@ -36,7 +36,7 @@ const Keyword = ({setKeywordOpen}) => {
     const deleteHandler = (e)=>{
         axios
         .delete(
-            `${SERVER_URL}/users/keyword/${state.id}/${e.target.parentNode.previousSibling.nodeValue}`
+            `${SERVER_API}/users/keyword/${state.id}/${e.target.parentNode.previousSibling.nodeValue}`
             )
             .then(res=>{
                 console.log(res)

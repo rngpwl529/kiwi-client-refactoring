@@ -4,7 +4,7 @@ import { emailValid, passwordValid} from '../../utils/validCheck'
 
 const SignUp = ({setSignup, handleCloseButtonClick}) => {
 
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL
+    let SERVER_API = process.env.REACT_APP_SERVER_API
 
     const [email, setEmail] = useState("");
     const [userName, setUsername] = useState("");
@@ -69,7 +69,7 @@ const SignUp = ({setSignup, handleCloseButtonClick}) => {
         else{
             axios
             .post(
-                `${SERVER_URL}/users/signup`,
+                `${SERVER_API}/users/signup`,
                 {
                     email,
                     userName,

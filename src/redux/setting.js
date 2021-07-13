@@ -1,7 +1,7 @@
 const initialState = {
-    color: 'blue',
-    font:'',
-  }
+    siteColor: 'rgb(222, 222, 222)',
+    siteFont:'16px',
+}
 
 //액션
 const CHANGE_COLOR = "CHANGE_COLOR";
@@ -9,16 +9,16 @@ const CHANGE_FONT = "CHANGE_FONT";
 
 
 //액션생성함수
-export const changeColor = (color) => ({
+export const changeColor = (siteColor) => ({
     type: CHANGE_COLOR,
     payload: {
-        color
+        siteColor
     }
 });
-export const changeFont = (font) => ({
+export const changeFont = (siteFont) => ({
     type: CHANGE_FONT,
     payload: {
-        font
+        siteFont
     }
 });
 
@@ -27,9 +27,9 @@ export const changeFont = (font) => ({
 export const setting = (state = initialState, action) => {
     switch (action.type) {
         case CHANGE_FONT:
-            return Object.assign({}, state, { setting: { ...state.setting, font: action.payload.font }});
+            return Object.assign({}, state, { ...state.setting, siteFont: action.payload.siteFont });
         case CHANGE_COLOR:
-            return Object.assign({}, state, { setting: { ...state.setting, color: action.payload.color }});
+            return Object.assign({}, state, { ...state.setting, siteColor: action.payload.siteColor });
         default:
             return state;
     }
