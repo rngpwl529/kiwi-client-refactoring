@@ -1,5 +1,6 @@
 const initialState = {
     nodeData: [],
+    edgeData: [],
     parentNode: null,
     isLoadingOn: false,
 };
@@ -20,6 +21,14 @@ const UPDATE_NODE_DATA = 'UPDATE_EDGE_DATA'; //노드데이터 수정
 const DELETE_NODE_DATA = 'DELETE_NODE_DATA'; //노드데이터 삭제
 const SET_PARENT_NODE_DATA = 'SET_PARENT_NODE_DATA'; //부모 노드 설정
 const HANDLE_LOADING_ON = 'HANDLE_LOADING_ON'; //데이터로딩
+const SET_EDGE_DATA = 'SET_EDGE_DATA';
+const ADD_EDGE_DATA = 'ADD_EDGE_DATA';
+
+// const SET_EDGE_DATA = 'SET_EDGE_DATA';
+// const ADD_EDGE_DATA = 'ADD_EDGE_DATA';
+// const UPDATE_EDGE_DATA = 'UPDATE_EDGE_DATA';
+// const DELETE_EDGE_DATA = 'DELETE_EDGE_DATA';
+
 //액션생성함수
 export const setNodeData = (nodeData) => ({
     type: SET_NODE_DATA,
@@ -53,6 +62,19 @@ export const deleteNodeData = (nodeData) => ({
 });
 export const handleLoadingOn = () => ({
     type: HANDLE_LOADING_ON,
+});
+
+export const setEdgeData = (edgeData) => ({
+    type: SET_EDGE_DATA,
+    payload: {
+        edgeData,
+    },
+});
+export const addEdgeData = (edgeData) => ({
+    type: ADD_EDGE_DATA,
+    payload: {
+        edgeData,
+    },
 });
 
 export const node = (state = initialState, action) => {
@@ -92,6 +114,16 @@ export const node = (state = initialState, action) => {
         case HANDLE_LOADING_ON: {
             return Object.assign({}, state, {
                 isLoadingOn: !state.isLoadingOn,
+            });
+        }
+        case SET_EDGE_DATA: {
+            return Object.assign({}, state, {
+                edgeData: action.payload.edgeData,
+            });
+        }
+        case ADD_EDGE_DATA: {
+            return Object.assign({}, state, {
+                edgeData: [...state.edgeData, action.payload.edgeData],
             });
         }
         default:

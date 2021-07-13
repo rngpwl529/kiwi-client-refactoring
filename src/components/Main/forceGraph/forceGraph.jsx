@@ -10,25 +10,33 @@ import "./_forceGraph.scss";
 
 
 
-function ForceGraph({ nodesData, linksData, /* nodeHoverTooltip */ }) {
+
+function ForceGraph() {
     const containerRef = useRef(null);//Div 선택자
     
     let destroyFn;
     
     const dispatch = useDispatch();
+    
+    const { parentNode } = useSelector(state => state.node);
+    const { edgeData } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
-    const { edgeData } = useSelector(state => state.edge);
-   
+    
     
     console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
     const handleNodesettingModal = (node, x, y) => {
-        dispatch(setParentnode(node));
+        dispatch(setParentnode({
+            id: node.id,
+            nodeName: node.nodeName,
+            nodeColor: node.nodeColor
+        }));
+        // id: 9, name: "Iris", gender: "female", color: "beige"
         dispatch(openNodesettingModal(x, y));
     }
-   
+    console.log(parentNode);
     
 
     
@@ -49,18 +57,18 @@ function ForceGraph({ nodesData, linksData, /* nodeHoverTooltip */ }) {
 
     useEffect(() => {
         //처음 render 됐을 때, 그리고 업데이트 될때마다 재렌더
-        if (containerRef.current) {
+        console.log("변화했는지 확인","노드데이터 :", nodeData, "엣지데이터 :" ,edgeData);
+        if (containerRef.current && nodeData && edgeData) {
             const { destroy } = runForceGraph(
                 containerRef.current,
-                linksData,
-                nodesData,
-                // nodeHoverTooltip,
+                nodeData,
+                edgeData,
                 handleNodesettingModal,
             );
             destroyFn = destroy;
         }
         return destroyFn;
-    },[nodeData, edgeData]);
+    }, [nodeData, edgeData]);
     //컴포넌트가 화면에서 사라질 때
     return <div ref={containerRef} className="container"/>;
 }
