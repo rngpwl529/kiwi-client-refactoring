@@ -10,10 +10,10 @@ import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
-import { signinMaintain } from "../redux/signin";
+// import { signinMaintain } from "../redux/signin";
 import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
 import dotenv from 'dotenv';
-// import ForceGraph from '../components/Main/forceGraph/forceGraph';
+import ForceGraph from '../components/Main/forceGraph/forceGraph';
 dotenv.config();
 
 // import data from '../data/data.json'; // 임시더미데이터
@@ -83,9 +83,9 @@ const MainContainer = () => {
     }
   }
   //로그인 유지
-  const handleLoginMaintain = () => {
-    dispatch(signinMaintain());
-  }
+  // const handleLoginMaintain = () => {
+  //   dispatch(signinMaintain());
+  // }
   const setLoadingOn = () => {
     dispatch(handleLoadingOn());
   }
@@ -114,7 +114,7 @@ const MainContainer = () => {
     setTimeout(() => {
       setLoadingOn();
       console.log("로딩끝");
-    }, 5000);
+    }, 500);
     
     axios.get(`${SERVER_API}/nodemap/edge`,
       { withCredentials: true })
@@ -150,7 +150,7 @@ const MainContainer = () => {
       .catch(e => console.log(e));
   
     if (JSON.parse(token)) {
-      handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
+      // handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
       let token = localStorage.getItem('token');
       axios.get(
@@ -174,7 +174,7 @@ const MainContainer = () => {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
             // handleLogin();
-            window.location.reload();
+            // window.location.reload();
             return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
           }
         })
@@ -189,7 +189,7 @@ const MainContainer = () => {
       <section className="Main" onClick={closeNodesetting} >
         {isLoadingOn ?
           <div>로딩중입니다.!!!</div>
-          :  false}
+          :  <ForceGraph/>}
       </section>
     </div>)
 };

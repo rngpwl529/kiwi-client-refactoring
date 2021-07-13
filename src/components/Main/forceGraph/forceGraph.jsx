@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { fetchData, getNodeData, postEdgeData } from "../../../redux/node"; //노드 리듀서
 import { setParentnode } from "../../../redux/node"; //노드 리듀서
 import { openNodesettingModal } from "../../../redux/modalstatus";
-import "./_forceGraph.scss";
+import styles from "./forceGraph.module.css";
 
 
 
@@ -14,13 +14,10 @@ import "./_forceGraph.scss";
 function ForceGraph() {
     const containerRef = useRef(null);//Div 선택자
     
-    let destroyFn;
-    
     const dispatch = useDispatch();
-    
-    const { parentNode } = useSelector(state => state.node);
-    const { edgeData } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
+    const { edgeData } = useSelector(state => state.node);
+    const { parentNode } = useSelector(state => state.node);
     
     
     console.log("forceGraph");
@@ -57,8 +54,10 @@ function ForceGraph() {
 
     useEffect(() => {
         //처음 render 됐을 때, 그리고 업데이트 될때마다 재렌더
-        console.log("변화했는지 확인","노드데이터 :", nodeData, "엣지데이터 :" ,edgeData);
-        if (containerRef.current && nodeData && edgeData) {
+        let destroyFn;
+        console.log(nodeData, edgeData, "<<<<<<<<<");
+        if (containerRef) {
+            console.log("재렌더를 할 예정이다.");
             const { destroy } = runForceGraph(
                 containerRef.current,
                 nodeData,
@@ -70,7 +69,7 @@ function ForceGraph() {
         return destroyFn;
     }, [nodeData, edgeData]);
     //컴포넌트가 화면에서 사라질 때
-    return <div ref={containerRef} className="container"/>;
+    return <div ref={containerRef} className={styles.container}/>;
 }
 
 export default ForceGraph;

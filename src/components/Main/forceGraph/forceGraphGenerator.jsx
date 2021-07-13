@@ -11,7 +11,7 @@ export function runForceGraph(
     handleNodesettingModal,
 ) {
 
-    console.log("생성함수");
+    console.log("재렌더를 하러 들어왔다.");
 
   
     const links = edgeData.map((d) => Object.assign({}, d));//link data
@@ -54,11 +54,13 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-6000)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-100)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY());
         
-  
+        if (d3.select("svg")) {
+            d3.select("svg").remove();
+        }
     // 컨테이너 그리기
     const svg = d3
         .select(container)
@@ -82,11 +84,11 @@ export function runForceGraph(
     const node = svg
         .append("g")
         .attr("stroke", "#fff")                            //노드 외곽선 색
-        .attr("stroke-width", 3)                           //노드 외곽선 두께
+        .attr("stroke-width", 0.1)                           //노드 외곽선 두께
         .selectAll("circle")                               //원을 모두 잡아서
         .data(nodes)                                       //데이터를 넣음
         .join("circle")                                    //원과 합침
-        .attr("r", () => { return 50; }) // 원 반지름
+        .attr("r", () => { return 5; }) // 원 반지름
         .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
         .attr("id", (d) => {                               //속성 id값
             return d.nodeName;
