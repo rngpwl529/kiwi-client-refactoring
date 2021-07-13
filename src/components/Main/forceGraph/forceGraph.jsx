@@ -18,6 +18,7 @@ function ForceGraph() {
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.node);
     const { parentNode } = useSelector(state => state.node);
+    const {siteFont} = useSelector(state=>state.setting)
     
     
     console.log("forceGraph");
@@ -67,9 +68,9 @@ function ForceGraph() {
             destroyFn = destroy;
         }
         return destroyFn;
-    }, [nodeData, edgeData]);
+    }, [edgeData]);
     //컴포넌트가 화면에서 사라질 때
-    return <div ref={containerRef} className={styles.container}/>;
+    return <div ref={containerRef} className={styles.container} style={{fontSize: siteFont}}/>;
 }
 
 export default ForceGraph;

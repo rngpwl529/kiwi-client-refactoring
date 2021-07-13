@@ -16,8 +16,10 @@ const NodeOption = ()=>{
     const [color, setColor] = useState("");
     const { parentNode } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
-    const { edgeData } = useSelector(state => state.node);
-    console.log(edgeData);
+    // const { edgeData } = useSelector(state => state.node);
+    const state = useSelector(state=>state)
+    console.log(state)
+    // console.log(edgeData);
     const closeModal = () => {
         dispatch(closeNodeoptionModal());
     }
@@ -38,9 +40,7 @@ const NodeOption = ()=>{
                 dispatch(closeNodeoptionModal());
                 dispatch(closeNodesettingModal());
                 dispatch(addNodeData({ ...data.nodeData, id : nodeData.length }));
-                return data;
-            }).then(data => {
-                dispatch(addEdgeData(data.edgeData));
+                dispatch(addEdgeData());
             })
             .catch(error => {  //TODO:TOKEN확인여부를 가지고 로그인 창을 띄움
                 if (error.status === 400) {

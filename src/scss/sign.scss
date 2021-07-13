@@ -15,6 +15,11 @@
     .sign-img{
         width: 50%;
         background-color: #000000;
+        object{
+            width: 7rem;
+            padding: $padding;
+            fill: white;
+        }
     }
     #signin-form{
         display: flex;

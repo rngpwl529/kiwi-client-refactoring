@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import React from 'react'
 // import { modal } from '../../redux/modalstatus'
 import { useSelector } from 'react-redux';
-import { closeNodesettingModal, openNodeoptionModal } from '../../redux/modalstatus';
+import {  openNodeoptionModal } from '../../redux/modalstatus';
 import {addBookmarkKeyword} from '../../redux/userinfo'
 import axios from 'axios'
 
 const NodeSetting = () => {
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL
+    let SERVER_API = process.env.REACT_APP_SERVER_API
     let x, y;
     let value = useSelector(state => state.modal.nodesettingModal);
     if (value) {
@@ -25,10 +25,10 @@ const NodeSetting = () => {
     const addKeywrodHandler=()=>{
         axios
         .post(
-            `${SERVER_URL}/users/keyword`,
+            `${SERVER_API}/users/keyword`,
             {
                 userId: state.userinfo.id,
-                keyword: parentNode.name
+                keyword: parentNode.nodeName
             }
         ).then(res=>{
             console.log(res)
@@ -54,7 +54,7 @@ const NodeSetting = () => {
     //     dispatch();
     // }
     return (
-        <div id="nodesetting-darkbackground" onClick={() => { dispatch(closeNodesettingModal());}} >
+        <div id="nodesetting-darkbackground" >
             <div id='node-setting-container' style={{left: x, top: y}}>
                 <ion-icon name="pencil-sharp"></ion-icon>
                 <div className="splitter"></div>

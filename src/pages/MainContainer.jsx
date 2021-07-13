@@ -10,6 +10,7 @@ import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
+import {changeColor, changeFont} from '../redux/setting'
 // import { signinMaintain } from "../redux/signin";
 import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
 import dotenv from 'dotenv';
@@ -23,8 +24,8 @@ const MainContainer = () => {
   
   console.log("MainContainer");
   const dispatch = useDispatch();
-  const { siteColor, siteFont } = useSelector(state => state.setting);
-  
+  const { siteColor } = useSelector(state => state.setting);
+  const state = useSelector(state=>state)
 //   const nodeHoverTooltip = useCallback((node, x, y) => {
 //     return `<div> ${x}, ${y}
 //   <b> id : ${node.id}</b>
@@ -32,7 +33,6 @@ const MainContainer = () => {
 //   <b> gender : ${node.gender}</b>
 // </div>`;
 //   }, []);
-  
 // TODO: NODEMAP DATA
 
   const { isLoadingOn } = useSelector(state => state.node);
@@ -78,7 +78,7 @@ const MainContainer = () => {
   
   //노드 클릭 창 닫기
   const closeNodesetting = (e) => {
-    if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'){
+    if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'&& state.modal.nodesettingModal){
       dispatch(closeNodesettingModal())
     }
   }
@@ -92,7 +92,6 @@ const MainContainer = () => {
   // const fontSize = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
 
- 
   
   //초기 데이터 세팅
   
@@ -114,7 +113,7 @@ const MainContainer = () => {
     setTimeout(() => {
       setLoadingOn();
       console.log("로딩끝");
-    }, 500);
+    }, 1000);
     
     axios.get(`${SERVER_API}/nodemap/edge`,
       { withCredentials: true })
@@ -153,24 +152,25 @@ const MainContainer = () => {
       // handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
       let token = localStorage.getItem('token');
+      console.log(`유저 아이디${state.userinfo.id}`)
       axios.get(
-        `https://kiwimap.shop/users/userinfo`,
+        `${SERVER_API}/users/userinfo/${state.userinfo.id}`,
         { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       )
         .then(res => res.data)
         .then(data => {
-          console.log(data);
           //siteColor가 있을 때, siteColor 적용
-          if (data.userInfo.sitecolor !== siteColor) {
-            // changeColor(data.userInfo.sitecolor);
+          if (data.userData.siteColor) {
+            dispatch(changeColor(data.userData.siteColor));
           }
-          //fontSize가 있을 때, fontSize 적용
-          if (data.userInfo.siteFont !== siteFont) {
-            // changeFont(data.userInfo.fontSize)
+          //siteFont가 있을 때, siteFont 적용
+          if (data.userData.siteFont) {
+            dispatch(changeFont(data.userData.siteFont))
           }
         })
         .catch(error => {
-          if (error.response.status === 400) {
+          console.log(error)
+          if (error.status === 400) {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
             // handleLogin();
@@ -179,11 +179,13 @@ const MainContainer = () => {
           }
         })
     }
+    // document.querySelector('#main-container').style.backgroundColor = siteColor
     console.log('로그인유지 작동');
-  }, [])
+  }, [state.sign.isSignIn])
+
 
   return (
-    <div id='main-container'>
+    <div id='main-container' style={{backgroundColor: siteColor}}>
       <HeaderContainer/>
       <ModalContainer/>
       <section className="Main" onClick={closeNodesetting} >
