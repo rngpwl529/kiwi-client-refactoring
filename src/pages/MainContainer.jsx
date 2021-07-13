@@ -11,15 +11,17 @@ import ModalContainer from '../containers/ModalContainer'
 import { closeNodesettingModal } from "../redux/modalstatus";
 // import { signinMaintain } from "../redux/signin";
 import { setNodeData, handleLoadingOn } from "../redux/node";
+import {changeColor, changeFont} from '../redux/setting'
 
 import data from '../data/data.json'; // 임시더미데이터
-const SERVER_API = process.env.REACT_APP_SERVER_API;
+const SERVER_API = process.env.REACT_APP_SERVER_URL;
 
 const MainContainer = () => {
   console.log("MainContainer");
-  
   const dispatch = useDispatch();
-  const { siteColor, siteFont } = useSelector(state => state.setting);
+  const { siteColor } = useSelector(state => state.setting);
+  const state = useSelector(state=>state)
+  console.log(state)
 //   const nodeHoverTooltip = useCallback((node, x, y) => {
 //     return `<div> ${x}, ${y}
 //   <b> id : ${node.id}</b>
@@ -27,7 +29,6 @@ const MainContainer = () => {
 //   <b> gender : ${node.gender}</b>
 // </div>`;
 //   }, []);
-  
 // TODO: NODEMAP DATA
   // const { nodeData } = useSelector(state => state.node);
   // const { edgeData } = useSelector(state => state.edge);
@@ -79,7 +80,7 @@ const MainContainer = () => {
   // const handleLoginMaintain = () => {
   //   dispatch(signinMaintain());
   // }
-  // const fontSize = useSelector(state => state.setting);
+  // const siteFont = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
 
       //엣지데이터 요청
@@ -131,24 +132,25 @@ const MainContainer = () => {
       // handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
       let token = localStorage.getItem('token');
+      console.log(`유저 아이디${state.userinfo.id}`)
       axios.get(
-        `https://kiwimap.shop/users/userinfo`,
+        `${SERVER_API}/users/userinfo/${state.userinfo.id}`,
         { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       )
         .then(res => res.data)
         .then(data => {
-          console.log(data);
           //siteColor가 있을 때, siteColor 적용
-          if (data.userInfo.sitecolor !== siteColor) {
-            // changeColor(data.userInfo.sitecolor);
+          if (data.userData.siteColor) {
+            dispatch(changeColor(data.userData.siteColor));
           }
-          //fontSize가 있을 때, fontSize 적용
-          if (data.userInfo.siteFont !== siteFont) {
-            // changeFont(data.userInfo.fontSize)
+          //siteFont가 있을 때, siteFont 적용
+          if (data.userData.siteFont) {
+            dispatch(changeFont(data.userData.siteFont))
           }
         })
         .catch(error => {
-          if (error.response.status === 400) {
+          console.log(error)
+          if (error.status === 400) {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
             // handleLogin();
@@ -157,11 +159,13 @@ const MainContainer = () => {
           }
         })
     }
+    // document.querySelector('#main-container').style.backgroundColor = siteColor
     console.log('로그인유지 작동');
-  }, [])
+  }, [state.sign.isSignIn])
+
 
   return (
-    <div id='main-container'>
+    <div id='main-container' style={{backgroundColor: siteColor}}>
       <NodeMap dispatch={dispatch} />
       <HeaderContainer/>
       <ModalContainer/>

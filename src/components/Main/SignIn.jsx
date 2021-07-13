@@ -76,13 +76,14 @@ const SignIn = () => {
                     } else if (data.message === 'login successfully') {
                         console.log(data)
                         console.log('로그인 성공!')
-                        dispatch(signIn())
                         dispatch(closeSigninModal())
                         dispatch(updateUserInfo({
                             id: data.id,
                             email: email,
                             username: '',       //TODO:SERVER에서 보내줘야하는 데이터 양식
                         }))
+                        dispatch(signIn())
+                        
                         localStorage.setItem('token', JSON.stringify(data.accessToken));
                         // window.location.reload();
                     }
@@ -112,7 +113,11 @@ const SignIn = () => {
         return (
             <div className="darkbackground">
                 <div id='signin-container'>
-                    <div className='sign-img'></div>
+                    <div className='sign-img'>
+                        <object 
+                        type="image/svg+xml"
+                        data='/images/whitelogo.svg' className='signLogo'></object>
+                    </div>
                     {!signup ?
                         <div id='signin-form'>
                             <ion-icon name="close-outline" onClick={handleCloseButtonClick}></ion-icon>

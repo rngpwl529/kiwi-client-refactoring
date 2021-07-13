@@ -90,7 +90,9 @@ const UserSetting = ()=>{
                     </div>
                     <div className='box'>
                         <span className='left'>Username</span>
-                        {edit ? <input type="text" className="username" onChange={(e)=>{setUsername(e.target.value)}}/>
+                        {edit ? <input type="text" className="username" 
+                        value={userinfo.userName}
+                        onChange={(e)=>{setUsername(e.target.value)}}/>
                             :<span className='right'>{userinfo.userName}</span>
                         }
                     </div>
@@ -103,7 +105,9 @@ const UserSetting = ()=>{
                     {edit ?
                         <div className='box'>
                             <span className='left'>Password check</span>
-                            <input type="password" className="passwordCheck" />
+                            <input type="password" 
+                            
+                            className="passwordCheck" />
                         </div>
                         :null
                     }
@@ -111,8 +115,8 @@ const UserSetting = ()=>{
                 <div className='edit'>
                 {edit ? 
                     <>
-                    <div className="cancle" onClick={eidtHandler}>cancle</div>
                     <div className='ok' onClick={submitHandler}>Edit</div>
+                    <div className="cancle" onClick={eidtHandler}>cancle</div>
                     </>
                     :<div>
                         <div className='logout' onClick={logouthandler}>Logout</div>

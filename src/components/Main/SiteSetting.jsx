@@ -1,7 +1,8 @@
-import { useState, useEffect} from "react"
+import { useState , useEffect} from "react"
 import React from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import {closeSettingModal} from '../../redux/modalstatus'
+import {changeColor, changeFont} from '../../redux/setting'
 import axios from 'axios';
 
 const SiteSetting = ()=>{
@@ -9,33 +10,42 @@ const SiteSetting = ()=>{
     
     const [siteColor, setSiteColor] = useState("");
     const [siteFont, setSiteFontSize] = useState("")
+
     let dispatch = useDispatch()
     let userinfo = useSelector(state=>state.userinfo)
+    let setting = useSelector(state=>state.setting)
+
 
     const fontHandler = (e)=>{
-        console.log(e.target.innerText)
         setSiteFontSize(e.target.innerText)
     }
 
+    const colorHandler = (e)=>{
+        console.log(document.defaultView.getComputedStyle(e.target).getPropertyValue('background-color'))
+        setSiteColor(document.defaultView.getComputedStyle(e.target).getPropertyValue('background-color'))
+    }
+
     useEffect(()=>{
-        axios
-        .post(
-            `${SERVER_URL}/users/userinfo`,
-            {
-                id:userinfo.id,
-                siteFont,
-            }
-        )
-        .then(res=>{
-            console.log(res)
-        })
+        if(siteFont){
+            axios
+            .post(
+                `${SERVER_URL}/users/userinfo`,
+                {
+                    id:userinfo.id,
+                    siteFont,
+                }
+            )
+            .then(
+                dispatch(changeFont(siteFont))
+            )
+        }
     }
     ,[siteFont])
     
 
-
     useEffect(()=>{
-        axios
+        if(siteColor){
+            axios
         .post(
             `${SERVER_URL}/users/userinfo`,
             {
@@ -43,12 +53,14 @@ const SiteSetting = ()=>{
                 siteColor
             }
         )
-        .then(res=>{
-            console.log(res)
-        })
+        .then(
+            dispatch(changeColor(siteColor))
+        )
+        }
     }
     ,[siteColor])
     //사이트 세팅 요청 없음
+
 
     const closehandler = ()=>{
         dispatch(closeSettingModal())
@@ -66,12 +78,24 @@ const SiteSetting = ()=>{
                     <span>Font Size</span>
                     <div className='sitesetting-slider'>
                         <div className='scale'>
-                            <div onClick={fontHandler}>12px</div>
-                            <div onClick={fontHandler}>16px</div>
-                            <div onClick={fontHandler}>20px</div>
-                            <div onClick={fontHandler}>24px</div>
-                            <div onClick={fontHandler}>28px</div>
-                            <div onClick={fontHandler}>32px</div>
+                            <div onClick={fontHandler}
+                            className={setting.siteFont ==='12px' ?
+                        'selected':null}>12px</div>
+                            <div onClick={fontHandler}
+                            className={setting.siteFont ==='16px' ?
+                        'selected':null}>16px</div>
+                            <div onClick={fontHandler}
+                            className={setting.siteFont ==='20px' ?
+                        'selected':null}>20px</div>
+                            <div onClick={fontHandler}
+                            className={setting.siteFont ==='24px' ?
+                        'selected':null}>24px</div>
+                            <div onClick={fontHandler}
+                            className={setting.siteFont ==='28px' ?
+                        'selected':null}>28px</div>
+                            <div onClick={fontHandler}
+                            className={setting.siteFont ==='32px' ?
+                        'selected':null}>32px</div>
                         </div>
                     </div>
                 </div>
@@ -79,16 +103,11 @@ const SiteSetting = ()=>{
                 <div className='sitesetting-color'>
                     <p>Background Color</p>
                     <div className='colors'>
-                        <div className={siteColor === "black" ? "black selected" : "black"} onClick={()=>{
-                            setSiteColor("black")}}></div>
-                        <div className={siteColor === "red" ? "red selected" : "red"} onClick={()=>{
-                            setSiteColor("red")}}></div>
-                        <div className={siteColor === "yellow" ? "yellow selected" : "yellow"} onClick={()=>{
-                            setSiteColor("yellow")}}></div>
-                        <div className={siteColor === "blue" ? "blue selected" : "blue"} onClick={() => {
-                            setSiteColor("blue")}}></div>
-                        <div className={siteColor === "green" ? "green selected" : "green"} onClick={()=>{
-                            setSiteColor("green")}}></div>
+                        <div className={setting.siteColor === "rgb(255, 204, 188)" ? "black selected" : "black"} onClick={colorHandler}></div>
+                        <div className={setting.siteColor === "rgb(239, 154, 154)" ? "red selected" : "red"} onClick={colorHandler}></div>
+                        <div className={setting.siteColor === "rgb(178, 223, 219)" ? "yellow selected" : "yellow"} onClick={colorHandler}></div>
+                        <div className={setting.siteColor === "rgb(222, 222, 222)" ? "blue selected" : "blue"} onClick={colorHandler}></div>
+                        <div className={setting.siteColor === "rgb(232, 245, 233)" ? "green selected" : "green"} onClick={colorHandler}></div>
                     </div>
                 </div>
             </section>

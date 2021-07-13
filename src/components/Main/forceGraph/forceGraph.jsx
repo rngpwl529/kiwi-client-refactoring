@@ -18,6 +18,7 @@ function ForceGraph({ nodesData, linksData, /* nodeHoverTooltip */ }) {
     const dispatch = useDispatch();
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.edge);
+    const { siteFont } = useSelector(state=>state.setting)
     
     console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
@@ -61,7 +62,7 @@ function ForceGraph({ nodesData, linksData, /* nodeHoverTooltip */ }) {
         return destroyFn;
     },[nodeData, edgeData]);
     //컴포넌트가 화면에서 사라질 때
-    return <div ref={containerRef} className="container"/>;
+    return <div ref={containerRef} className="container" style={{fontSize: siteFont}}/>;
 }
 
 export default ForceGraph;
