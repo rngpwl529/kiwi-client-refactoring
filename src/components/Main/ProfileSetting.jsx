@@ -15,6 +15,8 @@ const ProfileSetting = () => {
     const dispatch = useDispatch();
     const store = useSelector((state)=>(state))
 
+    console.log(store)
+
     const [screenCapture, setScreenCapture] = useState("");
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState("capture");
