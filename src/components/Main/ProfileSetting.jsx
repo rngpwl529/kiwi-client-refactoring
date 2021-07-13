@@ -7,12 +7,7 @@ import "./ProfileSetting.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { openUserinfoModal, openSigninModal, openSettingModal } from '../../redux/modalstatus';
-<<<<<<< HEAD
 import Keyword from "./Keyword";
-=======
-
-import Keyword from "../Main/Keyword";
->>>>>>> f2cd3abac9c0690a2a088abe84a3950993631a67
 
 const ProfileSetting = () => {
 
@@ -59,9 +54,6 @@ const ProfileSetting = () => {
     const handleOnChange = e => {
         setTitle(e.target.value);
     };
-    const handleSave = () => {
-        console.log(title, screenCapture);
-    };
     const closeModal = () => {
         setOpen(false);
         setScreenCapture("");
@@ -101,8 +93,7 @@ const ProfileSetting = () => {
                   </div>
                 </div>
                 <div className="modal__footer">
-                  <a href={screenCapture} download={title}>SAVE</a>
-                  <button onClick={handleSave}>Save</button>
+                  <a href={screenCapture} download={title}><button>Save</button></a>
                   <button onClick={closeModal}>Cancel</button>
                 </div>
               </div>
@@ -114,89 +105,3 @@ const ProfileSetting = () => {
 }
 
 export default ProfileSetting;
-
-// class App extends Component {
-//   state = {
-//     screenCapture: "",
-//     open: false,
-//     title: "gimmeatitle"
-//   };
-
-//   handleScreenCapture = screenCapture => {
-//     this.setState(
-//       {
-//         screenCapture
-//       },
-//       () => {
-//         screenCapture && this.openModal();
-//       }
-//     );
-//   };
-
-//   openModal = () => {
-//     this.setState({ open: true });
-//   };
-
-//   closeModal = () => {
-//     this.setState({ open: false, screenCapture: "" });
-//   };
-
-//   handleOnChange = e => {
-//     this.setState({
-//       [e.target.name]: e.target.value
-//     });
-//   };
-
-//   handleSave = () => {
-//     console.log(this.state.title, this.state.screenCapture);
-//   };
-
-//   render() {
-//     const { screenCapture } = this.state;
-//     console.log(screenCapture);
-//     return (
-//       <ScreenCapture onEndCapture={this.handleScreenCapture}>
-//         {({ onStartCapture }) => (
-//           <>
-//             <div id='profile-container'>
-//                 <ion-icon name="person-outline" onClick={() => { handleProfileClick(); }} ></ion-icon>
-//                 <ion-icon name="settings-outline" onClick={() => { handleSettingClick(); }}></ion-icon>
-//                 <ion-icon name="bookmark-outline" onClick={() => { keywordHandler(); }}></ion-icon>
-//                 <ion-icon name="image-outline" onClick={()=>{onStartCapture}}></ion-icon>
-//                 {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
-//             </div>
-//             <Popup open={this.state.open} modal closeOnDocumentClick>
-//               <div className="modal">
-//                 <div className="modal__header">
-//                   <button onClick={this.closeModal}>&times;</button>
-//                 </div>
-//                 <div className="modal__body">
-//                   <div>
-//                     <label>Title</label>
-//                     <input
-//                       type="text"
-//                       onChange={this.handleOnChange}
-//                       name="title"
-//                       value={this.state.title}
-//                     />
-//                   </div>
-//                   <div className="image__container">
-//                     {screenCapture && (
-//                       <img src={screenCapture} alt="screen capture" />
-//                     )}
-//                   </div>
-//                 </div>
-//                 <div className="modal__footer">
-//                   <button onClick={this.handleSave}>Save</button>
-//                   <button onClick={this.closeModal}>Cancel</button>
-//                 </div>
-//               </div>
-//             </Popup>
-//           </>
-//         )}
-//       </ScreenCapture>
-//     );
-//   }
-// }
-
-// ReactDOM.render(<App />, document.getElementById("root"));
