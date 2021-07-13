@@ -6,7 +6,7 @@ import {changeColor, changeFont} from '../../redux/setting'
 import axios from 'axios';
 
 const SiteSetting = ()=>{
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL
+    let SERVER_API = process.env.REACT_APP_SERVER_API
     
     const [siteColor, setSiteColor] = useState("");
     const [siteFont, setSiteFontSize] = useState("")
@@ -29,7 +29,7 @@ const SiteSetting = ()=>{
         if(siteFont){
             axios
             .post(
-                `${SERVER_URL}/users/userinfo`,
+                `${SERVER_API}/users/userinfo`,
                 {
                     id:userinfo.id,
                     siteFont,
@@ -47,7 +47,7 @@ const SiteSetting = ()=>{
         if(siteColor){
             axios
         .post(
-            `${SERVER_URL}/users/userinfo`,
+            `${SERVER_API}/users/userinfo`,
             {
                 id:userinfo.id,
                 siteColor

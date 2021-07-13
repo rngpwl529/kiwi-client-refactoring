@@ -10,7 +10,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const SignIn = () => {
-    const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+    const SERVER_API = process.env.REACT_APP_SERVER_API;
     const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;
     const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
     
@@ -56,7 +56,7 @@ const SignIn = () => {
             console.log('a')
             axios
                 .post(
-                    `${SERVER_URL}/users/signin`,
+                    `${SERVER_API}/users/signin`,
                     {
                         email,
                         password

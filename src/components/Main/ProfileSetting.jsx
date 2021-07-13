@@ -1,15 +1,24 @@
-import { useState, React } from "react";
+import { React } from "react";
+import Popup from "reactjs-popup";
+
+import ScreenCapture from "./ScreenCapture";
+import "./ProfileSetting.css";
+
+import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { openUserinfoModal, openSigninModal, openSettingModal } from '../../redux/modalstatus';
+import Keyword from "./Keyword";
 
-import Keyword from "../Main/Keyword";
-
-
-const ProfileSetting = ()=>{
+const ProfileSetting = () => {
 
     const [keywordOpen, setKeywordOpen] = useState(false)
     const dispatch = useDispatch();
     const store = useSelector((state)=>(state))
+
+    const [screenCapture, setScreenCapture] = useState("");
+    const [open, setOpen] = useState(false);
+    const [title, setTitle] = useState("capture");
+
 
     const keywordHandler=()=>{
         if(!keywordOpen && store.sign.isSignIn){
@@ -37,15 +46,62 @@ const ProfileSetting = ()=>{
             dispatch(openSettingModal())
         }
     }
+
+    const handleScreenCapture = screenCapture => {
+        setScreenCapture(screenCapture);
+        screenCapture && setOpen(true);
+    };
+    const handleOnChange = e => {
+        setTitle(e.target.value);
+    };
+    const closeModal = () => {
+        setOpen(false);
+        setScreenCapture("");
+    };
+
+
     return (
-        <div id='profile-container'>
-            <ion-icon name="person-outline" onClick={() => { handleProfileClick(); }} ></ion-icon>
-            <ion-icon name="settings-outline" onClick={() => { handleSettingClick(); }}></ion-icon>
-            <ion-icon name="bookmark-outline" onClick={() => { keywordHandler(); }}></ion-icon>
-            <ion-icon name="image-outline"></ion-icon>
-            {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
-        </div>
+        <ScreenCapture onEndCapture={handleScreenCapture}>
+        {({ onStartCapture }) => (
+          <>
+            <div id='profile-container'>
+                <ion-icon name="person-outline" onClick={() => { handleProfileClick(); }} ></ion-icon>
+                <ion-icon name="settings-outline" onClick={() => { handleSettingClick(); }}></ion-icon>
+                <ion-icon name="bookmark-outline" onClick={() => { keywordHandler(); }}></ion-icon>
+                <ion-icon name="image-outline" onClick={onStartCapture}></ion-icon>
+                {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
+            </div>
+            <Popup open={open} modal closeOnDocumentClick>
+              <div className="modal">
+                <div className="modal__header">
+                  <button onClick={closeModal}>&times;</button>
+                </div>
+                <div className="modal__body">
+                  <div>
+                    <label>Title</label>
+                    <input
+                      type="text"
+                      onChange={handleOnChange}
+                      name="title"
+                      value={title}
+                    />
+                  </div>
+                  <div className="image__container">
+                    {screenCapture && (
+                      <img src={screenCapture} alt="screen capture" />
+                    )}
+                  </div>
+                </div>
+                <div className="modal__footer">
+                  <a href={screenCapture} download={title}><button>Save</button></a>
+                  <button onClick={closeModal}>Cancel</button>
+                </div>
+              </div>
+            </Popup>
+          </>
+        )}
+      </ScreenCapture>
     )
 }
 
-export default ProfileSetting
+export default ProfileSetting;

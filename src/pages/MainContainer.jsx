@@ -2,26 +2,30 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+require("dotenv").config();
 // 컨테이너 컴포넌트
-import NodeMap from '../components/Main/NodeMap';
-import ForceGraph from '../components/Main/forceGraph/forceGraph';
+
+// import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
-// import { signinMaintain } from "../redux/signin";
-import { setNodeData, handleLoadingOn } from "../redux/node";
 import {changeColor, changeFont} from '../redux/setting'
+// import { signinMaintain } from "../redux/signin";
+import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
+import dotenv from 'dotenv';
+import ForceGraph from '../components/Main/forceGraph/forceGraph';
+dotenv.config();
 
-import data from '../data/data.json'; // 임시더미데이터
-const SERVER_API = process.env.REACT_APP_SERVER_URL;
+// import data from '../data/data.json'; // 임시더미데이터
+const SERVER_API = process.env.REACT_APP_SERVER_API;
 
 const MainContainer = () => {
+  
   console.log("MainContainer");
   const dispatch = useDispatch();
   const { siteColor } = useSelector(state => state.setting);
   const state = useSelector(state=>state)
-  console.log(state)
 //   const nodeHoverTooltip = useCallback((node, x, y) => {
 //     return `<div> ${x}, ${y}
 //   <b> id : ${node.id}</b>
@@ -30,8 +34,9 @@ const MainContainer = () => {
 // </div>`;
 //   }, []);
 // TODO: NODEMAP DATA
-  // const { nodeData } = useSelector(state => state.node);
-  // const { edgeData } = useSelector(state => state.edge);
+
+  const { isLoadingOn } = useSelector(state => state.node);
+  
   // const { isLoadingOn } = useSelector(state => state.node);
 
 // TODO:social Login
@@ -71,63 +76,78 @@ const MainContainer = () => {
 // };
   
   
-  
+  //노드 클릭 창 닫기
   const closeNodesetting = (e) => {
-    if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'){
+    if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'&& state.modal.nodesettingModal){
       dispatch(closeNodesettingModal())
     }
   }
+  //로그인 유지
   // const handleLoginMaintain = () => {
   //   dispatch(signinMaintain());
   // }
-  // const siteFont = useSelector(state => state.setting);
+  const setLoadingOn = () => {
+    dispatch(handleLoadingOn());
+  }
+  // const fontSize = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
 
-      //엣지데이터 요청
-    // const loadEdgedata = async () => {
-    //     await axios.get('https://kiwimap.shop/nodemap/edge',
-    //     { headers: { withCredentials: true } })
-    //     .then(res => res.data)
-    //     .then(data => {
-    //         console.log(data);
-    //         if (data.message === 'internal server error') {
-    //             alert('서버가 정상적으로 동작하지 않습니다.')
-    //         } else {
-    //             dispatch(setEdgeData(data.edgeData));
-    //         }
-    //     })
-    //     .catch(e => console.log(e));
-    // }
-    //노드데이터 요청
-    const loadNodedata = async () => {
-      await axios.get(`${SERVER_API}/nodemap/node`,
+  
+  //초기 데이터 세팅
+  
+  //화면 가로크기 입력 함수
+  // useEffect(() => {
+  //   handleWindowSize(window.innerWidth);
+  //   window.addEventListener('resize', () => handleWindowSize(window.innerWidth));
+  //   return () => {
+  //     window.addEventListener('resize', () => handleWindowSize(window, innerWidth));
+  //   }
+  // }, []);
+  
+  //로그인 유지 함수
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    console.log(isLoadingOn);
+    setLoadingOn();
+    console.log("로딩시작");
+    setTimeout(() => {
+      setLoadingOn();
+      console.log("로딩끝");
+    }, 1000);
+    
+    axios.get(`${SERVER_API}/nodemap/edge`,
       { withCredentials: true })
       .then(res => res.data)
       .then(data => {
-          console.log(data);
+          console.log(data.edgeData, "서버에서 받아온 데이터");
+          if (data.message === 'internal server error') {
+            alert('서버가 정상적으로 동작하지 않습니다.')
+          } else {
+            dispatch(setEdgeData(data.edgeData));
+          }
+        })
+        .catch(e => console.log(e,"실패함"));
+      
+      axios.get(`${SERVER_API}/nodemap/node`,
+      { withCredentials: true })
+      .then(res => res.data)
+      .then(data => {
           if (data.message === 'internal server error') {
               alert('서버가 정상적으로 동작하지 않습니다.')
           } else {
-              dispatch(setNodeData(data.nodeData));
+            let nodes = data.nodeData.map((el, idx) => {
+              return {
+                "id": idx,
+                "nodeName": el.nodeName,
+                "nodeColor": el.nodeColor
+              };
+            });
+            console.log(nodes, "서버에서 받아온 데이터");
+              dispatch(setNodeData(nodes));
           }
       })
       .catch(e => console.log(e));
-  }
-  //초기 데이터 세팅
-  const loadNodemapData = async () => {
-      dispatch(handleLoadingOn());
-      loadNodedata();
-      // loadEdgedata();
-  }
-
-  //로그인 유지 함수
-  useEffect(() => {
-    loadNodemapData();
-    let token = localStorage.getItem('token');
-    //handleLoadingOn();
-    // setTimeout(() => {
-    //   handleLoadingOn();
-    // }, 3000)
+  
     if (JSON.parse(token)) {
       // handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
@@ -166,15 +186,12 @@ const MainContainer = () => {
 
   return (
     <div id='main-container' style={{backgroundColor: siteColor}}>
-      <NodeMap dispatch={dispatch} />
       <HeaderContainer/>
       <ModalContainer/>
       <section className="Main" onClick={closeNodesetting} >
-        <ForceGraph
-          nodesData={data.nodes}
-          linksData={data.links}
-          // nodeHoverTooltip={nodeHoverTooltip}
-        />
+        {isLoadingOn ?
+          <div>로딩중입니다.!!!</div>
+          :  <ForceGraph/>}
       </section>
     </div>)
 };

@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux';
 import React from 'react'
 // import { modal } from '../../redux/modalstatus'
 import { useSelector } from 'react-redux';
-import { closeNodesettingModal } from '../../redux/modalstatus';
+import {  openNodeoptionModal } from '../../redux/modalstatus';
 import {addBookmarkKeyword} from '../../redux/userinfo'
 import axios from 'axios'
+
 const NodeSetting = () => {
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL
+    let SERVER_API = process.env.REACT_APP_SERVER_API
     let x, y;
     let value = useSelector(state => state.modal.nodesettingModal);
     if (value) {
@@ -24,14 +25,14 @@ const NodeSetting = () => {
     const addKeywrodHandler=()=>{
         axios
         .post(
-            `${SERVER_URL}/users/keyword`,
+            `${SERVER_API}/users/keyword`,
             {
                 userId: state.userinfo.id,
-                keyword: parentNode.name
+                keyword: parentNode.nodeName
             }
         ).then(res=>{
             console.log(res)
-            dispatch(addBookmarkKeyword(parentNode.name))
+            dispatch(addBookmarkKeyword(parentNode.nodeName))
         }
         ).catch(err=>{
             console.log(err.statusCode)
@@ -40,10 +41,10 @@ const NodeSetting = () => {
     }
     // const [profileIsOpen, setprofileIsOpen] = useState(false);
     // //노드 추가 하기
-    // const handleAddnode = (d) => {
-    //     //서버요청 후 반영
-    //     dispatch();
-    // }
+    const handleAddnode = () => {
+        //서버요청 후 반영
+        dispatch(openNodeoptionModal());
+    }
     // const handleDeletenode = () => {
     //     //서버요청 후 반영
     //     dispatch();
@@ -53,11 +54,11 @@ const NodeSetting = () => {
     //     dispatch();
     // }
     return (
-        <div id="nodesetting-darkbackground" onClick={() => { dispatch(closeNodesettingModal());}} >
+        <div id="nodesetting-darkbackground" >
             <div id='node-setting-container' style={{left: x, top: y}}>
                 <ion-icon name="pencil-sharp"></ion-icon>
                 <div className="splitter"></div>
-                <ion-icon name="add-sharp"></ion-icon>
+                <ion-icon name="add-sharp" onClick={()=>{ handleAddnode(); }}></ion-icon>
                 <div className="splitter"></div>
                 <ion-icon name="trash-outline"></ion-icon>
                 <div className="splitter"></div>
