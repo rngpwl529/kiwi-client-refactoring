@@ -7,7 +7,12 @@ import "./ProfileSetting.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { openUserinfoModal, openSigninModal, openSettingModal } from '../../redux/modalstatus';
+<<<<<<< HEAD
 import Keyword from "./Keyword";
+=======
+
+import Keyword from "../Main/Keyword";
+>>>>>>> f2cd3abac9c0690a2a088abe84a3950993631a67
 
 const ProfileSetting = () => {
 
@@ -21,7 +26,7 @@ const ProfileSetting = () => {
 
 
     const keywordHandler=()=>{
-        if(!keywordOpen /*&& store.sign.isSignIn*/){
+        if(!keywordOpen && store.sign.isSignIn){
             setKeywordOpen(true)
         }
         else if(!store.sign.isSignIn){

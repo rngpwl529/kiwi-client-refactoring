@@ -1,10 +1,12 @@
 import React from "react"
+
 const MapController = () => {
+    
 
     return (
         <div id='control-box'>
             <span>
-                <ion-icon name="arrow-undo" onClick={()=>{alert('front')}}></ion-icon>
+                <ion-icon name="arrow-undo" ></ion-icon>
             </span>
             <div className='splitter'></div>
             <span>
