@@ -3,7 +3,7 @@ import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { closeNodeoptionModal, closeNodesettingModal } from '../../redux/modalstatus'
 import { addNodeData } from '../../redux/node';
-import { addEdgeData } from '../../redux/node';
+// import { addEdgeData } from '../../redux/node';
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -16,14 +16,13 @@ const NodeOption = ()=>{
     const [color, setColor] = useState("");
     const { parentNode } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
-    const { edgeData } = useSelector(state => state.node);
-    console.log(edgeData);
+    const store = useSelector(state => state);
     const closeModal = () => {
         dispatch(closeNodeoptionModal());
     }
-    console.log(parentNode);
 
     const submitHandler = () => {
+        dispatch(closeNodesettingModal());
        axios.post(`${SERVER_API}/nodemap/node`,
             {
                 nodeColor: color,
@@ -34,13 +33,9 @@ const NodeOption = ()=>{
             { headers: { withCredentials: true } })
             .then(res => res.data)
             .then(data => {
-                console.log(data, "<<<<<<< 요청하고 받아온 데이터");
                 dispatch(closeNodeoptionModal());
-                dispatch(closeNodesettingModal());
-                dispatch(addNodeData({ ...data.nodeData, id : nodeData.length }));
+                dispatch(addNodeData({ ...data.nodeData, id: nodeData.length },{...data.edgeData}));
                 return data;
-            }).then(data => {
-                dispatch(addEdgeData(data.edgeData));
             })
             .catch(error => {  //TODO:TOKEN확인여부를 가지고 로그인 창을 띄움
                 if (error.status === 400) {
@@ -52,7 +47,7 @@ const NodeOption = ()=>{
                 }
             });
     }
-
+    console.log(store)
     return (
         <div className='nodeoption-darkbackground'>
             <div className='nodeoption-container'>

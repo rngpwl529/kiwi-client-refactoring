@@ -55,9 +55,7 @@ function ForceGraph() {
     useEffect(() => {
         //처음 render 됐을 때, 그리고 업데이트 될때마다 재렌더
         let destroyFn;
-        console.log(nodeData, edgeData, "<<<<<<<<<");
-        if (containerRef) {
-            console.log("재렌더를 할 예정이다.");
+        if (containerRef && nodeData.slice(-1) !== undefined) {
             const { destroy } = runForceGraph(
                 containerRef.current,
                 nodeData,

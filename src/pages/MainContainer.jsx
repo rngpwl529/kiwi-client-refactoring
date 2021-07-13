@@ -12,6 +12,7 @@ import ModalContainer from '../containers/ModalContainer'
 import { closeNodesettingModal } from "../redux/modalstatus";
 // import { signinMaintain } from "../redux/signin";
 import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
+import { signinMaintain } from '../redux/signin';
 import dotenv from 'dotenv';
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
 dotenv.config();
@@ -83,11 +84,14 @@ const MainContainer = () => {
     }
   }
   //로그인 유지
-  // const handleLoginMaintain = () => {
-  //   dispatch(signinMaintain());
-  // }
+  const handleLoginMaintain = () => {
+    dispatch(signinMaintain());
+  }
   const setLoadingOn = () => {
     dispatch(handleLoadingOn());
+  }
+  const changeColor = () => {
+
   }
   // const fontSize = useSelector(state => state.setting);
   // const siteColor = useSelector(state => state.setting);
@@ -108,19 +112,18 @@ const MainContainer = () => {
   //로그인 유지 함수
   useEffect(() => {
     let token = localStorage.getItem('token');
-    console.log(isLoadingOn);
+    
+    //data loading
     setLoadingOn();
-    console.log("로딩시작");
     setTimeout(() => {
       setLoadingOn();
-      console.log("로딩끝");
-    }, 500);
+    }, 1000);
     
+    //edge 데이터 받아오기
     axios.get(`${SERVER_API}/nodemap/edge`,
       { withCredentials: true })
       .then(res => res.data)
       .then(data => {
-          console.log(data.edgeData, "서버에서 받아온 데이터");
           if (data.message === 'internal server error') {
             alert('서버가 정상적으로 동작하지 않습니다.')
           } else {
@@ -143,26 +146,24 @@ const MainContainer = () => {
                 "nodeColor": el.nodeColor
               };
             });
-            console.log(nodes, "서버에서 받아온 데이터");
               dispatch(setNodeData(nodes));
           }
       })
       .catch(e => console.log(e));
   
     if (JSON.parse(token)) {
-      // handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
+      handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
       // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
       let token = localStorage.getItem('token');
       axios.get(
-        `https://kiwimap.shop/users/userinfo`,
+        `${SERVER_API}/users/userinfo`,
         { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       )
         .then(res => res.data)
         .then(data => {
-          console.log(data);
           //siteColor가 있을 때, siteColor 적용
           if (data.userInfo.sitecolor !== siteColor) {
-            // changeColor(data.userInfo.sitecolor);
+            changeColor(data.userInfo.sitecolor);
           }
           //fontSize가 있을 때, fontSize 적용
           if (data.userInfo.siteFont !== siteFont) {

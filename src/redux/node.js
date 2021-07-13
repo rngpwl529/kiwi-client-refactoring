@@ -42,10 +42,11 @@ export const setParentnode = (nodeData) => ({
         nodeData,
     },
 });
-export const addNodeData = (nodeData) => ({
+export const addNodeData = (nodeData, edgeData) => ({
     type: ADD_NODE_DATA,
     payload: {
         nodeData,
+        edgeData,
     },
 });
 export const updateNodeData = (nodeData) => ({
@@ -54,10 +55,10 @@ export const updateNodeData = (nodeData) => ({
         nodeData,
     },
 });
-export const deleteNodeData = (nodeData) => ({
+export const deleteNodeData = (nodeId) => ({
     type: DELETE_NODE_DATA,
     payload: {
-        nodeData,
+        nodeId,
     },
 });
 export const handleLoadingOn = () => ({
@@ -90,6 +91,7 @@ export const node = (state = initialState, action) => {
         case ADD_NODE_DATA:
             return Object.assign({}, state, {
                 nodeData: [...state.nodeData, action.payload.nodeData],
+                edgeData: [...state.edgeData, action.payload.edgeData],
             });
 
         case UPDATE_NODE_DATA: {
@@ -103,12 +105,17 @@ export const node = (state = initialState, action) => {
         }
 
         case DELETE_NODE_DATA: {
-            const result = Object.assign({}, state);
-            const idx = state.nodeData.findIndex(
-                (node) => node.id === action.payload.nodeData.id
-            );
-            result.nodeData.splice(idx, 1);
-            return result;
+            const id = action.payload;
+            const nodeData = state.nodeData.slice().filter((el) => {
+                return el.id !== id;
+            });
+            const edgeData = state.edgeData.slice().filter((el) => {
+                return el.source !== id && el.target !== id;
+            });
+            return Object.assign({}, state, {
+                nodeData: nodeData,
+                edgeData: edgeData,
+            });
         } // 수정 필요
 
         case HANDLE_LOADING_ON: {

@@ -56,7 +56,8 @@ export function runForceGraph(
         )
         .force("charge", d3.forceManyBody().strength(-100)) // force 정도
         .force("x", d3.forceX())
-        .force("y", d3.forceY());
+        .force("y", d3.forceY())
+        
         
         if (d3.select("svg")) {
             d3.select("svg").remove();
@@ -79,6 +80,7 @@ export function runForceGraph(
         .data(links)                          //데이터를 연결함
         .join("line")                         //line이랑 합침
         .attr("stroke-width", (d) => d.value);//링크 두께
+        
     
     //노드 버블 그리기
     const node = svg
