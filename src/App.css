@@ -850,17 +850,19 @@ a {
             flex-direction: column;
             justify-content: space-between;
             align-items: center; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale p:nth-child(1) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div {
+              cursor: pointer; }
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(1) {
               font-size: 12px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale p:nth-child(2) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(2) {
               font-size: 16px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale p:nth-child(3) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(3) {
               font-size: 20px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale p:nth-child(4) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(4) {
               font-size: 24px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale p:nth-child(5) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(5) {
               font-size: 28px; }
-            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale p:nth-child(6) {
+            .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .sitesetting-fontsize .sitesetting-slider .scale div:nth-child(6) {
               font-size: 32px; }
       .sitesetting-darkbackground .sitesetting-container .sitesetting-setting .splitter {
         width: 2px;
