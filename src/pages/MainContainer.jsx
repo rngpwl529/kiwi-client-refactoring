@@ -10,6 +10,7 @@ import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
+import {changeColor, changeFont} from '../redux/setting'
 // import { signinMaintain } from "../redux/signin";
 import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
 import { signinMaintain } from '../redux/signin';
@@ -23,22 +24,19 @@ const SERVER_API = process.env.REACT_APP_SERVER_API;
 const MainContainer = () => {
   
   console.log("MainContainer");
+  
   const dispatch = useDispatch();
-  const { siteColor, siteFont } = useSelector(state => state.setting);
-  
-//   const nodeHoverTooltip = useCallback((node, x, y) => {
-//     return `<div> ${x}, ${y}
-//   <b> id : ${node.id}</b>
-//   <b> name : ${node.name}</b>
-//   <b> gender : ${node.gender}</b>
-// </div>`;
-//   }, []);
-  
-// TODO: NODEMAP DATA
-
+  const { siteColor } = useSelector(state => state.setting);
+  // const { siteFont } = useSelector(state => state.setting);
   const { isLoadingOn } = useSelector(state => state.node);
+  // const { isSignin } = useSelector(state => state.sign);
+  const state = useSelector(state => state);
+
   
-  // const { isLoadingOn } = useSelector(state => state.node);
+  //const state = useSelector(state => state)
+  
+  
+  
 
 // TODO:social Login
 //  if (!this.props.isSignIn) {
@@ -76,10 +74,12 @@ const MainContainer = () => {
 //       });
 // };
   
-  
-  //노드 클릭 창 닫기
+  //노드 클릭 옵션 창 닫기
   const closeNodesetting = (e) => {
-    if(e.target.tagName!=='text' && e.target.tagName !=='circle' && e.target.id !== 'node-setting-container'){
+    if (e.target.tagName !== 'text'
+      && e.target.tagName !== 'circle'
+      && e.target.id !== 'node-setting-container'
+      && state.modal.nodesettingModal) {
       dispatch(closeNodesettingModal())
     }
   }
@@ -87,20 +87,13 @@ const MainContainer = () => {
   const handleLoginMaintain = () => {
     dispatch(signinMaintain());
   }
+  //로딩 유지
   const setLoadingOn = () => {
     dispatch(handleLoadingOn());
   }
-  const changeColor = () => {
-
-  }
-  // const fontSize = useSelector(state => state.setting);
-  // const siteColor = useSelector(state => state.setting);
-
  
-  
-  //초기 데이터 세팅
-  
-  //화면 가로크기 입력 함수
+  //화면 가로크기 입력 함수 - mediaquery용
+  //TODO: 창크기 값 REDUX에 만들어 놓기
   // useEffect(() => {
   //   handleWindowSize(window.innerWidth);
   //   window.addEventListener('resize', () => handleWindowSize(window.innerWidth));
@@ -111,6 +104,10 @@ const MainContainer = () => {
   
   //로그인 유지 함수
   useEffect(() => {
+    // if (!this.props.inSignIn) {
+      
+    // }
+    //localstorage에서 token토큰 뽑기
     let token = localStorage.getItem('token');
     
     //data loading
@@ -131,7 +128,8 @@ const MainContainer = () => {
           }
         })
         .catch(e => console.log(e,"실패함"));
-      
+    
+    //node 데이터 받아오기
       axios.get(`${SERVER_API}/nodemap/node`,
       { withCredentials: true })
       .then(res => res.data)
@@ -151,27 +149,29 @@ const MainContainer = () => {
       })
       .catch(e => console.log(e));
   
+    //토큰이 있을 때
     if (JSON.parse(token)) {
-      handleLoginMaintain(); // 토큰 존재시 로그인상태 유지
-      // 메인페이지 열릴 때 마다 유저정보에 담긴 각각 화면 구성하는 상태 가져와서 갱신
+      handleLoginMaintain(); 
       let token = localStorage.getItem('token');
+
       axios.get(
-        `${SERVER_API}/users/userinfo`,
+        `${SERVER_API}/users/userinfo/${state.userinfo.id}`,
         { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       )
         .then(res => res.data)
         .then(data => {
           //siteColor가 있을 때, siteColor 적용
-          if (data.userInfo.sitecolor !== siteColor) {
-            changeColor(data.userInfo.sitecolor);
+          if (data.userData.siteColor) {
+            dispatch(changeColor(data.userData.siteColor));
           }
-          //fontSize가 있을 때, fontSize 적용
-          if (data.userInfo.siteFont !== siteFont) {
-            // changeFont(data.userInfo.fontSize)
+          //siteFont가 있을 때, siteFont 적용
+          if (data.userData.siteFont) {
+            dispatch(changeFont(data.userData.siteFont))
           }
         })
         .catch(error => {
-          if (error.response.status === 400) {
+          console.log(error)
+          if (error.status === 400) {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
             // handleLogin();
@@ -180,11 +180,13 @@ const MainContainer = () => {
           }
         })
     }
+    // document.querySelector('#main-container').style.backgroundColor = siteColor
     console.log('로그인유지 작동');
   }, [])
 
+
   return (
-    <div id='main-container'>
+    <div id='main-container' style={{backgroundColor: siteColor}}>
       <HeaderContainer/>
       <ModalContainer/>
       <section className="Main" onClick={closeNodesetting} >

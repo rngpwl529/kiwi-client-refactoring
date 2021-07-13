@@ -16,7 +16,10 @@ const NodeOption = ()=>{
     const [color, setColor] = useState("");
     const { parentNode } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
-    const store = useSelector(state => state);
+    // const { edgeData } = useSelector(state => state.node);
+    const state = useSelector(state=>state)
+    console.log(state)
+    // console.log(edgeData);
     const closeModal = () => {
         dispatch(closeNodeoptionModal());
     }
@@ -47,7 +50,6 @@ const NodeOption = ()=>{
                 }
             });
     }
-    console.log(store)
     return (
         <div className='nodeoption-darkbackground'>
             <div className='nodeoption-container'>

@@ -86,25 +86,26 @@
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
-                    div{
-                      cursor: pointer;
+                    transition: 0.5s;
+                    div.selected{
+                      background-color: rgba(93, 151, 218, 0.42);
                     }
-                    div:nth-child(1){
+                    div:nth-child(1).selected{
                       font-size: 12px;
                     }
-                    div:nth-child(2){
+                    div:nth-child(2).selected{
                       font-size: 16px;
                     }
-                    div:nth-child(3){
+                    div:nth-child(3).selected{
                       font-size: 20px;
                     }
-                    div:nth-child(4){
+                    div:nth-child(4).selected{
                       font-size: 24px;
                     }
-                    div:nth-child(5){
+                    div:nth-child(5).selected{
                       font-size: 28px;
                     }
-                    div:nth-child(6){
+                    div:nth-child(6).selected{
                       font-size: 32px;
                     }
                   }
@@ -138,7 +139,7 @@
               
                     & .blue {
                       @include color;
-                      background-color: $violet;
+                      background-color: #DEDEDE;
                     }
               
                     & .yellow {

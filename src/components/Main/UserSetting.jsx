@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateUserInfo } from '../../redux/userinfo'
 
 const UserSetting = ()=>{
-    let SERVER_URL = process.env.REACT_APP_SERVER_URL
+    let SERVER_API = process.env.REACT_APP_SERVER_API
     let dispatch = useDispatch()
     // let userid = useSelector(state=>state.userinfo.id)
     // const [fontSize, setFontSize] = useState(14);
@@ -33,7 +33,7 @@ const UserSetting = ()=>{
     const submitHandler= ()=>{
         axios
         .post(
-            `${SERVER_URL}/users/userinfo`,
+            `${SERVER_API}/users/userinfo`,
             {
                 id:userinfo.id,
                 email: userinfo.email,
@@ -54,7 +54,7 @@ const UserSetting = ()=>{
     useEffect(()=>{
         axios
         .get(
-            `${SERVER_URL}/users/userinfo/${userinfo.id}`
+            `${SERVER_API}/users/userinfo/${userinfo.id}`
             )
             .then(res=>{
                 dispatch(updateUserInfo(res.data.userData))
@@ -65,14 +65,14 @@ const UserSetting = ()=>{
     const withdrawHandler = ()=>{
         axios
         .delete(
-            `${SERVER_URL}/users/userinfo${userinfo.id}`,
+            `${SERVER_API}/users/userinfo${userinfo.id}`,
         )
     }
 
     const logouthandler = ()=>{
         axios
         .post(
-            `${SERVER_URL}/users/signout`,
+            `${SERVER_API}/users/signout`,
         )
     }
 
@@ -90,7 +90,9 @@ const UserSetting = ()=>{
                     </div>
                     <div className='box'>
                         <span className='left'>Username</span>
-                        {edit ? <input type="text" className="username" onChange={(e)=>{setUsername(e.target.value)}}/>
+                        {edit ? <input type="text" className="username" 
+                        value={userinfo.userName}
+                        onChange={(e)=>{setUsername(e.target.value)}}/>
                             :<span className='right'>{userinfo.userName}</span>
                         }
                     </div>
@@ -103,7 +105,9 @@ const UserSetting = ()=>{
                     {edit ?
                         <div className='box'>
                             <span className='left'>Password check</span>
-                            <input type="password" className="passwordCheck" />
+                            <input type="password" 
+                            
+                            className="passwordCheck" />
                         </div>
                         :null
                     }
@@ -111,8 +115,8 @@ const UserSetting = ()=>{
                 <div className='edit'>
                 {edit ? 
                     <>
-                    <div className="cancle" onClick={eidtHandler}>cancle</div>
                     <div className='ok' onClick={submitHandler}>Edit</div>
+                    <div className="cancle" onClick={eidtHandler}>cancle</div>
                     </>
                     :<div>
                         <div className='logout' onClick={logouthandler}>Logout</div>

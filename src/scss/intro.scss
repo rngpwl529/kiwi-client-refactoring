@@ -25,6 +25,7 @@ a{
   text-decoration: none;
 }
 
+
 @keyframes slidup {
   0% {transform: translateY(0px);}
   40%{transform: translateY(-10px);}
@@ -47,6 +48,7 @@ a{
         margin: 1rem;
         width: 10rem;
         height: auto;
+        z-index: 5;
       }
       
     }
@@ -79,6 +81,24 @@ a{
     animation-duration: 2s;
     animation-iteration-count: infinite;
   }
+  @media (max-width: 768px){
+    .container{
+      min-height: 50rem;
+    }
+    .back-number{
+      display: flex;
+      justify-content: center;
+    }
+    .title{
+      display: flex;
+      justify-content: center;
+    }
+    .descript{
+      display: flex;
+      justify-content: center;
+    }
+    text-align: center;
+  }
   #maindescription-container{
     background-color: #E8E8E8;
     .imgbox{
@@ -86,7 +106,41 @@ a{
       animation-duration: 2s;
       animation-iteration-count: infinite;
     }
+    @media (max-width: 768px){
+      height: auto;
+      .content{
+        flex-direction: column;
+      }
+      .back-number{
+        font-size: 10rem;
+        width: 100vw;
+        top: -8rem;
+      }
+      .btnArea{
+        display: flex;
+        justify-content: center;
+      }
+      .title{
+        font-size: 2.5rem;
+      }
+      .descript{
+        font-size: 2rem;
+      }
+      .sub-descript{
+        font-size: 1rem;
+      }
+      .text{
+        margin: 0;
+      }
+      .imgbox{
+        max-width: 15rem;
+      }
+    }
+    // .content{
+    //   flex-direction: column;
+    // }
   }
+  
   
   #introF1-container{
     background-color: #DEDEDE;
@@ -107,6 +161,44 @@ a{
       text-decoration: none;
       right: 5rem;
       z-index: 2;
+      @media(max-width: 768px){
+        right: 3rem;
+      }
+    }
+    @media (max-width: 768px){
+      height: auto;
+      .content{
+        flex-direction: column-reverse;
+      }
+      .back-number{
+        font-size: 10rem;
+        width: 100vw;
+        top: -8rem;
+      }
+      svg{
+        margin-top: 10rem;
+        max-height: 30rem;
+      }
+      .title{
+        margin-top: 10rem;
+        font-size: 2.5rem;
+      }
+      .descript{
+        font-size: 2rem;
+      }
+      .sub-descript{
+        font-size: 1rem;
+      }
+      .back-image{
+        // margin-top: 10rem;
+      }
+      .text{
+        margin: 0;
+      }
+      .imgbox{
+        max-width: 18rem;
+        max-height: 20rem;
+      }
     }
   }
 
@@ -120,6 +212,47 @@ a{
     }
     .text{
       padding-bottom: 10rem;
+    }
+    
+    @media(max-width:768px){
+      height: auto;
+      .content{
+        flex-direction: column;
+      }
+      .back-number{
+        font-size: 10rem;
+        width: 100vw;
+        top: -8rem;
+      }
+      .btnArea{
+        display: flex;
+        justify-content: center;
+      }
+      .text{
+        margin: 0;
+        padding: 0;
+        width: 80%;
+      }
+      svg{
+        margin-top: 5rem;
+      }
+      .back-image{
+        margin-top: 20rem;
+      }
+      .imgbox{
+        max-width: 18rem;
+        padding: 0;
+      }
+      .title{
+        margin-top: 10rem;
+        font-size: 2.5rem;
+      }
+      .descript{
+        font-size: 2rem;
+      }
+      .sub-descript{
+        font-size: 1rem;
+      }
     }
     // .content{
     //   justify-content: flex-start;
@@ -145,7 +278,7 @@ a{
     }
     .imgbox{
       padding-bottom: 5rem;
-      
+      max-width: 40rem;
     }
     .text{
       margin-top: 10rem;
@@ -161,7 +294,7 @@ a{
       justify-content: center;
       .input-box{
         background-color: white;
-        width: 56rem;
+        width: 90%;
         height: 4rem;
         border-radius: 30rem;
         border: 5px solid;
@@ -171,13 +304,54 @@ a{
         .input{
           display: flex;
           border: none;
-          width: 40rem;
+          width: 80%;
           font-size: 2rem;
         }
         .search-icon{
           width: 2.5rem;
           height: auto;
         }
+      }
+    }
+    @media(max-width:768px){
+      height: auto;
+      .content{
+        flex-direction: column-reverse;
+      }
+      .back-number{
+        font-size: 10rem;
+        width: 100vw;
+        top: -8rem;
+      }
+      .btnArea{
+        display: flex;
+        justify-content: center;
+      }
+      .text{
+        margin: 0;
+        padding: 0;
+        width: 80%;
+        right: 0;
+      }
+      svg{
+        margin-top: 0rem;
+      }
+      .back-image{
+        margin-top: 20rem;
+      }
+      .imgbox{
+        max-width: 18rem;
+        padding: 0;
+      }
+      .title{
+        margin-top: 10rem;
+        font-size: 2.5rem;
+      }
+      .descript{
+        font-size: 2rem;
+      }
+      .sub-descript{
+        font-size: 1rem;
       }
     }
   }
@@ -199,6 +373,11 @@ a{
       left: 50%;
       right: 50%;
       padding-bottom: 1rem;
+    }
+    @media (max-width: 768px){
+      .kiwi{
+        text-align: start;
+      }
     }
   }
   .title{
@@ -234,7 +413,7 @@ a{
   .imgbox{
     display: flex;
     position: relative;
-    max-width: 40%;
+    max-width: 40rem;
     height: 100%;
     flex-basis: 40%;
     align-items: center;
@@ -256,8 +435,4 @@ a{
     justify-content: center;
     margin: 0 1rem 0 1rem;
   }
-  .top{
-    position: fixed;
-  }
-
 }

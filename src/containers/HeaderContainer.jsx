@@ -2,6 +2,7 @@ import MapController from '../components/Main/MapController'
 import MainSearchBar from '../components/Main/MainSearchBar'
 import React from 'react';
 import ProfileSetting from '../components/Main/ProfileSetting'
+import { Link } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 
 //헤더 ==> 로고, undo, root, redo, searchbar, mypage, setting, bookmark, img(캡처)
@@ -44,7 +45,10 @@ const Header = ()=>{
 
   return(
     <div id = 'header'>
+      <Link to='/intro'>
       <img src='images/logo.svg' alt='KiWi logo' className='logo' />
+      </Link>
+      
       <MapController />
       <div className='right'>
         <MainSearchBar />
