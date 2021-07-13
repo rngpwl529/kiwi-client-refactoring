@@ -1,82 +1,52 @@
 import * as d3 from "d3";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+
 // import styles from "./_forceGraph.scss";
 
 export function runForceGraph(
     container, //박스
-    linksData, //edge
-    nodeData, //node
     // nodeHoverTooltip, //hover툴팁
+    nodeData,
+    edgeData,
     handleNodesettingModal,
 ) {
-    
-    
-    const links = linksData.map((d) => Object.assign({}, d));//link data
+
+    console.log("재렌더를 하러 들어왔다.");
+
+  
+    const links = edgeData.map((d) => Object.assign({}, d));//link data
     const nodes = nodeData.map((d) => Object.assign({}, d)); //nodes data
     const containerRect = container.getBoundingClientRect(); //container 영역
     const height = containerRect.height;                     //container 높이
     const width = containerRect.width;                       //container 너비
-    // const color = () => {
-    //     return "red";
-    // };
-
-    // const icon = (d) => {
-    //     return d.gender === "male" ? "\uf222" : "\uf221";
-    // };
-
-    // const getClass = (d) => {
-    //     return d.gender === "male" ? styles.male : styles.female;
-    // };
-    
     
     //drag 액션 정의
-    const drag = (simulation) => {
-        const dragstarted = (d) => {
-            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-        };
-
-        const dragged = (d) => {
-            d.fx = d3.event.x;
-            d.fy = d3.event.y;
-        };
-
-        const dragended = (d) => {
-            if (!d3.event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-        };
-        //drag 액션 리턴
-        return d3
-            .drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended);
+      const drag = (simulation) => {
+    const dragstarted = (d) => {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
     };
 
-    // // 그래프 툴팁
-    // const tooltip = document.querySelector("#graph-tooltip");
-    // if (!tooltip) {
-    //     const tooltipDiv = document.createElement("div");
-    //     tooltipDiv.classList.add(styles.tooltip);
-    //     tooltipDiv.style.opacity = "0";
-    //     tooltipDiv.id = "graph-tooltip";
-    //     document.body.appendChild(tooltipDiv);
-    // }
-    // const div = d3.select("#graph-tooltip");
+    const dragged = (d) => {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+    };
 
-    // const addTooltip = (d, x, y, callback) => {
-    //     div.transition().duration(200).style("opacity", 0.9);
-    //     div.html(callback(d, x, y))
-    //         .style("left", `${x}px`)
-    //         .style("top", `${y - 28}px`);
-    // };
+    const dragended = (d) => {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    };
+    //drag 액션 리턴
+    return d3
+        .drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended);
+};
 
-    // const removeTooltip = () => {
-    //     div.transition().duration(1000).style("opacity", 0);
-    // };
-
+   
     //simulation 그리기
     const simulation = d3
         .forceSimulation(nodes)
@@ -84,11 +54,13 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-500)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-100)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY());
         
-  
+        if (d3.select("svg")) {
+            d3.select("svg").remove();
+        }
     // 컨테이너 그리기
     const svg = d3
         .select(container)
@@ -97,9 +69,6 @@ export function runForceGraph(
         .call(d3.zoom().on("zoom", function () {
             svg.attr("transform", d3.event.transform)
         }))
-       
-    
-   
     
     // 링크 그리기
     const link = svg
@@ -115,14 +84,14 @@ export function runForceGraph(
     const node = svg
         .append("g")
         .attr("stroke", "#fff")                            //노드 외곽선 색
-        .attr("stroke-width", 3)                           //노드 외곽선 두께
+        .attr("stroke-width", 0.1)                           //노드 외곽선 두께
         .selectAll("circle")                               //원을 모두 잡아서
         .data(nodes)                                       //데이터를 넣음
         .join("circle")                                    //원과 합침
-        .attr("r", (d) => { return d.name.length * 4.5; }) // 원 반지름
-        .attr("fill", (d) => { return d.color; })          // 원 컬러
+        .attr("r", () => { return 5; }) // 원 반지름
+        .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
         .attr("id", (d) => {                               //속성 id값
-            return d.name;
+            return d.nodeName;
         })
         .on("click", (d) => {
             handleNodesettingModal(d, d3.event.x, d3.event.y);
@@ -140,9 +109,9 @@ export function runForceGraph(
         .append("text")
         .attr("text-anchor", "middle")
         .attr("dominant-baseline", "central")
-        .attr("class", (d) => d.name)
+        .attr("class", (d) => d.nodeName)
         .text((d) => {
-            return d.name;
+            return d.nodeName;
         })
 
     // label
