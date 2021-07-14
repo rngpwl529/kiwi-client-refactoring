@@ -54,7 +54,7 @@ const NodeOption = ()=>{
         <div className='nodeoption-darkbackground'>
             <div className='nodeoption-container'>
                 <div className='nodeoption-x-box'>
-                    <i className="iconCancel" role="img" aria-label="cancle" onClick={() => { closeModal(); }}></i>
+                <ion-icon name="close-outline" onClick={() => { closeModal(); }}></ion-icon>
                 </div>
                 <header className='nodeoption-header'>
                     <span>Add a New Node</span>

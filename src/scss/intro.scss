@@ -81,6 +81,21 @@ a{
     animation-duration: 2s;
     animation-iteration-count: infinite;
   }
+  .imgbox{
+    display: flex;
+    position: relative;
+    max-width: 40%;
+    height: 100%;
+    flex-basis: 40vw;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem 0 1rem;
+    // circle{
+    //   animation-name: slidup;
+    //   animation-duration: 2s;
+    //   animation-iteration-count: infinite;
+    // }
+  }
   @media (max-width: 768px){
     .container{
       min-height: 50rem;
@@ -111,6 +126,9 @@ a{
       .content{
         flex-direction: column;
       }
+      .logo{
+        width: 8rem;
+      }
       .back-number{
         font-size: 10rem;
         width: 100vw;
@@ -130,10 +148,12 @@ a{
         font-size: 1rem;
       }
       .text{
-        margin: 0;
+        margin: 2rem 0 0 0;
       }
       .imgbox{
-        max-width: 15rem;
+        // flex-basis: 100px;
+        max-width: 18rem;
+        max-height: 20rem;
       }
     }
     // .content{
@@ -242,6 +262,7 @@ a{
       .imgbox{
         max-width: 18rem;
         padding: 0;
+        max-height: 30rem;
       }
       .title{
         margin-top: 10rem;
@@ -278,7 +299,7 @@ a{
     }
     .imgbox{
       padding-bottom: 5rem;
-      max-width: 40rem;
+      // max-width: 40rem;
     }
     .text{
       margin-top: 10rem;
@@ -307,9 +328,9 @@ a{
           width: 80%;
           font-size: 2rem;
         }
-        .search-icon{
-          width: 2.5rem;
-          height: auto;
+        ion-icon{
+          height: 100%;
+          width: 2rem;
         }
       }
     }
@@ -342,6 +363,7 @@ a{
       .imgbox{
         max-width: 18rem;
         padding: 0;
+        max-height: 20rem;
       }
       .title{
         margin-top: 10rem;
@@ -352,6 +374,13 @@ a{
       }
       .sub-descript{
         font-size: 1rem;
+      }
+      .input-box{
+        height: 3rem !important;
+        input{
+          height: 2rem;
+          font-size: 1.8rem !important;
+        }
       }
     }
   }
@@ -410,21 +439,7 @@ a{
       background-color: #407BFF;
     }
   }
-  .imgbox{
-    display: flex;
-    position: relative;
-    max-width: 40rem;
-    height: 100%;
-    flex-basis: 40%;
-    align-items: center;
-    justify-content: center;
-    margin: 0 1rem 0 1rem;
-    // circle{
-    //   animation-name: slidup;
-    //   animation-duration: 2s;
-    //   animation-iteration-count: infinite;
-    // }
-  }
+  
   .back-image{
     display: flex;
     position: absolute;
@@ -434,5 +449,20 @@ a{
     align-items: center;
     justify-content: center;
     margin: 0 1rem 0 1rem;
+  }
+  
+  @keyframes slideUp{
+    0%{
+      opacity: 0;
+      transform: translateY(4rem);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .visible{
+    animation-name: slideUp;
+    animation-duration: 1.5s;
   }
 }

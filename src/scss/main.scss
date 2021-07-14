@@ -1,4 +1,5 @@
 #main-container{
+  transition: 0.5s;
   height: 100%;
   width: 100%;
   // background-color: #DEDEDE;
@@ -23,6 +24,11 @@
         color: $basic--blue--;
       }
     }
+    a{
+      display: flex;
+      align-items: center;
+      z-index: 1;
+    }
     .logo{
       margin-left: 1rem;
       height: 3rem;
@@ -32,39 +38,75 @@
       align-items: center;
       justify-content: space-between;
       margin-right: 1rem;
+      height: 40px;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+    #profile-container{
+      display: flex;
+    }
+    .mapcon-area{
+      width: 100%;
+      position: absolute;
+      display: flex;
+      justify-content: center;
     }
     #control-box{
       display: flex;
-      position: absolute;
       align-items: center;
       height: 40px;
-      left: 45%;
+      width: 124px;
       background-color: white;
       border-radius: 5px;
       box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-      z-index: 4;
-      .splitter{
-        width: 2px;
-        height: 1.4rem;
-        background-color: black;
-      }
+    }
+    .splitter{
+      width: 2px;
+      height: 1.4rem;
+      background-color: $dark--grey--;
     }
     #main-search{
       display: flex;
       align-items: center;
-      border: solid $basic--blue-- 2px;
+      // border: solid $basic--blue-- 2px;
       border-radius: 3rem;
       background-color: white;
+      transition: 0.5s;
+      z-index: 1;
       input{
         transition: 0.5s;
-        width: 5rem;
+        width: 0rem;
         border: none;
+      }
+      .focus{
         margin-left: 1rem;
-        background-color: inherit;
-        margin:0 3px 0 10px;
-        &:focus{
-          width: 10rem;
+        display: flex;
+        width: 8rem;
+        transition: width 0.2s ease-out;
+        @media(max-width:900px){
+          width: 7rem;
         }
+      }
+    }
+    @media(max-width: 900px){
+      .mapcon-area{
+        bottom: -87vh;
+      }
+      .logo{
+        height: 2.5rem;
+      }
+      .right{
+        right: 0rem;
+        position: absolute;
+      }
+      .invisible{
+        display: none;
+      }
+    }
+    @media (max-width: 335px){
+      .logo{
+        height: 2rem;
       }
     }
   }

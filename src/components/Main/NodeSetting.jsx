@@ -33,7 +33,7 @@ const NodeSetting = () => {
             }
         ).then(res=>{
             console.log(res)
-            dispatch(addBookmarkKeyword(parentNode.name))
+            dispatch(addBookmarkKeyword(parentNode.nodeName))
         }
         ).catch(err=>{
             console.log(err.statusCode)
