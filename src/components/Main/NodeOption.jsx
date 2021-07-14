@@ -2,7 +2,7 @@ import { useRef, useState } from "react"
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { closeNodeoptionModal, closeNodesettingModal } from '../../redux/modalstatus'
-import { addNodeData } from '../../redux/node';
+import { addNodeData } from '../../redux/nodemap';
 // import { addEdgeData } from '../../redux/node';
 import axios from 'axios';
 import dotenv from 'dotenv';

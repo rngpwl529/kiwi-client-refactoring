@@ -2,8 +2,8 @@ import  React, { useRef, useEffect } from "react";
 import { runForceGraph } from "./forceGraphGenerator";
 import { useDispatch, useSelector } from 'react-redux';
 // import { fetchData, getNodeData, postEdgeData } from "../../../redux/node"; //노드 리듀서
-import { setParentnode } from "../../../redux/node"; //노드 리듀서
-import { openNodesettingModal } from "../../../redux/modalstatus";
+import { setParentnode } from "../../../redux/nodemap"; //노드 리듀서
+import { openNodesettingModal, openSigninModal } from "../../../redux/modalstatus";
 import styles from "./forceGraph.module.css";
 
 
@@ -12,29 +12,33 @@ import styles from "./forceGraph.module.css";
 
 
 function ForceGraph() {
-    const containerRef = useRef(null);//Div 선택자
-    
+    const containerRef = useRef(null);
     const dispatch = useDispatch();
+
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.node);
-    const { parentNode } = useSelector(state => state.node);
-    const {siteFont} = useSelector(state=>state.setting)
+    const { siteFont } = useSelector(state => state.setting);
+    const { isSignIn } = useSelector(state => state.sign);
+    
     
     
     console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
-    const handleNodesettingModal = (node, x, y) => {
-        dispatch(setParentnode({
-            id: node.id,
-            nodeName: node.nodeName,
-            nodeColor: node.nodeColor
-        }));
-        // id: 9, name: "Iris", gender: "female", color: "beige"
-        dispatch(openNodesettingModal(x, y));
+    const handleNodesettingModal = (node, xCord, yCord) => {
+        if (!isSignIn) {
+            dispatch(openSigninModal());
+        } else {
+            dispatch(setParentnode({
+                id: node.id,
+                nodeName: node.nodeName,
+                nodeColor: node.nodeColor
+            }));
+            // id: 9, name: "Iris", gender: "female", color: "beige"
+            dispatch(openNodesettingModal(xCord, yCord));
+        }
     }
-    console.log(parentNode);
     
 
     

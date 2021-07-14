@@ -3,6 +3,7 @@ const initialState = {
     nodeData: [],
     edgeData: [],
     nodeHistory: [],
+    setParentnode: null,
 };
 
 //서버에 데이터 요청
