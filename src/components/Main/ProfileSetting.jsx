@@ -76,7 +76,8 @@ const ProfileSetting = () => {
             <Popup open={open} modal closeOnDocumentClick>
               <div className="modal">
                 <div className="modal__header">
-                  <button onClick={closeModal}>&times;</button>
+                    <ion-icon name='close-outline' onClick={closeModal}></ion-icon>
+                  {/* <button onClick={closeModal}>&times;</button> */}
                 </div>
                 <div className="modal__body">
                   <div>

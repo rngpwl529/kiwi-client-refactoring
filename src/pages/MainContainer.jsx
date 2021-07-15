@@ -75,7 +75,7 @@ const MainContainer = () => {
    setLoadingOn()
     setTimeout(() => {
       setLoadingOn();
-    }, 1000);
+    }, 200000);
     
     
     //node 데이터 받아오기
@@ -142,7 +142,7 @@ const MainContainer = () => {
       <ModalContainer/>
       <section className="Main" onClick={closeNodesetting} >
         {isLoadingOn ?
-          <div>로딩중입니다.!!!</div>
+          <div className='loading'>로딩중입니다.!!!</div>
           :   <ForceGraph/>}
       </section>
     </div>)

@@ -119,12 +119,12 @@
                 height: 100%;
                 & .black {
                   @include color;
-                  background-color: $lightpink;
+                  background-color: rgb(248, 237, 235);
                 }
           
                 & .red {
                   @include color;
-                  background-color: $pink;
+                  background-color: rgb(226, 234, 252);
                 }
           
                 & .blue {
