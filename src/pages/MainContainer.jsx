@@ -147,5 +147,5 @@ const MainContainer = () => {
       </section>
     </div>)
 };
-//gg
+//에러수정
   export default MainContainer;
