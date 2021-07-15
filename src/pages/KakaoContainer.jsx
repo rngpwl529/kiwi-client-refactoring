@@ -9,9 +9,9 @@ dotenv.config();
 const SERVER_API = process.env.REACT_APP_SERVER_API;
 
 
-const KakaoContainer = ()=>{
+const KakaoContainer = () => {
   // TODO:social Login
-
+  console.log("하이");
   const dispatch = useDispatch();
 
   const kakaoCheck = (token, social, url) => {
@@ -63,23 +63,12 @@ const KakaoContainer = ()=>{
       let social = localStorage.getItem('social');
       //kakao 로그인 겸 회원가입
       kakaoCheck(token, social, url);
-    }, []);
+    });
   
   return (
     <>
-      <div>
-       <ul>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-         <li>4</li>
-       </ul>
+      <div id='kakao-container'>
+      <h1>하이</h1>
       </div>
     </>
   );

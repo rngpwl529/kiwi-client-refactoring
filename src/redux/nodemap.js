@@ -43,10 +43,11 @@ export const setNodeData = (nodeData, edgeData) => ({
         edgeData,
     },
 });
-export const addNodeData = (nodeData) => ({
+export const addNodeData = (nodeData, edgeData) => ({
     type: ADD_NODE_DATA,
     payload: {
         nodeData,
+        edgeData,
     },
 });
 export const updateNodeData = (nodeData) => ({
@@ -55,10 +56,10 @@ export const updateNodeData = (nodeData) => ({
         nodeData,
     },
 });
-export const deleteNodeData = (nodeData) => ({
+export const deleteNodeData = (parentNode) => ({
     type: DELETE_NODE_DATA,
     payload: {
-        nodeData,
+        parentNode,
     },
 });
 
@@ -108,6 +109,7 @@ export const nodemap = (state = initialState, action) => {
         case ADD_NODE_DATA:
             return Object.assign({}, state, {
                 nodeData: [...state.nodeData, action.payload.nodeData],
+                edgeData: [...state.edgeData, action.payload.edgeData],
             });
 
         case UPDATE_NODE_DATA: {
@@ -121,12 +123,21 @@ export const nodemap = (state = initialState, action) => {
         }
 
         case DELETE_NODE_DATA: {
-            const result = Object.assign({}, state);
-            const idx = state.nodeData.findIndex(
-                (node) => node.id === action.payload.nodeData.id
-            );
-            result.nodeData.splice(idx, 1);
-            return result;
+            let idx = action.payload.parentNode;
+            let nodeData = state.nodeData;
+            let edgeData = state.edgeData;
+
+            let updateNodeData = nodeData.filter((el) => {
+                return el.id !== idx;
+            });
+            let updateEdgeData = edgeData.filter((el) => {
+                return el.source !== idx && el.target !== idx;
+            });
+
+            return Object.assign({}, state, {
+                nodeData: [...updateNodeData],
+                edgeData: [...updateEdgeData],
+            });
         } // 수정 필요
 
         case SET_EDGE_DATA:

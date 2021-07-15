@@ -4,12 +4,13 @@ import React from 'react'
 // import { modal } from '../../redux/modalstatus'
 import { useSelector } from 'react-redux';
 import {  openNodeoptionModal } from '../../redux/modalstatus';
-import {addBookmarkKeyword} from '../../redux/userinfo'
+import { addBookmarkKeyword } from '../../redux/userinfo'
+import { deleteNodeData } from '../../redux/nodemap';
 import axios from 'axios'
 // import { deleteNodeData } from '../../redux/node';
 
 const NodeSetting = () => {
-    let SERVER_API = process.env.REACT_APP_SERVER_API
+    let SERVER_API = process.env.REACT_APP_SERVER_API;
     let x, y;
     let value = useSelector(state => state.modal.nodesettingModal);
     if (value) {
@@ -21,15 +22,21 @@ const NodeSetting = () => {
         y = 0;
     }
     const dispatch = useDispatch();
-    const parentNode = useSelector(state=>state.node.parentNode)
+    const parentNode = useSelector(state => state.node.parentNode)
     let state = useSelector(state=>state)
-    const addKeywrodHandler=()=>{
+    const addKeywrodHandler = () => {
+        const token = localStorage.getItem('token');
         axios
-        .post(
-            `${SERVER_API}/users/keyword`,
-            {
-                userId: state.userinfo.id,
-                keyword: parentNode.nodeName
+            .post(
+                `${SERVER_API}/users/keyword`,
+                {
+                    userId: state.userinfo.id,
+                    keyword: parentNode.nodeName
+                },
+                {
+                    headers: {
+                    authorization: `Bearer ${token}`,
+                }
             }
         ).then(res=>{
             console.log(res)
@@ -46,24 +53,25 @@ const NodeSetting = () => {
         //서버요청 후 반영
         dispatch(openNodeoptionModal());
     }
-    // const handleDeletenode = () => {
-    //     //서버요청 후 반영
-    //     dispatch(deleteNodeData(parentNode.id));
-    //     axios.post(
-    //     `${SERVER_URL}/users/keyword`,
-    //     {
-    //         userId: state.userinfo.id,
-    //         keyword: parentNode.name
-    //     }
-    // ).then(res=>{
-    //     console.log(res)
-    //     dispatch(addBookmarkKeyword(parentNode.name))
-    // }
-    // ).catch(err=>{
-    //     console.log(err.statusCode)
-    //     alert('이미 존재하는 키워드 입니다.')
-    // })
-    // }
+
+    const handleDeletenode = () => {
+        //서버요청 후 반영
+        const token = localStorage.getItem('token');
+        console.log(token);
+        axios.delete(
+            `${SERVER_API}/nodemap/node/${parentNode.nodeName}/${parentNode.id}`,
+            {
+                headers: {
+                    withCredentials: true,
+                    "authorization": `Bearer ${token}`
+                        }
+            })
+            .then((res) => {
+                console.log(res);
+                dispatch(deleteNodeData(parentNode.id));
+            })
+            .catch(e => console.log(e));
+    }
     // const handleUpdatenode = () => {
     //     //서버요청 후 반영
     //     dispatch();
@@ -75,7 +83,7 @@ const NodeSetting = () => {
                 <div className="splitter"></div>
                 <ion-icon name="add-sharp" onClick={()=>{ handleAddnode(); }}></ion-icon>
                 <div className="splitter"></div>
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon name="trash-outline" onClick={() => { handleDeletenode();}}></ion-icon>
                 <div className="splitter"></div>
                 <ion-icon name="bookmark-outline" onClick={addKeywrodHandler}></ion-icon>
             </div>

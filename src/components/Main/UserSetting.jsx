@@ -20,12 +20,18 @@ const UserSetting = ()=>{
     const editHandler = ()=>{
         if(edit){
             setEdit(false)
+            
         }
         else{
             setEdit(true)
         }
     }
 
+    useEffect(()=>{
+        if(edit){
+            document.querySelector('.username').value = userinfo.userName
+        }
+    },[edit])
     
     
     const closeHandler=()=>{
@@ -33,6 +39,7 @@ const UserSetting = ()=>{
     }
     
     const submitHandler = () => {
+        const token = localStorage.getItem('token');
         axios
         .post(
             `${SERVER_API}/users/userinfo`,
@@ -41,6 +48,11 @@ const UserSetting = ()=>{
                 email: userinfo.email,
                 userName,
                 password,
+            },
+            {
+                headers:{
+                    'authorization' : `Bearer ${token}`
+                }
             }
         )
         .then(
@@ -119,7 +131,6 @@ const UserSetting = ()=>{
                     <div className='box'>
                         <span className='left'>Username</span>
                         {edit ? <input type="text" className="username" 
-                        value={userinfo.userName}
                         onChange={(e)=>{setUsername(e.target.value)}}/>
                             :<span className='right'>{userinfo.userName}</span>
                         }

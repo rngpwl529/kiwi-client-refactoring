@@ -9,7 +9,7 @@ const Keyword = ({setKeywordOpen}) => {
     const [deleteKeyword, setDeleteKeyword] = useState('')
     let colors = ['#D5D6EA', '#F6F6EB', '#D7ECD9', '#F5D5CB', '#F6ECF5', '#F3DDF2','#D8F0FA','#C7DEFA','#91EBE8','#C2F7EB','#FCE0E8','#FFF0F0']
     const token = localStorage.getItem('token');
-    const state= useSelector(state => state.userinfo);
+    // const state= useSelector(state => state.userinfo);
     // const parentNode = useSelector(state=> state.node.parentNode)
     const dispatch = useDispatch()
     let keywords = useSelector(state=>state.userinfo.bookmarkKeyword)
@@ -17,7 +17,7 @@ const Keyword = ({setKeywordOpen}) => {
     useEffect(()=>{
         axios
         .get(
-            `${SERVER_API}/users/keyword/${state.id}`,  //서버에서 params로 받아야함
+            `${SERVER_API}/users/keyword`,  //서버에서 params로 받아야함
             {
                 headers: {
                     authorization: `Bearer ${token}`
@@ -40,12 +40,12 @@ const Keyword = ({setKeywordOpen}) => {
     const deleteHandler = (e)=>{
         axios
         .delete(
-            `${SERVER_API}/users/keyword/${state.id}/${e.target.parentNode.previousSibling.nodeValue}`,
+            `${SERVER_API}/users/keyword/${e.target.parentNode.previousSibling.nodeValue}`,
             {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
-            }
+            },
             )
             .then(res=>{
                 console.log(res)
@@ -83,7 +83,7 @@ const Keyword = ({setKeywordOpen}) => {
                         <li 
                         key={idx}  
                         className='keyword' 
-                        style={{backgroundColor: colors[Math.floor(Math.random()*10)]}}
+                        style={{backgroundColor: colors[Math.floor(idx)]}}
                         onClick={deleteHandler}
                         >{keyword}
                         <div>

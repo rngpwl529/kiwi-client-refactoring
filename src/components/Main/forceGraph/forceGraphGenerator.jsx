@@ -96,6 +96,7 @@ export function runForceGraph(
             return d.nodeName;
         })
         .on("click", (d) => {
+            console.log(d3.select('g'));
             handleNodesettingModal(d, d3.event.x, d3.event.y);
         })
         .call(drag(simulation));
@@ -115,6 +116,10 @@ export function runForceGraph(
         .text((d) => {
             return d.nodeName;
         })
+        .on("click", (d) => {
+
+            handleNodesettingModal(d, d3.event.x, d3.event.y);
+        });
 
     // label
     //     .on("mouseover", (d) => {
