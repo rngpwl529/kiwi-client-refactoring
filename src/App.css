@@ -486,6 +486,44 @@ a {
     @media (max-width: 335px) {
       #main-container #header .logo {
         height: 2rem; } }
+  #main-container .loading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+    #main-container .loading svg {
+      margin-bottom: 2rem;
+      width: 150px;
+      height: 150px;
+      animation: rotate 2s linear infinite; }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+      #main-container .loading svg circle {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke-width: 10;
+        stroke: #5D97DA;
+        stroke-linecap: round;
+        transform: translate(5px, 5px);
+        stroke-dasharray: 440;
+        stroke-dashoffset: 440;
+        animation: animate 4s linear infinite; }
+
+@keyframes animate {
+  0%, 100% {
+    stroke-dashoffset: 440; }
+  50% {
+    stroke-dashoffset: 0; }
+  50.1% {
+    stroke-dashoffset: 880; } }
 
 .darkbackground {
   position: absolute;
@@ -512,13 +550,6 @@ a {
     color: #bdbdbd; }
     .darkbackground ion-icon[name='close-outline']:hover {
       color: #8d8d8d; }
-  .darkbackground .Main .loading {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
 
 #keyword-container {
   position: absolute;
