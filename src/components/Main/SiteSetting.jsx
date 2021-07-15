@@ -35,7 +35,7 @@ const SiteSetting = ()=>{
                 },
                 {
                     headers: {
-                        'authorization' : 'Bearer' + token,
+                        'authorization' : `Bearer ${token}`,
                     }
                 }
             )
@@ -58,7 +58,7 @@ const SiteSetting = ()=>{
             },
             {
                 headers: {
-                    'authorization' : 'Bearer' + token,
+                    'authorization' : `Bearer ${token}`
                 }
             }
         )

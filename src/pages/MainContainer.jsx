@@ -11,12 +11,12 @@ import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
 import { changeColor, changeFont, setWindowSize} from '../redux/setting'
-import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
-import { signIn, signinMaintain, socialSignin } from '../redux/signin';
+import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/nodemap";
+import { signinMaintain } from '../redux/signin';
 
 import dotenv from 'dotenv';
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
-import { updateUserInfo } from '../redux/userinfo';
+
 dotenv.config();
 
 // import data from '../data/data.json'; // 임시더미데이터
@@ -34,51 +34,6 @@ const MainContainer = () => {
   const state = useSelector(state => state);
 
   
-  //const state = useSelector(state => state)
-  
-  
-  
-  // TODO:social Login
-  const kakaoCheck = (token, social ,url) => {
-    if (!token && !social) {
-      const authorizationCode = url.searchParams.get("code");
-      if (authorizationCode) {
-        getAccessToken(authorizationCode);
-      }
-    }
-    return;
-  }
-
-  const getAccessToken = (authCode) => {
-    axios
-      .post(
-          `${SERVER_API}/users/socialsignin`,
-          {
-              authorizationCode: authCode,
-          },
-          {
-              "Content-Type": "appliaction/json",
-              withCredentials: true,
-          }
-      )
-      .then((res) => {
-        //소셜사인인 과정
-        localStorage.setItem('social', "true");
-        dispatch(signIn(res.data.accessToken));
-        dispatch(socialSignin());
-        return res.data;
-      })
-      .then((data) => {
-        dispatch(updateUserInfo({
-          id: data.id,
-        }));
-    })
-      .catch((err) => {
-          console.log("문제있음");
-          console.log(err);
-      });
-  }
- 
   //노드 클릭 옵션 창 닫기
   const closeNodesetting = (e) => {
     if (e.target.tagName !== 'text'
@@ -112,12 +67,10 @@ const MainContainer = () => {
   
   //로그인 유지 함수
   useEffect(() => {
-    let url = new URL(window.location.href);
+    
     //localstorage에서 token토큰 뽑기
     let token = localStorage.getItem('token');
-    let social = localStorage.getItem('social');
-    //kakao 로그인 겸 회원가입
-    kakaoCheck(token, social, url);
+    
     //data loading
     setLoadingOn();
     setTimeout(() => {
@@ -184,11 +137,11 @@ const MainContainer = () => {
             localStorage.clear();
             // handleLogin();
             // window.location.reload();
+            console.log("에러");
             return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
           }
         })
     }
-    // document.querySelector('#main-container').style.backgroundColor = siteColor
     console.log('로그인유지 작동');
   }, [])
 

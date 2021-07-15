@@ -54,7 +54,7 @@ const UserSetting = ()=>{
     }
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        let token = localStorage.getItem('token');
         axios
         .get(
             `${SERVER_API}/users/userinfo`,
@@ -82,8 +82,10 @@ const UserSetting = ()=>{
             }
         )
             .then(() => {
-                localStorage.clear();
-                window.location.reload();
+                // localStorage.clear();
+                localStorage.setItem("logout", "true")
+                window.location.replace("http://localhost:3000/intro");
+                console.log("주소 이동");
             })
             .catch(() => alert("올바르지 않은 요청입니다."));
     }

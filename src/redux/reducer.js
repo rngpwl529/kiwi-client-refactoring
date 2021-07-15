@@ -4,7 +4,7 @@ import modal from './modalstatus';
 import sign from './signin';
 import userinfo from './userinfo';
 // import nodemap from './nodemap'; //수정사항
-import node from './node';
+import node from './nodemap';
 // import edge from './edge';
 import maphistory from './maphistory';
 

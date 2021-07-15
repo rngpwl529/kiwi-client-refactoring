@@ -80,7 +80,6 @@ const SignIn = () => {
                             username: '',       //TODO:SERVER에서 보내줘야하는 데이터 양식
                         }))
                         dispatch(signIn());
-                        
                         localStorage.setItem('token', JSON.stringify(data.accessToken));
                         window.location.reload();
                     }
