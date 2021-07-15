@@ -25,8 +25,8 @@ const NodeOption = ()=>{
     }
 
     const submitHandler = () => {
-        dispatch(closeNodesettingModal());
         const token = localStorage.getItem('token');
+        dispatch(closeNodesettingModal());
         axios.post(`${SERVER_API}/nodemap/node`,
             {
                 nodeColor: color,
@@ -34,11 +34,12 @@ const NodeOption = ()=>{
                 target: nodeData.length,
                 source: parentNode.id
             },
-            { headers: { 'authorization' : `Bearer ${token}`,withCredentials: true } })
+            { headers: { withCredentials: true, 'authorization': `Bearer ${token}` } })
             .then(res => res.data)
             .then(data => {
                 dispatch(closeNodeoptionModal());
-                dispatch(addNodeData({ ...data.nodeData, id: nodeData.length },{...data.edgeData}));
+                dispatch(addNodeData({ ...data.nodeData, id: nodeData.length },
+                    { ...data.edgeData }));
                 return data;
             })
             .catch(error => {  //TODO:TOKEN확인여부를 가지고 로그인 창을 띄움
@@ -46,7 +47,7 @@ const NodeOption = ()=>{
                     //! 세션만료 모달, 로그인 해제
                     localStorage.clear();
                    //TODO:로그아웃 해야함
-                    // window.location.reload();
+                    window.location.reload();
                     return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
                 }
             });
