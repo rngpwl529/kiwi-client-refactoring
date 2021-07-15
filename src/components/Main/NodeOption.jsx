@@ -27,7 +27,7 @@ const NodeOption = ()=>{
     const submitHandler = () => {
         const token = localStorage.getItem('token');
         dispatch(closeNodesettingModal());
-       axios.post(`${SERVER_API}/nodemap/node`,
+        axios.post(`${SERVER_API}/nodemap/node`,
             {
                 nodeColor: color,
                 nodeName: nodeName.current.value,
@@ -74,24 +74,24 @@ const NodeOption = ()=>{
             <div className='setting-node-colors'>
                 <p>Node Color</p>
                     <div className='colors'>
-                        <div className={color === 'blue' ? 'blue selected' : 'blue'} onClick={() => {
-                                setColor('blue');
+                        <div className={color === '#5bc2e7' ? 'blue selected' : 'blue'} onClick={() => {
+                                setColor('#5bc2e7');
                                 console.log(color);
                         }} />
-                        <div className={color === 'red' ? 'red selected' : 'red'} onClick={() => {
-                                setColor('red');
+                        <div className={color === '#ff9b85' ? 'red selected' : 'red'} onClick={() => {
+                                setColor('#ff9b85');
                                 console.log(color);
                         }} />
-                        <div className={color === 'orange' ? 'orange selected' : 'orange'} onClick={() => {
-                                setColor('orange');
+                        <div className={color === '#ffd97d' ? 'orange selected' : 'orange'} onClick={() => {
+                                setColor('#ffd97d');
                                 console.log(color);
                         }}/>
-                        <div className={color === 'yellow' ? 'yellow selected' : 'yellow'} onClick={() => {
-                                setColor('yellow');
+                        <div className={color === '#fff07c' ? 'yellow selected' : 'yellow'} onClick={() => {
+                                setColor('#fff07c');
                                 console.log(color);
                         }}/>
-                        <div className={color === 'green' ? 'green selected' : 'green'} onClick={() => {
-                                setColor('green');
+                        <div className={color === '#b0d689' ? 'green selected' : 'green'} onClick={() => {
+                                setColor('#b0d689');
                                 console.log(color);
                             }} />
                         

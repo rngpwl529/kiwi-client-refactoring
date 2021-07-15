@@ -139,10 +139,10 @@ const MainContainer = () => {
       <ModalContainer/>
       <section className="Main" onClick={closeNodesetting} >
         {isLoadingOn ?
-          <div>로딩중입니다.!!!</div>
+          <div className='loading'>로딩중입니다.!!!</div>
           :   <ForceGraph/>}
       </section>
     </div>)
 };
-
+//에러수정
   export default MainContainer;

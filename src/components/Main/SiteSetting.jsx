@@ -112,8 +112,8 @@ const SiteSetting = ()=>{
                 <div className='sitesetting-color'>
                     <p>Background Color</p>
                     <div className='colors'>
-                        <div className={setting.siteColor === "rgb(255, 204, 188)" ? "black selected" : "black"} onClick={colorHandler}></div>
-                        <div className={setting.siteColor === "rgb(239, 154, 154)" ? "red selected" : "red"} onClick={colorHandler}></div>
+                        <div className={setting.siteColor === "rgb(248, 237, 235)" ? "black selected" : "black"} onClick={colorHandler}></div>
+                        <div className={setting.siteColor === "rgb(226, 234, 252)" ? "red selected" : "red"} onClick={colorHandler}></div>
                         <div className={setting.siteColor === "rgb(178, 223, 219)" ? "yellow selected" : "yellow"} onClick={colorHandler}></div>
                         <div className={setting.siteColor === "rgb(222, 222, 222)" ? "blue selected" : "blue"} onClick={colorHandler}></div>
                         <div className={setting.siteColor === "rgb(232, 245, 233)" ? "green selected" : "green"} onClick={colorHandler}></div>
