@@ -21,7 +21,7 @@ function ForceGraph() {
     const { isSignIn } = useSelector(state => state.sign);
     
     
-    
+    console.log(nodeData, edgeData);
     console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
     
@@ -70,7 +70,7 @@ function ForceGraph() {
             destroyFn = destroy;
         }
         return destroyFn;
-    }, [edgeData]);
+    }, [nodeData, edgeData]);
     //컴포넌트가 화면에서 사라질 때
     return <div ref={containerRef} className={styles.container} style={{fontSize: siteFont}}/>;
 }

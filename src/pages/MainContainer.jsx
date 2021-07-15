@@ -11,7 +11,7 @@ import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
 import { changeColor, changeFont, setWindowSize} from '../redux/setting'
-import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/nodemap";
+import { setNodeData, handleLoadingOn } from "../redux/nodemap";
 import { signinMaintain } from '../redux/signin';
 
 import dotenv from 'dotenv';
@@ -72,23 +72,11 @@ const MainContainer = () => {
     let token = localStorage.getItem('token');
     
     //data loading
-    setLoadingOn();
+   setLoadingOn()
     setTimeout(() => {
       setLoadingOn();
-    }, 500);
+    }, 1000);
     
-    //edge 데이터 받아오기
-    axios.get(`${SERVER_API}/nodemap/edge`,
-      { withCredentials: true })
-      .then(res => res.data)
-      .then(data => {
-          if (data.message === 'internal server error') {
-            alert('서버가 정상적으로 동작하지 않습니다.')
-          } else {
-            dispatch(setEdgeData(data.edgeData));
-          }
-        })
-        .catch(e => console.log(e,"실패함"));
     
     //node 데이터 받아오기
       axios.get(`${SERVER_API}/nodemap/node`,
@@ -98,6 +86,7 @@ const MainContainer = () => {
           if (data.message === 'internal server error') {
               alert('서버가 정상적으로 동작하지 않습니다.')
           } else {
+            console.log(data.edgeData);
             let nodes = data.nodeData.map((el, idx) => {
               return {
                 "id": idx,
@@ -105,7 +94,8 @@ const MainContainer = () => {
                 "nodeColor": el.nodeColor
               };
             });
-              dispatch(setNodeData(nodes));
+            console.log(nodes);
+              dispatch(setNodeData(nodes, data.edgeData));
           }
       })
       .catch(e => console.log(e));
@@ -153,7 +143,7 @@ const MainContainer = () => {
       <section className="Main" onClick={closeNodesetting} >
         {isLoadingOn ?
           <div>로딩중입니다.!!!</div>
-          :  <ForceGraph/>}
+          :   <ForceGraph/>}
       </section>
     </div>)
 };

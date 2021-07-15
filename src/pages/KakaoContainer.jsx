@@ -11,30 +11,30 @@ const SERVER_API = process.env.REACT_APP_SERVER_API;
 
 const KakaoContainer = ()=>{
   // TODO:social Login
+
   const dispatch = useDispatch();
 
   const kakaoCheck = (token, social, url) => {
-    console.log(url.pathname);
+    console.log("authorizationCode 획득");
       const authorizationCode = url.searchParams.get("code");
-      if (authorizationCode) {
+    if (authorizationCode) {
+        console.log("authorizationCode 획득확인");
         getAccessToken(authorizationCode);
       }
       return;
   }
-  
-  
-
   const getAccessToken = (authCode) => {
+    console.log("getAccessToken 실행");
     axios
       .post(
-          `${SERVER_API}/users/socialsignin`,
-          {
-              "authorizationCode": authCode,
-          },
-          {
-              "Content-Type": "appliaction/json",
-              withCredentials: true,
-          }
+        `${SERVER_API}/users/socialsignin`,
+        {
+          "authorizationCode": authCode,
+        },
+        {
+          "Content-Type": "appliaction/json",
+          withCredentials: true,
+        }
       )
       .then((res) => {
         //소셜사인인 과정
@@ -50,11 +50,12 @@ const KakaoContainer = ()=>{
           id: data.id,
         }));
         window.location.assign('http://localhost:3000/main');
-    })
+      })
       .catch((err) => {
-          console.log("문제있음");
-          console.log(err);
+        console.log("문제있음");
+        console.log(err);
       });
+  }
     useEffect(() => {
       let url = new URL(window.location.href);
       //localstorage에서 token토큰 뽑기
@@ -63,13 +64,25 @@ const KakaoContainer = ()=>{
       //kakao 로그인 겸 회원가입
       kakaoCheck(token, social, url);
     }, []);
-  }
+  
   return (
-    
-    <div id='kakao-ouath'>
-      로그인 중입니다.
-    </div>
-  )
+    <>
+      <div>
+       <ul>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+         <li>4</li>
+       </ul>
+      </div>
+    </>
+  );
 }
 
 export default KakaoContainer;

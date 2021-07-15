@@ -36,10 +36,11 @@ const HANDLE_LOADING_ON = 'HANDLE_LOADING_ON';
 // const
 
 //액션생성함수
-export const setNodeData = (nodeData) => ({
+export const setNodeData = (nodeData, edgeData) => ({
     type: SET_NODE_DATA,
     payload: {
         nodeData,
+        edgeData,
     },
 });
 export const addNodeData = (nodeData) => ({
@@ -100,7 +101,8 @@ export const nodemap = (state = initialState, action) => {
     switch (action.type) {
         case SET_NODE_DATA:
             return Object.assign({}, state, {
-                nodeData: action.payload.nodeData,
+                nodeData: [...action.payload.nodeData],
+                edgeData: [...action.payload.edgeData],
             });
 
         case ADD_NODE_DATA:

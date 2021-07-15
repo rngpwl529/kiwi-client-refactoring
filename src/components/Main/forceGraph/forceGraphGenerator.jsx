@@ -21,7 +21,7 @@ export function runForceGraph(
     const width = containerRect.width;                       //container 너비
     
     //drag 액션 정의
-      const drag = (simulation) => {
+    const drag = (simulation) => {
     const dragstarted = (d) => {
         if (!d3.event.active) simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
