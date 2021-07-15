@@ -90,7 +90,7 @@ export function runForceGraph(
         .selectAll("circle")                               //원을 모두 잡아서
         .data(nodes)                                       //데이터를 넣음
         .join("circle")                                    //원과 합침
-        .attr("r", () => { return 5; }) // 원 반지름
+        .attr("r", () => { return 30; }) // 원 반지름
         .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
         .attr("id", (d) => {                               //속성 id값
             return d.nodeName;
