@@ -17,7 +17,7 @@ const Keyword = ({setKeywordOpen}) => {
     useEffect(()=>{
         axios
         .get(
-            `${SERVER_API}/users/keyword/${state.id}`,  //서버에서 params로 받아야함
+            `${SERVER_API}/users/keyword`,  //서버에서 params로 받아야함
             {
                 headers: {
                     authorization: `Bearer ${token}`

@@ -1,0 +1,45 @@
+.popup-content .modal{
+    background-color: white;
+    border-radius: 20px;
+    .modal__header{
+        justify-content: flex-end;
+        height: 2rem;
+    }
+    .modal__body div:nth-child(1){
+        margin-bottom: 1rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: flex-end;
+        label{
+            padding-right: $padding;
+        }
+        input{
+            border: none;
+            border-bottom: 1px solid $dark--grey--;
+            padding-bottom: 0.2rem;
+        }
+    }
+    .modal__footer{
+        button{
+            border: none;
+            width: 5rem;
+            height: 1.5rem;
+            margin: 0 1.5rem 1rem 0;
+            border-radius: 2rem;
+            cursor: pointer;
+            &:hover{
+                background-color: $light--grey--;
+            }
+        }
+    }
+    ion-icon{
+        height: 1.5rem;
+        width: 1.5rem;
+        margin: 1rem 1rem 0 0;
+        --ionicon-stroke-width: 64px !important;
+        color: $light--grey--;
+        &:hover{
+            color: $dark--grey--;
+        }
+    }
+}

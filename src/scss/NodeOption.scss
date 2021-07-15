@@ -110,27 +110,27 @@
       justify-content: space-evenly;
       & .blue {
         @include color;
-        background-color: blue;
+        background-color: #5bc2e7;
       }
 
       & .red {
         @include color;
-        background-color: red;
+        background-color: #ff9b85;
       }
 
       & .orange {
         @include color;
-        background-color: orange;
+        background-color: #ffd97d;
       }
 
       & .yellow {
         @include color;
-        background-color: yellow;
+        background-color: #fff07c;
       }
 
       & .green {
         @include color;
-        background-color: green;
+        background-color: #b0d689;
       }
     }
   }
