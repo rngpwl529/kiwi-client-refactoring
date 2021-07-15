@@ -4,18 +4,20 @@ import { closeUserinfoModal } from '../../redux/modalstatus'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateUserInfo } from '../../redux/userinfo'
 
+const SERVER_API = process.env.REACT_APP_SERVER_API;
+
 const UserSetting = ()=>{
-    let SERVER_API = process.env.REACT_APP_SERVER_API
+    
     let dispatch = useDispatch()
     // let userid = useSelector(state=>state.userinfo.id)
     // const [fontSize, setFontSize] = useState(14);
     // const [backGroundColor, setBackGroundColor] = useState("blue");
-    const [edit, setEdit] = useState('')
-    const [userName, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [edit, setEdit] = useState('');
+    const [userName, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     let userinfo = useSelector(state=>state.userinfo)
 
-    const eidtHandler = ()=>{
+    const editHandler = ()=>{
         if(edit){
             setEdit(false)
         }
@@ -30,7 +32,7 @@ const UserSetting = ()=>{
         dispatch(closeUserinfoModal())
     }
     
-    const submitHandler= ()=>{
+    const submitHandler = () => {
         axios
         .post(
             `${SERVER_API}/users/userinfo`,
@@ -51,32 +53,58 @@ const UserSetting = ()=>{
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
+        let token = localStorage.getItem('token');
         axios
         .get(
-            `${SERVER_API}/users/userinfo/${userinfo.id}`
-            )
-            .then(res=>{
+            `${SERVER_API}/users/userinfo`,
+            {
+                headers: {'authorization': "Bearer " + token}
+            }
+        )
+            .then(res => {
+                console.log(res.data.userData);
                 dispatch(updateUserInfo(res.data.userData))
             })
-        console.log('실행')
+            .catch(() => {
+                alert('올바르지 않은 요청입니다.');
+            })
     },[])
 
-    const withdrawHandler = ()=>{
+    const withdrawHandler = () => {
+        const token = localStorage.getItem('token');
+        //TODO: 회원삭제 요청에 대한 확인을 위한 모달창
         axios
         .delete(
-            `${SERVER_API}/users/userinfo${userinfo.id}`,
+            `${SERVER_API}/users/userinfo`,
+            {
+                headers: {'authorization' : "Bearer " + token}
+            }
         )
+            .then(() => {
+                // localStorage.clear();
+                localStorage.setItem("logout", "true")
+                window.location.replace("http://localhost:3000/intro");
+                console.log("주소 이동");
+            })
+            .catch(() => alert("올바르지 않은 요청입니다."));
     }
 
     const logouthandler = ()=>{
+        const token = localStorage.getItem('token');
         axios
-        .post(
-            `${SERVER_API}/users/signout`,
-        )
+            .get(
+                `${SERVER_API}/users/signout`,
+                {
+                    headers: { 'authorization': `Bearer ${token}` }
+                }
+            )
+            .then(() => {
+                localStorage.clear();
+                window.location.reload();
+            })
+            .catch(() => alert("올바르지 않은 요청입니다."));
     }
-
-    console.log(userinfo)
     
     return (
         <div className='darkbackground'>
@@ -116,11 +144,11 @@ const UserSetting = ()=>{
                 {edit ? 
                     <>
                     <div className='ok' onClick={submitHandler}>Edit</div>
-                    <div className="cancle" onClick={eidtHandler}>cancle</div>
+                    <div className="cancle" onClick={editHandler}>cancle</div>
                     </>
                     :<div>
                         <div className='logout' onClick={logouthandler}>Logout</div>
-                        <div className='user-edit' onClick={eidtHandler}>Edit</div>
+                        <div className='user-edit' onClick={editHandler}>Edit</div>
                         <div className='withdraw' onClick={withdrawHandler}>Withdraw</div>
                     </div>
                     }

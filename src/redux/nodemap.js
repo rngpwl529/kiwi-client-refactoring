@@ -3,6 +3,8 @@ const initialState = {
     nodeData: [],
     edgeData: [],
     nodeHistory: [],
+    setParentnode: null,
+    isLoadingOn: false,
 };
 
 //서버에 데이터 요청
@@ -28,7 +30,9 @@ const ADD_EDGE_DATA = 'ADD_EDGE_DATA';
 const UPDATE_EDGE_DATA = 'UPDATE_EDGE_DATA';
 const DELETE_EDGE_DATA = 'DELETE_EDGE_DATA';
 
-//노드 히스토리 생성
+//
+const SET_PARENT_NODE = 'SET_PARENT_NODE';
+const HANDLE_LOADING_ON = 'HANDLE_LOADING_ON';
 // const
 
 //액션생성함수
@@ -80,6 +84,15 @@ export const deleteEdgeData = (edgeData) => ({
     payload: {
         edgeData,
     },
+});
+export const setParentnode = (nodeData) => ({
+    type: SET_PARENT_NODE,
+    payload: {
+        nodeData,
+    },
+});
+export const handleLoadingOn = () => ({
+    type: HANDLE_LOADING_ON,
 });
 
 //리듀서
@@ -135,7 +148,14 @@ export const nodemap = (state = initialState, action) => {
             result.edgeData.splice(idx, 1);
             return result;
         }
-
+        case SET_PARENT_NODE:
+            return Object.assign({}, state, {
+                parentNode: action.payload.nodeData,
+            });
+        case HANDLE_LOADING_ON:
+            return Object.assign({}, state, {
+                isLoadingOn: !state.isLoadingOn,
+            });
         default:
             return state;
     }
