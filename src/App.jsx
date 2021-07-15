@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import IntroContainer from './pages/IntroContainer'
 import MainContrainer from './pages/MainContainer'
+import KakaoContainer from './pages/KakaoContainer';
 import React from "react"
 
 
@@ -23,6 +24,9 @@ const App= () => {
         </Route>
         <Route path='/main'>
           <MainContrainer />
+        </Route>
+        <Route path='/ouath/kakao'>
+          <KakaoContainer/>
         </Route>
       </Switch>
     </Router>

@@ -10,12 +10,13 @@ import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
 import { closeNodesettingModal } from "../redux/modalstatus";
-import {changeColor, changeFont} from '../redux/setting'
-// import { signinMaintain } from "../redux/signin";
-import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/node";
+import { changeColor, changeFont, setWindowSize} from '../redux/setting'
+import { setNodeData, setEdgeData, handleLoadingOn } from "../redux/nodemap";
 import { signinMaintain } from '../redux/signin';
+
 import dotenv from 'dotenv';
 import ForceGraph from '../components/Main/forceGraph/forceGraph';
+
 dotenv.config();
 
 // import data from '../data/data.json'; // 임시더미데이터
@@ -32,47 +33,6 @@ const MainContainer = () => {
   // const { isSignin } = useSelector(state => state.sign);
   const state = useSelector(state => state);
 
-  
-  //const state = useSelector(state => state)
-  
-  
-  
-
-// TODO:social Login
-//  if (!this.props.isSignIn) {
-//   // 로그인이 아닐때
-//   const url = new URL(window.location.href);
-//   const authorizationCode = url.searchParams.get("code");
-//   if (authorizationCode) {
-//       this.getAccessToken(authorizationCode);
-//   }
-// }
-
-// TODO:get AccessToken 
-  //Access Token 받아오는 메서드
-//  const getAccessToken = async (authCode) => {
-//   console.log(authCode);
-//   await axios
-//       .post(
-//           `${SERVER_API}/users/socialsignin`,
-//           {
-//               authorizationCode: authCode,
-//           },
-//           {
-//               "Content-Type": "appliaction/json",
-//               withCredentials: true,
-//           }
-//       )
-//       .then((res) => {
-//           console.log("문제없음");
-//           console.log(res);
-//           this.props.signIn();
-//       })
-//       .catch((err) => {
-//           console.log("문제있음");
-//           console.log(err);
-//       });
-// };
   
   //노드 클릭 옵션 창 닫기
   const closeNodesetting = (e) => {
@@ -91,22 +51,23 @@ const MainContainer = () => {
   const setLoadingOn = () => {
     dispatch(handleLoadingOn());
   }
+  //윈도우 창 너비 SET
+  const handleWindowSize = (windowSize) => {
+    dispatch(setWindowSize(windowSize));
+  }
  
-  //화면 가로크기 입력 함수 - mediaquery용
-  //TODO: 창크기 값 REDUX에 만들어 놓기
-  // useEffect(() => {
-  //   handleWindowSize(window.innerWidth);
-  //   window.addEventListener('resize', () => handleWindowSize(window.innerWidth));
-  //   return () => {
-  //     window.addEventListener('resize', () => handleWindowSize(window, innerWidth));
-  //   }
-  // }, []);
+  //화면 가로 크기 - mediaquery용 useEffect
+  useEffect(() => {
+    handleWindowSize(window.innerWidth);
+    window.addEventListener('resize', () => handleWindowSize(window.innerWidth));
+    return () => {
+      window.addEventListener('resize', () => handleWindowSize(window, innerWidth));
+    }
+  }, []);
   
   //로그인 유지 함수
   useEffect(() => {
-    // if (!this.props.inSignIn) {
-      
-    // }
+    
     //localstorage에서 token토큰 뽑기
     let token = localStorage.getItem('token');
     
@@ -114,7 +75,7 @@ const MainContainer = () => {
     setLoadingOn();
     setTimeout(() => {
       setLoadingOn();
-    }, 1000);
+    }, 500);
     
     //edge 데이터 받아오기
     axios.get(`${SERVER_API}/nodemap/edge`,
@@ -155,7 +116,7 @@ const MainContainer = () => {
       let token = localStorage.getItem('token');
 
       axios.get(
-        `${SERVER_API}/users/userinfo/${state.userinfo.id}`,
+        `${SERVER_API}/users/userinfo/`,
         { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
       )
         .then(res => res.data)
@@ -176,11 +137,11 @@ const MainContainer = () => {
             localStorage.clear();
             // handleLogin();
             // window.location.reload();
+            console.log("에러");
             return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
           }
         })
     }
-    // document.querySelector('#main-container').style.backgroundColor = siteColor
     console.log('로그인유지 작동');
   }, [])
 

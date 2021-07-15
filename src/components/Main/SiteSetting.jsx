@@ -12,7 +12,7 @@ const SiteSetting = ()=>{
     const [siteFont, setSiteFontSize] = useState("")
 
     let dispatch = useDispatch()
-    let userinfo = useSelector(state=>state.userinfo)
+    // let userinfo = useSelector(state=>state.userinfo)
     let setting = useSelector(state=>state.setting)
 
 
@@ -21,18 +21,22 @@ const SiteSetting = ()=>{
     }
 
     const colorHandler = (e)=>{
-        console.log(document.defaultView.getComputedStyle(e.target).getPropertyValue('background-color'))
         setSiteColor(document.defaultView.getComputedStyle(e.target).getPropertyValue('background-color'))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
+        const token = localStorage.getItem('token');
         if(siteFont){
             axios
             .post(
                 `${SERVER_API}/users/userinfo`,
                 {
-                    id:userinfo.id,
                     siteFont,
+                },
+                {
+                    headers: {
+                        'authorization' : `Bearer ${token}`,
+                    }
                 }
             )
             .then(
@@ -43,14 +47,19 @@ const SiteSetting = ()=>{
     ,[siteFont])
     
 
-    useEffect(()=>{
+    useEffect(() => {
+        const token = localStorage.getItem('token');
         if(siteColor){
             axios
         .post(
             `${SERVER_API}/users/userinfo`,
             {
-                id:userinfo.id,
                 siteColor
+            },
+            {
+                headers: {
+                    'authorization' : `Bearer ${token}`
+                }
             }
         )
         .then(

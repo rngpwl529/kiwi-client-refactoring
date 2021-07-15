@@ -53,7 +53,6 @@ const SignIn = () => {
         }
         
         else {
-            console.log('a')
             axios
                 .post(
                     `${SERVER_API}/users/signin`,
@@ -62,9 +61,7 @@ const SignIn = () => {
                         password
                     },
                     {
-                        headers: {
                             withCredentials: true
-                        }
                     }
                 )
                 .then(res => res.data)
@@ -82,10 +79,9 @@ const SignIn = () => {
                             email: email,
                             username: '',       //TODO:SERVER에서 보내줘야하는 데이터 양식
                         }))
-                        dispatch(signIn())
-                        
+                        dispatch(signIn());
                         localStorage.setItem('token', JSON.stringify(data.accessToken));
-                        // window.location.reload();
+                        window.location.reload();
                     }
                 })
                 .catch(err => {
