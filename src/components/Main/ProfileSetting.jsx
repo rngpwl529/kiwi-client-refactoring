@@ -15,6 +15,8 @@ const ProfileSetting = () => {
     const dispatch = useDispatch();
     const store = useSelector((state)=>(state))
 
+    console.log(store)
+
     const [screenCapture, setScreenCapture] = useState("");
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState("capture");
@@ -68,7 +70,7 @@ const ProfileSetting = () => {
                 <ion-icon name="person-outline" onClick={() => { handleProfileClick(); }} ></ion-icon>
                 <ion-icon name="settings-outline" onClick={() => { handleSettingClick(); }}></ion-icon>
                 <ion-icon name="bookmark-outline" onClick={() => { keywordHandler(); }}></ion-icon>
-                <ion-icon name="image-outline" onClick={onStartCapture}></ion-icon>
+                <ion-icon name="image-outline" onClick={onStartCapture} id='capture-icon'></ion-icon>
                 {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
             </div>
             <Popup open={open} modal closeOnDocumentClick>

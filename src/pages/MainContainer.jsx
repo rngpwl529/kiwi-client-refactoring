@@ -143,7 +143,7 @@ const MainContainer = () => {
         })
     }
     console.log('로그인유지 작동');
-  }, [])
+  }, [state.sign.isSignIn])
 
 
   return (

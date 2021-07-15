@@ -76,9 +76,9 @@ const SiteSetting = ()=>{
     }
 
     return (
-        <div className="sitesetting-darkbackground">
+        <div className="darkbackground">
             <div className='sitesetting-container'>
-            <i className='iconCancel' role='img' aria-label='cancle' onClick={closehandler}></i>
+            <ion-icon name="close-outline" onClick={closehandler}></ion-icon>
             <header className='sitesetting-header'>
                 <span>Site Settings</span>
             </header>

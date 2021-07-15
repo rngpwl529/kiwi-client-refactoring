@@ -35,7 +35,7 @@ const IntroF3 = () =>{
         <div id='intro-search-container'>
           <div className='input-box'>
             <input type='text' className='input search' placeholder='Find Your Keyword in Your mind.'/>
-            <img src='images/search.png' alt='search Icon' className='search-icon'/>
+            <ion-icon name="search-outline"></ion-icon>
           </div>
         </div>        
       </div>

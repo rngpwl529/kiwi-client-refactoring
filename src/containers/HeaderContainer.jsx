@@ -48,8 +48,9 @@ const Header = ()=>{
       <Link to='/intro'>
       <img src='images/logo.svg' alt='KiWi logo' className='logo' />
       </Link>
-      
-      <MapController />
+      <div className="mapcon-area">
+        <MapController />
+      </div>
       <div className='right'>
         <MainSearchBar />
         <ProfileSetting />

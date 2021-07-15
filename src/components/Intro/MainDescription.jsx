@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom"
-import React from "react"
+import React, {useEffect} from "react"
 const MainDescription = () =>{
+  useEffect(()=>{
+    // let containers = document.querySelectorAll('.container')
+    window.addEventListener("scroll",()=>{
+      console.log('a')
+    })
+  },[])
   return(
     <div className='container' id='maindescription-container'>
       <div  className='box'>

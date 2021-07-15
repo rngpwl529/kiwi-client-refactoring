@@ -5,13 +5,17 @@ import React from "react";
 const MainSearchBar = () => {
     let searchTerm = useRef();
     const handler = () => {
-        console.log(searchTerm.current.value);
+        let input = document.querySelector('#main-search input')
+        let logo = document.querySelector('#header a')
+        logo.classList.toggle('invisible')
+        input.placeholder = 'input text'
+        input.classList.toggle('focus')
     }
 
     return (
         <div id='main-search'>
             <input type="text" ref={searchTerm}/>
-            <ion-icon name="search-outline" onClick={() => { handler() }}></ion-icon>
+            <ion-icon name="search-outline" onClick={handler}></ion-icon>
             {/* <TrendKeyword></TrendKeyword> */}
         </div>
     )

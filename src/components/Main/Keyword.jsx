@@ -13,7 +13,6 @@ const Keyword = ({setKeywordOpen}) => {
     // const parentNode = useSelector(state=> state.node.parentNode)
     const dispatch = useDispatch()
     let keywords = useSelector(state=>state.userinfo.bookmarkKeyword)
-    console.log(keywords)
     //키워드 가져오기
     useEffect(()=>{
         axios
@@ -64,24 +63,24 @@ const Keyword = ({setKeywordOpen}) => {
 
     return (
         <div id='keyword-container'>
-            <ion-icon name="close-outline" onClick={handler}></ion-icon>
-            <div>Keywrod Bookmark</div>
+            <div className="keyword-header">
+                <ion-icon name="close-outline" onClick={handler}></ion-icon>
+                <div>Keyword Bookmark</div>
+            </div>
             <ul>
                 {keywords.map((keyword,idx) => {
-                    if(keyword !== '키워드를 추가하세요.'){
-                        return(
-                            <li 
-                            key={idx}  
-                            className='keyword' 
-                            style={{backgroundColor: colors[Math.floor(Math.random()*10)]}}
-                            onClick={deleteHandler}
-                            >{keyword}
-                            <div>
-                                <ion-icon name="close-outline"></ion-icon>
-                            </div>
-                            </li>
-                        )
-                    }
+                    return(
+                        <li 
+                        key={idx}  
+                        className='keyword' 
+                        style={{backgroundColor: colors[Math.floor(Math.random()*10)]}}
+                        onClick={deleteHandler}
+                        >{keyword}
+                        <div>
+                            <ion-icon name="close-outline"></ion-icon>
+                        </div>
+                        </li>
+                    )
                 })}
             </ul>
         </div>
