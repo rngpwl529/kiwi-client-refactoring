@@ -25,7 +25,7 @@ const App= () => {
         <Route path='/main'>
           <MainContrainer />
         </Route>
-        <Route path='/ouath/kakao'>
+        <Route path='/oauth'>
           <KakaoContainer/>
         </Route>
       </Switch>

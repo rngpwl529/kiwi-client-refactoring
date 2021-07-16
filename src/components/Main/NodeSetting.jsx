@@ -59,7 +59,7 @@ const NodeSetting = () => {
         const token = localStorage.getItem('token');
         console.log(token);
         axios.delete(
-            `${SERVER_API}/nodemap/node/${parentNode.nodeName}/${parentNode.id}`,
+            `${SERVER_API}/nodemap/node/${parentNode.nodeName}`,
             {
                 headers: {
                     withCredentials: true,
