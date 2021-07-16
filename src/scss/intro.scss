@@ -159,15 +159,7 @@ a{
     // .content{
     //   flex-direction: column;
     // }
-  }
-  
-  
-  #introF1-container{
-    background-color: #DEDEDE;
-    .back-number{
-      color: #E8E8E8;
-    }
-    a{
+    a.top{
       display: flex;
       justify-content: center;
       align-items: center;
@@ -184,6 +176,14 @@ a{
       @media(max-width: 768px){
         right: 3rem;
       }
+    }
+  }
+  
+  
+  #introF1-container{
+    background-color: #DEDEDE;
+    .back-number{
+      color: #E8E8E8;
     }
     @media (max-width: 768px){
       height: auto;

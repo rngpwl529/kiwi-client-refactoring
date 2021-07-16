@@ -46,7 +46,7 @@ export function runForceGraph(
         .on("end", dragended);
 };
 
-   
+
     //simulation 그리기
     const simulation = d3
         .forceSimulation(nodes)
@@ -54,7 +54,7 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-100)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-2500)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         
@@ -118,7 +118,6 @@ export function runForceGraph(
             return d.nodeName;
         })
         .on("click", (d) => {
-
             handleNodesettingModal(d, d3.event.x, d3.event.y);
         });
 

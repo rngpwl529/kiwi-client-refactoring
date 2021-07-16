@@ -33,7 +33,6 @@ const IntroF1 = () =>{
             through the sea of information through this.
           </div>
         </section>
-        <a href='#maindescription-container' className='top'>TOP</a>
       </div>
     </div>
   )

@@ -17,7 +17,7 @@ const IntroContainer = ()=>{
       });                            
     });
     
-    document.querySelectorAll('.imgbox svg').forEach((wrapper,idx) => {
+    document.querySelectorAll('.content').forEach((wrapper,idx) => {
       if(idx!==0){
         io.observe(wrapper)
       }

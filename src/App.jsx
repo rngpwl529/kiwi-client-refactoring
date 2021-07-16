@@ -9,6 +9,7 @@ import {
 import IntroContainer from './pages/IntroContainer'
 import MainContrainer from './pages/MainContainer'
 import KakaoContainer from './pages/KakaoContainer';
+import Oauth from './Oauth'
 import React from "react"
 
 
@@ -27,6 +28,9 @@ const App= () => {
         </Route>
         <Route path='/oauth'>
           <KakaoContainer/>
+        </Route>
+        <Route path='/oauth/callback/kakao'>
+              <Oauth />
         </Route>
       </Switch>
     </Router>
