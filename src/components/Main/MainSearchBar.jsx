@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import React from "react";
 // import TrendKeyword from "./TrendKeyword";
+import * as d3 from "d3";
 
 const MainSearchBar = () => {
+    
     let searchTerm = useRef();
     const handler = () => {
         let input = document.querySelector('#main-search input')
@@ -12,9 +14,24 @@ const MainSearchBar = () => {
         input.classList.toggle('focus')
     }
 
+    const searchHandler = (e)=>{
+        if(e.key === 'Enter'){
+            console.log()
+            let svg = d3.select('svg')
+            let nodeData = document.getElementsByClassName(`${e.target.value}`)[0]
+            if(!nodeData){
+                alert('no result')
+            }
+            else{
+                svg.transition().duration(1000)
+                .attr("transform","translate("+[-nodeData.__data__.x, -nodeData.__data__.y]+")")
+            }
+        }
+    }
+
     return (
         <div id='main-search'>
-            <input type="text" ref={searchTerm}/>
+            <input type="text" ref={searchTerm} onKeyDown={searchHandler}/>
             <ion-icon name="search-outline" onClick={handler}></ion-icon>
             {/* <TrendKeyword></TrendKeyword> */}
         </div>
