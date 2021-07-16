@@ -63,7 +63,7 @@ const KakaoContainer = () => {
       let social = localStorage.getItem('social');
       //kakao 로그인 겸 회원가입
       kakaoCheck(token, social, url);
-    });
+    },[]);
   
   return (
     <>

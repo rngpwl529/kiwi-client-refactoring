@@ -87,7 +87,8 @@ const MainContainer = () => {
             
             let nodes = data.nodeData.map((el, idx) => {
               return {
-                "id": idx,
+                "id": el.nodeName,
+                "number": idx,
                 "nodeName": el.nodeName,
                 "nodeColor": el.nodeColor
               };

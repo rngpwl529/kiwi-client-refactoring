@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import IntroContainer from './pages/IntroContainer'
 import MainContrainer from './pages/MainContainer'
-// import KakaoContainer from './pages/KakaoContainer';
+import KakaoContainer from './pages/KakaoContainer';
 import Oauth from './Oauth'
 import React from "react"
 
@@ -26,9 +26,9 @@ const App= () => {
         <Route path='/main'>
           <MainContrainer />
         </Route>
-        {/* <Route path='/ouath/kakao'>
+        <Route path='/oauth'>
           <KakaoContainer/>
-        </Route> */}
+        </Route>
         <Route path='/oauth/callback/kakao'>
               <Oauth />
         </Route>
