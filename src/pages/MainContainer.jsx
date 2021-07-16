@@ -4,8 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 require("dotenv").config();
 // 컨테이너 컴포넌트
-
-// import ForceGraph from '../components/Main/forceGraph/forceGraph';
 import HeaderContainer from '../containers/HeaderContainer'
 import ModalContainer from '../containers/ModalContainer'
 // 액션생성함수
@@ -86,7 +84,7 @@ const MainContainer = () => {
           if (data.message === 'internal server error') {
               alert('서버가 정상적으로 동작하지 않습니다.')
           } else {
-            console.log(data.edgeData);
+            
             let nodes = data.nodeData.map((el, idx) => {
               return {
                 "id": idx,
@@ -94,8 +92,8 @@ const MainContainer = () => {
                 "nodeColor": el.nodeColor
               };
             });
-            console.log(nodes);
-              dispatch(setNodeData(nodes, data.edgeData));
+            let edges = data.edgeData;
+              dispatch(setNodeData(nodes, edges));
           }
       })
       .catch(e => console.log(e));
@@ -125,15 +123,14 @@ const MainContainer = () => {
           if (error.status === 400) {
             //! 세션만료 모달, 로그인 해제
             localStorage.clear();
-            // handleLogin();
-            // window.location.reload();
+            window.location.reload();
             console.log("에러");
             return alert('세션이 만료되었습니다. 다시 로그인 해주세요');
           }
         })
     }
     console.log('로그인유지 작동');
-  }, [state.sign.isSignIn])
+  }, [])
 
 
   return (

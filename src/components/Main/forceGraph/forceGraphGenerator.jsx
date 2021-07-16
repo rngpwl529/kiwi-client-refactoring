@@ -46,7 +46,7 @@ export function runForceGraph(
         .on("end", dragended);
 };
 
-   
+
     //simulation 그리기
     const simulation = d3
         .forceSimulation(nodes)
@@ -54,7 +54,7 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-100)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-2500)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         
@@ -90,12 +90,13 @@ export function runForceGraph(
         .selectAll("circle")                               //원을 모두 잡아서
         .data(nodes)                                       //데이터를 넣음
         .join("circle")                                    //원과 합침
-        .attr("r", () => { return 5; }) // 원 반지름
+        .attr("r", () => { return 30; }) // 원 반지름
         .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
         .attr("id", (d) => {                               //속성 id값
             return d.nodeName;
         })
         .on("click", (d) => {
+            console.log(d3.select('g'));
             handleNodesettingModal(d, d3.event.x, d3.event.y);
         })
         .call(drag(simulation));
@@ -115,6 +116,9 @@ export function runForceGraph(
         .text((d) => {
             return d.nodeName;
         })
+        .on("click", (d) => {
+            handleNodesettingModal(d, d3.event.x, d3.event.y);
+        });
 
     // label
     //     .on("mouseover", (d) => {

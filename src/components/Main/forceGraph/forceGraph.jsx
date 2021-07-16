@@ -15,6 +15,7 @@ function ForceGraph() {
     const containerRef = useRef(null);
     const dispatch = useDispatch();
 
+    const { parentNode } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.node);
     const { siteFont } = useSelector(state => state.setting);
@@ -26,7 +27,8 @@ function ForceGraph() {
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
-    const handleNodesettingModal = (node, xCord, yCord) => {
+    const handleNodesettingModal = (node, xCord, yCord, transform) => {
+        console.log(transform);
         if (!isSignIn) {
             dispatch(openSigninModal());
         } else {
@@ -39,28 +41,14 @@ function ForceGraph() {
             dispatch(openNodesettingModal(xCord, yCord));
         }
     }
-    
-
-    
-    // redux-store 상태 조회
-    // const isOpenNodeoptionModal = useSelector((state)=> state.nodeoptionModal);
-    // const isOpenNodesettingModal = useSelector((state)=> state.nodesettingModal);
-    // const nodeData = useSelector((state) => state.nodeData);
-    // const edgeData = useSelector((state) => state.edgeData);
-    
-    
-    
-    // useEffect(() => {
-    //     //처음 render 됐을 때,
-    //     //store에서 nodes와 edges를 가지고 옴
-    //     dispatch(fetchData('http://localhost:80/nodemap/node', setNodeData));
-    //     dispatch(fetchData('http://localhost:80/nodemap/edge', setEdgeData));
-    // }, []);
+    console.log(parentNode);
 
     useEffect(() => {
         //처음 render 됐을 때, 그리고 업데이트 될때마다 재렌더
         let destroyFn;
-        if (containerRef && nodeData.slice(-1) !== undefined) {
+        if (containerRef) {
+            console.log(nodeData.length);
+            console.log(edgeData.length);
             const { destroy } = runForceGraph(
                 containerRef.current,
                 nodeData,

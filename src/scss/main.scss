@@ -51,6 +51,7 @@
       position: absolute;
       display: flex;
       justify-content: center;
+      z-index: -1;
     }
     #control-box{
       display: flex;
@@ -188,5 +189,8 @@
         color: $dark--grey--;
     }
   }
-  
+  svg:nth-child(1){
+    width: 100%;
+    height: 100%;
+  }
 }
