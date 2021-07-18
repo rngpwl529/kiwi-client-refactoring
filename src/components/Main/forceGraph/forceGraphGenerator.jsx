@@ -13,13 +13,13 @@ export function runForceGraph(
 
     console.log("재렌더를 하러 들어왔다.");
 
-  
-    const links = edgeData.map((d) => Object.assign({}, d));//link data
-    const nodes = nodeData.map((d) => Object.assign({}, d)); //nodes data
+    
+    let links = edgeData.map((d) => Object.assign({}, d));//link data
+    let nodes = nodeData.map((d) => Object.assign({}, d)); //nodes data
     const containerRect = container.getBoundingClientRect(); //container 영역
     const height = containerRect.height;                     //container 높이
     const width = containerRect.width;                       //container 너비
-    
+  
     //drag 액션 정의
     const drag = (simulation) => {
     const dragstarted = (d) => {
@@ -54,44 +54,55 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-2500)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-10)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         
         
-        if (d3.select("svg")) {
-            d3.select("svg").remove();
-        }
+        // if (d3.select("svg")) {
+        //     d3.select("svg").remove();
+        // }
+    
+        
     // 컨테이너 그리기
     const svg = d3
         .select(container)
         .append("svg")
         .attr("viewBox", [-width / 2, -height / 2, width, height]) // container 위치
-        .call(d3.zoom().on("zoom", function () {
+        .call(d3.zoom().scaleExtent([1,10]).on("zoom", function () {
             svg.attr("transform", d3.event.transform);
         }))
+    
+        
+        
 
+    const g = svg.append("g")
+        .attr("class", "nodeMap")
+   
     
     // 링크 그리기
-    const link = svg
+    const link = g
         .append("g")
         .attr("stroke", "#999")               //링크 색깔
         .attr("stroke-opacity", 0.6)          //링크 투명도
         .selectAll("line")                    //라인을 모두잡아서
         .data(links)                          //데이터를 연결함
-        .join("line")                         //line이랑 합침
+        .join('line')                         //line이랑 합침
         .attr("stroke-width", (d) => d.value);//링크 두께
         
     
+   
+        
+        
     //노드 버블 그리기
-    const node = svg
+    const node = g
         .append("g")
         .attr("stroke", "#fff")                            //노드 외곽선 색
-        .attr("stroke-width", 0.1)                           //노드 외곽선 두께
+        .attr("stroke-width", 0.6)                           //노드 외곽선 두께
         .selectAll("circle")                               //원을 모두 잡아서
         .data(nodes)                                       //데이터를 넣음
         .join("circle")                                    //원과 합침
-        .attr("r", () => { return 10; }) // 원 반지름
+        .attr("r", (d) => { return d.nodeName.length * 1; }) // 원 반지름
         .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
         .attr("id", (d) => {                               //속성 id값
             return d.nodeName;
@@ -101,10 +112,9 @@ export function runForceGraph(
             handleNodesettingModal(d, d3.event.x, d3.event.y);
         })
         .call(drag(simulation));
-        
-        
+    
     // 텍스트 라벨링 그리기
-    const label = svg
+    const label = g
         .append("g")
         .attr("class", "labels")
         .selectAll("text")
@@ -121,6 +131,9 @@ export function runForceGraph(
             handleNodesettingModal(d, d3.event.x, d3.event.y);
         });
 
+    
+        // simulation.alphaTarget(0.1).restart()
+        
     // label
     //     .on("mouseover", (d) => {
     //         addTooltip(d, d3.event.pageX, d3.event.pageY, nodeHoverTooltip);
@@ -148,7 +161,6 @@ export function runForceGraph(
             return d.y;
         });
     });
-
     
 
     return {

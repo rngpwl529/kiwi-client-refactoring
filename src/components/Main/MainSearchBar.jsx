@@ -3,6 +3,7 @@ import React from "react";
 // import TrendKeyword from "./TrendKeyword";
 import * as d3 from "d3";
 
+
 const MainSearchBar = () => {
     
     let searchTerm = useRef();
@@ -17,14 +18,16 @@ const MainSearchBar = () => {
     const searchHandler = (e)=>{
         if(e.key === 'Enter'){
             console.log()
-            let svg = d3.select('svg')
+            let svg = d3.select('.nodeMap')
             let nodeData = document.getElementsByClassName(`${e.target.value}`)[0]
             if(!nodeData){
                 alert('no result')
             }
             else{
-                svg.transition().duration(1000)
-                .attr("transform","translate("+[-nodeData.__data__.x, -nodeData.__data__.y]+")")
+                svg
+                    .transition()
+                    .duration(1000)
+                    .attr("transform","translate("+ [-nodeData.__data__.x *5, -nodeData.__data__.y]*5 +") scale(5)")
             }
         }
     }

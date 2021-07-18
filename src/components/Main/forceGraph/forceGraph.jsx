@@ -15,7 +15,7 @@ function ForceGraph() {
     const containerRef = useRef(null);
     const dispatch = useDispatch();
 
-    const { parentNode } = useSelector(state => state.node);
+    // const { parentNode } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.node);
     const { siteFont } = useSelector(state => state.setting);
@@ -27,8 +27,7 @@ function ForceGraph() {
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
-    const handleNodesettingModal = (node, xCord, yCord, transform) => {
-        console.log(transform);
+    const handleNodesettingModal = (node, xCord, yCord) => {
         if (!isSignIn) {
             dispatch(openSigninModal());
         } else {
@@ -41,8 +40,6 @@ function ForceGraph() {
             dispatch(openNodesettingModal(xCord, yCord));
         }
     }
-    console.log(parentNode);
-
     useEffect(() => {
         //처음 render 됐을 때, 그리고 업데이트 될때마다 재렌더
         let destroyFn;
@@ -58,7 +55,7 @@ function ForceGraph() {
             destroyFn = destroy;
         }
         return destroyFn;
-    }, [nodeData, edgeData]);
+    },[]);
     //컴포넌트가 화면에서 사라질 때
     return <div ref={containerRef} className={styles.container} style={{fontSize: siteFont}}/>;
 }

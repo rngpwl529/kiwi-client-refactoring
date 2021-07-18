@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import React from 'react'
 // import { modal } from '../../redux/modalstatus'
 import { useSelector } from 'react-redux';
-import {  openNodeoptionModal } from '../../redux/modalstatus';
+import {  closeNodesettingModal, openNodeoptionModal } from '../../redux/modalstatus';
 import { addBookmarkKeyword } from '../../redux/userinfo'
 import { deleteNodeData } from '../../redux/nodemap';
 import axios from 'axios'
@@ -69,6 +69,7 @@ const NodeSetting = () => {
             .then((res) => {
                 console.log(res);
                 dispatch(deleteNodeData(parentNode.id));
+                dispatch(closeNodesettingModal());
             })
             .catch(e => console.log(e));
     }
