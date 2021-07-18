@@ -478,12 +478,12 @@ a {
         height: 2.5rem; }
       #main-container #header .right {
         right: 0rem;
-        position: absolute; }
+        position: absolute; } }
+    @media (max-width: 500px) {
+      #main-container #header .logo {
+        height: 2rem; }
       #main-container #header .invisible {
         display: none; } }
-    @media (max-width: 335px) {
-      #main-container #header .logo {
-        height: 2rem; } }
   #main-container .loading {
     width: 100%;
     height: 100%;
@@ -1245,3 +1245,45 @@ a {
   .popup-content .modal img {
     width: 100%;
     height: 100%; }
+
+#graphOption {
+  position: absolute;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  height: 2rem;
+  right: 1rem;
+  top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  #graphOption .open__option {
+    display: none; }
+  #graphOption.open {
+    height: 13rem;
+    width: 204px;
+    justify-content: flex-start; }
+    #graphOption.open ion-icon[name='grid-outline'] {
+      display: none; }
+    #graphOption.open .open__option {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center; }
+    #graphOption.open ion-icon {
+      position: absolute;
+      right: 0rem;
+      top: 0.1rem;
+      color: #bdbdbd; }
+      #graphOption.open ion-icon:hover {
+        color: #8d8d8d; }
+    #graphOption.open .graphOption__header {
+      margin: 1rem; }
+    #graphOption.open .option__header {
+      font-size: 0.8rem;
+      margin: 1rem 0 0.5rem 0; }
+    #graphOption.open .splitter {
+      width: 100%;
+      height: 1px;
+      background-color: #8d8d8d; }
