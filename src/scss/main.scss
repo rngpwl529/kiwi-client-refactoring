@@ -100,13 +100,13 @@
         right: 0rem;
         position: absolute;
       }
-      .invisible{
-        display: none;
-      }
     }
-    @media (max-width: 335px){
+    @media (max-width: 500px){
       .logo{
         height: 2rem;
+      }
+      .invisible{
+        display: none;
       }
     }
   }
