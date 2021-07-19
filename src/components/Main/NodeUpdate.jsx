@@ -8,7 +8,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const NodeOption = ()=>{
+const NodeUpdate = ()=>{
     let SERVER_API = process.env.REACT_APP_SERVER_API;
     
     let nodeName = useRef();
@@ -42,6 +42,7 @@ const NodeOption = ()=>{
         if (!nodeName || !color) {
             return alert("옵션 정보를 모두 입력해주세요.");
         } else {
+            console.log('등록완료!');
             dispatch(closeNodesettingModal());
             axios.post(`${SERVER_API}/nodemap/node`,
                 {
@@ -54,16 +55,10 @@ const NodeOption = ()=>{
                 .then(res => res.data)
                 .then(data => {
                     dispatch(closeNodeoptionModal());
-                    dispatch(addNodeData(
-                        {
-                        id: data.nodeData.nodeName,
-                        nodeName: data.nodeData.nodeName,
-                        nodeColor: data.nodeData.nodeColor
-                        },
-                        {
-                            source: data.edgeData.source,
-                            target: data.edgeData.target
-                        }));
+                    
+                    dispatch(addNodeData({ id: data.nodeData.nodeName, ...data.nodeData },
+                        { ...data.edgeData }));
+                    return data;
                 })
                 .catch(error => {  //TODO:TOKEN확인여부를 가지고 로그인 창을 띄움
                     if (error.status === 400) {
@@ -83,7 +78,7 @@ const NodeOption = ()=>{
                 <ion-icon name="close-outline" onClick={() => { closeModal(); }}></ion-icon>
                 </div>
                 <header className='nodeoption-header'>
-                    <span>Add a New Node</span>
+                    <span>Update Node</span>
                 </header>
                 <section className='nodeoption-setting'>
                     <div className='nodeoption-nodename'>
@@ -118,6 +113,7 @@ const NodeOption = ()=>{
                                 setColor('#b0d689');
                                 console.log(color);
                             }} />
+                        
                     </div>
                 </div>
                 </section>
@@ -129,4 +125,4 @@ const NodeOption = ()=>{
     )
 }
   
-export default NodeOption
+export default NodeUpdate

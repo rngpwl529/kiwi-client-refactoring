@@ -12,21 +12,20 @@ function ForceGraph() {
     // const containerRef = useRef(null);
     const dispatch = useDispatch();
 
-    const { parentNode } = useSelector(state => state.node);
+    // const { parentNode } = useSelector(state => state.node);
     const { nodeData } = useSelector(state => state.node);
     const { edgeData } = useSelector(state => state.node);
     const { siteFont } = useSelector(state => state.setting);
     const { isSignIn } = useSelector(state => state.sign);
     
-    console.log(parentNode)
+    // console.log(parentNode);
     
     // console.log(nodeData, edgeData);
     console.log("forceGraph");
     // const edgeData = useSelector(state => state.edgeData);
     
     //노드 옵션 모달 오픈
-    const handleNodesettingModal = (node, xCord, yCord, /* transform */) => {
-        // console.log(transform);
+    const handleNodesettingModal = (node, xCord, yCord) => {
         if (!isSignIn) {
             dispatch(openSigninModal());
         } else {
@@ -229,7 +228,7 @@ function ForceGraph() {
             return d.y;
         });
     });
-}, [nodeData,edgeData]);
+}, [nodeData, edgeData]);
     //컴포넌트가 화면에서 사라질 때
     
     return (

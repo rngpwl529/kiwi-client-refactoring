@@ -3,6 +3,7 @@ import React from "react";
 // import TrendKeyword from "./TrendKeyword";
 import * as d3 from "d3";
 
+
 const MainSearchBar = () => {
     
     let searchTerm = useRef();
@@ -16,8 +17,6 @@ const MainSearchBar = () => {
 
     const searchHandler = (e)=>{
         if(e.key === 'Enter'){
-            console.log()
-            // let svg = d3.select('svg')
             let nodeData = document.getElementsByClassName(`${e.target.value}`)[0]
             if(!nodeData){
                 alert('no result')
