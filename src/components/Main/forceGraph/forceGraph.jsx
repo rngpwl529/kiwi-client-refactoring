@@ -123,7 +123,7 @@ function ForceGraph() {
             "link",
             d3.forceLink(edgeData).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-500)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-2000)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         

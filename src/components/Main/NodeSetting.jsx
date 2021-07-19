@@ -80,8 +80,8 @@ const NodeSetting = () => {
     return (
         <div id="nodesetting-darkbackground" >
             <div id='node-setting-container' style={{left: x, top: y}}>
-                <ion-icon name="pencil-sharp"></ion-icon>
-                <div className="splitter"></div>
+                {/* <ion-icon name="pencil-sharp"></ion-icon> */}
+                {/* <div className="splitter"></div> */}
                 <ion-icon name="add-sharp" onClick={()=>{ handleAddnode(); }}></ion-icon>
                 <div className="splitter"></div>
                 <ion-icon name="trash-outline" onClick={() => { handleDeletenode();}}></ion-icon>

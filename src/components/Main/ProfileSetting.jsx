@@ -73,11 +73,11 @@ const ProfileSetting = () => {
                 <ion-icon name="image-outline" onClick={onStartCapture} id='capture-icon'></ion-icon>
                 {keywordOpen ? <Keyword setKeywordOpen={setKeywordOpen}/>:null}
             </div>
-            <Popup open={open} onClose={closeModal} modal closeOnDocumentClick>
+            <Popup open={open} modal closeOnDocumentClick>
               <div className="modal">
                 <div className="modal__header">
-                    <ion-icon name='close-outline' onClick={closeModal}></ion-icon>
-                  {/* <button onClick={closeModal}>&times;</button> */}
+                    {/* <ion-icon name='close-outline' onClick={closeModal}></ion-icon> */}
+                  <button onClick={closeModal}>&times;</button>
                 </div>
                 <div className="modal__body">
                   <div>
