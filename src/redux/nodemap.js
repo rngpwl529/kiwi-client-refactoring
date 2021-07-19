@@ -8,14 +8,14 @@ const initialState = {
 };
 
 //서버에 데이터 요청
-export const fetchData = (api, action) => (dispatch) => {
-    return fetch(api)
-        .then((res) => res.json())
-        .then((data) => {
-            dispatch(action(data));
-        })
-        .catch((err) => console.log(err));
-};
+// export const fetchData = (api, action) => (dispatch) => {
+//     return fetch(api)
+//         .then((res) => res.json())
+//         .then((data) => {
+//             dispatch(action(data));
+//         })
+//         .catch((err) => console.log(err));
+// };
 //액션
 
 //노드데이터
@@ -24,13 +24,6 @@ const ADD_NODE_DATA = 'ADD_EDGE_DATA';
 const UPDATE_NODE_DATA = 'UPDATE_EDGE_DATA';
 const DELETE_NODE_DATA = 'DELETE_NODE_DATA';
 
-//엣지 추가 삭제 수정
-const SET_EDGE_DATA = 'SET_EDGE_DATA';
-const ADD_EDGE_DATA = 'ADD_EDGE_DATA';
-const UPDATE_EDGE_DATA = 'UPDATE_EDGE_DATA';
-const DELETE_EDGE_DATA = 'DELETE_EDGE_DATA';
-
-//
 const SET_PARENT_NODE = 'SET_PARENT_NODE';
 const HANDLE_LOADING_ON = 'HANDLE_LOADING_ON';
 // const
@@ -60,31 +53,6 @@ export const deleteNodeData = (parentNode) => ({
     type: DELETE_NODE_DATA,
     payload: {
         parentNode,
-    },
-});
-
-export const setEdgeData = (edgeData) => ({
-    type: SET_EDGE_DATA,
-    payload: {
-        edgeData,
-    },
-});
-export const addEdgeData = (edgeData) => ({
-    type: ADD_EDGE_DATA,
-    payload: {
-        edgeData,
-    },
-});
-export const updateEdgeData = (edgeData) => ({
-    type: UPDATE_EDGE_DATA,
-    payload: {
-        edgeData,
-    },
-});
-export const deleteEdgeData = (edgeData) => ({
-    type: DELETE_EDGE_DATA,
-    payload: {
-        edgeData,
     },
 });
 export const setParentnode = (nodeData) => ({
@@ -123,44 +91,24 @@ export const nodemap = (state = initialState, action) => {
         }
 
         case DELETE_NODE_DATA: {
-            let idx = action.payload.parentNode;
+            let parentNode = action.payload.parentNode;
             let nodeData = state.nodeData;
             let edgeData = state.edgeData;
-
             let updateNodeData = nodeData.filter((el) => {
-                return el.id !== idx;
+                return el.nodeName !== parentNode.nodeName;
             });
             let updateEdgeData = edgeData.filter((el) => {
-                return el.source !== idx && el.target !== idx;
+                return (
+                    el.source.nodeName !== parent.nodeName &&
+                    el.target.nodeName !== parent.nodeName
+                );
             });
-
             return Object.assign({}, state, {
                 nodeData: [...updateNodeData],
                 edgeData: [...updateEdgeData],
             });
         } // 수정 필요
 
-        case SET_EDGE_DATA:
-            return Object.assign({}, state, {
-                edgeData: action.payload.edgeData,
-            });
-
-        case ADD_EDGE_DATA:
-            return Object.assign({}, state, {
-                edgeData: [...state.edgeData, action.payload.edgeData],
-            });
-        case UPDATE_EDGE_DATA:
-            return Object.assign({}, state, {
-                nodeDate: [...state.edgeData, action.payload.edgeDate],
-            });
-        case DELETE_EDGE_DATA: {
-            const result = Object.assign({}, state);
-            const idx = state.edgeData.findIndex(
-                (node) => node.id === action.payload.edgeData.id
-            );
-            result.edgeData.splice(idx, 1);
-            return result;
-        }
         case SET_PARENT_NODE:
             return Object.assign({}, state, {
                 parentNode: action.payload.nodeData,

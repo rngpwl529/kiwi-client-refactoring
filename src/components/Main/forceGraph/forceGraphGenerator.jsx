@@ -54,7 +54,7 @@ export function runForceGraph(
             "link",
             d3.forceLink(links).id((d) => d.id)
         )
-        .force("charge", d3.forceManyBody().strength(-10)) // force 정도
+        .force("charge", d3.forceManyBody().strength(-1000)) // force 정도
         .force("x", d3.forceX())
         .force("y", d3.forceY())
         
@@ -86,33 +86,43 @@ export function runForceGraph(
         .attr("stroke", "#999")               //링크 색깔
         .attr("stroke-opacity", 0.6)          //링크 투명도
         .selectAll("line")                    //라인을 모두잡아서
-        .data(links)                          //데이터를 연결함
-        .join('line')                         //line이랑 합침
+        .data(links)
+        .enter()
+        .append('line')                          //데이터를 연결함
+        .join("line")                         //line이랑 합침
         .attr("stroke-width", (d) => d.value);//링크 두께
         
-    
-   
-        
-        
+
     //노드 버블 그리기
     const node = g
-        .append("g")
-        .attr("stroke", "#fff")                            //노드 외곽선 색
-        .attr("stroke-width", 0.6)                           //노드 외곽선 두께
-        .selectAll("circle")                               //원을 모두 잡아서
-        .data(nodes)                                       //데이터를 넣음
-        .join("circle")                                    //원과 합침
-        .attr("r", (d) => { return d.nodeName.length * 1; }) // 원 반지름
-        .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
-        .attr("id", (d) => {                               //속성 id값
-            return d.nodeName;
-        })
-        .on("click", (d) => {
-            console.log(d3.select('g'));
-            handleNodesettingModal(d, d3.event.x, d3.event.y);
-        })
-        .call(drag(simulation));
+    .append("g")
+    .attr("stroke", "#fff")                            //노드 외곽선 색
+    .attr("stroke-width", 0.1)                           //노드 외곽선 두께
+    .selectAll("circle")                               //원을 모두 잡아서
+    .data(nodes)                                       //데이터를 넣음                
+    .call(log,'enter')
+    .join("circle")                                    //원과 합침
+    .attr("r", () => { return 30; }) // 원 반지름
+    .attr("fill", (d) => { return d.nodeColor; })          // 원 컬러
+    .attr("id", (d) => {                               //속성 id값
+        return d.nodeName;
+    })
+    .on("click", (d) => {
+        console.log(d3.select('g'));
+        handleNodesettingModal(d, d3.event.x, d3.event.y);
+    })
+    .call(drag(simulation));
     
+    function log(sel,msg) {
+        console.log(msg,sel);
+    }
+
+    d3.select('#distance').on('input',()=>{
+        let value = d3.select('#distance').property('value')
+        simulation.alpha(1)
+        simulation.force('link').distance(+value)
+    })
+        
     // 텍스트 라벨링 그리기
     const label = g
         .append("g")

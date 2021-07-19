@@ -68,7 +68,7 @@ const NodeSetting = () => {
             })
             .then((res) => {
                 console.log(res);
-                dispatch(deleteNodeData(parentNode.id));
+                dispatch(deleteNodeData(parentNode));
                 dispatch(closeNodesettingModal());
             })
             .catch(e => console.log(e));
