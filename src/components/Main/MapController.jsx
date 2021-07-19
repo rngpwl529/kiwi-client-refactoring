@@ -13,17 +13,17 @@ const MapController = () => {
 
     return (
         <div id='control-box'>
-            <span>
+            {/* <span>
                 <ion-icon name="arrow-undo" ></ion-icon>
-            </span>
+            </span> */}
             <div className='splitter'></div>
             <span>
                 <ion-icon name="home" onClick={()=>{handler()}}></ion-icon>
             </span>
-            <div className='splitter'></div>
+            {/* <div className='splitter'></div>
             <span>
                 <ion-icon name="arrow-redo" onClick={()=>{alert('back')}}></ion-icon>
-            </span>
+            </span> */}
         </div>
     )
 }
