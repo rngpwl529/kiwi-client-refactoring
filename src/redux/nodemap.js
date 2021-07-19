@@ -99,8 +99,8 @@ export const nodemap = (state = initialState, action) => {
             });
             let updateEdgeData = edgeData.filter((el) => {
                 return (
-                    el.source.nodeName !== parent.nodeName &&
-                    el.target.nodeName !== parent.nodeName
+                    el.source.nodeName !== parentNode.nodeName &&
+                    el.target.nodeName !== parentNode.nodeName
                 );
             });
             return Object.assign({}, state, {
