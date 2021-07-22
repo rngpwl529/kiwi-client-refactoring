@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 
 const IntroF1 = () =>{
+
+  let page1Ref = useRef(null)
+  
+  useEffect(()=>{
+    const io = new IntersectionObserver((entry) => {
+        if(entry.isIntersecting){
+          entry.target.scrollIntoView(false)
+        }
+      });                            
+    
+    let page1 = document.querySelector('#introF1-container')
+    io.observe(page1)
+  },[])
+
   return(
-    <div className='container' id='introF1-container' >
+    <div className='container' id='introF1-container' ref={page1Ref}>
       <div className='content'>
         <div className='back-image'>
           <svg width="1441" height="981" viewBox="0 0 1441 981" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,9 +34,13 @@ const IntroF1 = () =>{
         <div className='imgbox'>
         <svg width="546" height="599" viewBox="0 0 546 599" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M389 404.5C389 511.919 301.919 599 194.5 599C87.0806 599 0 511.919 0 404.5C0 297.081 87.0806 210 194.5 210C301.919 210 389 297.081 389 404.5Z" fill="#5D97DA" className='move'/>
-          <rect x="70" y="60" width="476" height="476" rx="238" fill="white"/>
+          {/* <rect x="70" y="60" width="476" height="476" rx="238" fill="white"/> */}
+
           <path d="M516 96C516 137.421 482.421 171 441 171C399.579 171 366 137.421 366 96C366 54.5786 399.579 21 441 21C482.421 21 516 54.5786 516 96Z" fill="#5D97DA" className='move'/>
         </svg>
+        <div className="gif-box">
+            <img src="/images/addNode.gif" alt="search.gif" className='search-gif'/>
+          </div>
         </div>
         <section className='main-container text'>
           <div className='title'><div className='back-number'>02</div>Join us</div>
@@ -38,4 +56,4 @@ const IntroF1 = () =>{
   )
 }
 
-export default IntroF1
+export default IntroF1;

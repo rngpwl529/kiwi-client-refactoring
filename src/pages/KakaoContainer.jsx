@@ -49,7 +49,7 @@ const KakaoContainer = () => {
         dispatch(updateUserInfo({
           id: data.id,
         }));
-        window.location.assign('http://localhost:3000/main');
+        window.location.assign(`https://kiwimap.info/main`);
       })
       .catch((err) => {
         console.log("문제있음");
