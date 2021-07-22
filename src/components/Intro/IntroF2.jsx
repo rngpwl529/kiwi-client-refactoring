@@ -28,12 +28,15 @@ const IntroF2 = () =>{
           <svg width="597" height="642" viewBox="0 0 597 642" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M389 438.5C389 545.919 301.919 633 194.5 633C87.0806 633 0 545.919 0 438.5C0 331.081 87.0806 244 194.5 244C301.919 244 389 331.081 389 438.5Z" fill="#5D97DA" className='move'/>
             <path d="M518 138C518 193.228 473.228 238 418 238C362.772 238 318 193.228 318 138C318 82.7715 362.772 38 418 38C473.228 38 518 82.7715 518 138Z" fill="#5D97DA" className='move'/>
-            <rect x="76" y="80" width="520.747" height="500" rx="241" fill="white"/>
+            {/* <rect x="76" y="80" width="520.747" height="500" rx="241" fill="white"/> */}
           </svg>
+          <div className="gif-box">
+            <img src="/images/bookmark.gif" alt="search.gif" className='search-gif'/>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-export default IntroF2
+export default IntroF2;

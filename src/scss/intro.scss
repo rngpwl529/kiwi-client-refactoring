@@ -121,6 +121,7 @@ a{
       animation-duration: 2s;
       animation-iteration-count: infinite;
     }
+    
     @media (max-width: 768px){
       height: auto;
       .content{
@@ -185,6 +186,23 @@ a{
     .back-number{
       color: #E8E8E8;
     }
+    .gif-box{
+      border: 10px solid $lighter--grey--;
+      position: absolute;
+      display: flex;
+      flex-basis: 30rem;
+      max-width: 30rem;
+      right: 2vw;
+      top: 15vw;
+      border-radius: 50%;
+      flex-shrink: 1.5;
+
+      overflow: hidden;
+    }
+    .search-gif{
+      display: flex;
+      width: 100%;
+    }
     @media (max-width: 768px){
       height: auto;
       .content{
@@ -219,6 +237,10 @@ a{
         max-width: 18rem;
         max-height: 20rem;
       }
+      .gif-box{
+        top: 5rem;
+        border: 5px solid $lighter--grey--;
+      }
     }
   }
 
@@ -232,6 +254,23 @@ a{
     }
     .text{
       padding-bottom: 10rem;
+    }
+    .gif-box{
+      border: 10px solid $lighter--grey--;
+      position: absolute;
+      display: flex;
+      flex-basis: 32rem;
+      max-width: 32rem;
+      right: 2vw;
+      bottom: 9vh;
+      border-radius: 50%;
+      flex-shrink: 1.5;
+
+      overflow: hidden;
+    }
+    .search-gif{
+      display: flex;
+      width: 100%;
     }
     
     @media(max-width:768px){
@@ -274,6 +313,10 @@ a{
       .sub-descript{
         font-size: 1rem;
       }
+      .gif-box{
+        bottom: 4rem;
+        border: 5px solid $lighter--grey--;
+      }
     }
     // .content{
     //   justify-content: flex-start;
@@ -308,6 +351,21 @@ a{
     }
     .back-image{
       margin-top: 15%;
+    }
+    .gif-box{
+      border: 7px solid $lighter--grey--;
+      position: absolute;
+      display: flex;
+      flex-basis: 29rem;
+      max-width: 29rem;
+      border-radius: 50%;
+      left: 3vw;
+      top: 7vw;
+      overflow: hidden;
+    }
+    .search-gif{
+      display: flex;
+      width: 100%;
     }
     #intro-search-container{
       display: flex;
@@ -381,6 +439,10 @@ a{
           height: 2rem;
           font-size: 1.8rem !important;
         }
+      }
+      .gif-box{
+        top: 1rem;
+        border: 5px solid $lighter--grey--;
       }
     }
   }

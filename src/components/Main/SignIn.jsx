@@ -110,9 +110,11 @@ const SignIn = () => {
             <div className="darkbackground">
                 <div id='signin-container'>
                     <div className='sign-img'>
+                    <div className="back-img"></div>
                         <object 
                         type="image/svg+xml"
-                        data='/images/whitelogo.svg' className='signLogo'></object>
+                            data='/images/whitelogo.svg' className='signLogo'></object>
+                        <img src='/images/signIn.svg' className='sign-img-left'></img>
                     </div>
                     {!signup ?
                         <div id='signin-form'>

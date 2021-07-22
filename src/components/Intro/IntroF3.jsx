@@ -19,8 +19,11 @@ const IntroF3 = () =>{
             <svg width="662" height="622" viewBox="0 0 662 622" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M662 472C662 554.843 594.843 622 512 622C429.157 622 362 554.843 362 472C362 389.157 429.157 322 512 322C594.843 322 662 389.157 662 472Z" fill="#5D97DA" className='move'/>
               <path d="M200 411C200 466.228 155.228 511 100 511C44.7715 511 0 466.228 0 411C0 355.772 44.7715 311 100 311C155.228 311 200 355.772 200 411Z" fill="#5D97DA" className='move'/>
-              <circle cx="297" cy="250" r="250" fill="#9EBFE7"/>
+              {/* <circle cx="297" cy="250" r="250" fill="#9EBFE7"/> */}
             </svg>
+            <div className="gif-box">
+              <img src="/images/search2.gif" alt="search.gif" className='search-gif'/>
+            </div>
           </div>
           <section className='main-container text'>
             <div className='title'><div className='back-number'>04</div>Search it</div>
@@ -43,4 +46,4 @@ const IntroF3 = () =>{
   )
 }
 
-export default IntroF3
+export default IntroF3;

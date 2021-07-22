@@ -96,7 +96,7 @@ const UserSetting = ()=>{
             .then(() => {
                 // localStorage.clear();
                 localStorage.setItem("logout", "true")
-                window.location.replace("http://localhost:3000/intro");
+                window.location.replace("http://kiwimap.info/intro");
                 console.log("주소 이동");
             })
             .catch(() => alert("올바르지 않은 요청입니다."));

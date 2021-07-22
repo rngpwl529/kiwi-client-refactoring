@@ -18,7 +18,8 @@
     }
     .sign-img{
         width: 50%;
-        background-color: #000000;
+        position: relative;
+        background-color:white;
         object{
             width: 7rem;
             padding: $padding;
@@ -146,5 +147,23 @@
             display: none;
         }
         
+    }
+    .signLogo{
+        position: absolute;
+    }
+    .sign-img-left{
+        margin-top: 5rem;
+        position: absolute;
+        z-index: 1;
+    }
+    .back-img{  
+        position: absolute;
+        background-color: $basic--blue--;
+        width: 95%;
+        height: 120%;
+        left: 0.8rem;
+        top: -10rem;
+        border-radius: 5rem;
+        z-index: 0;
     }
 }
